@@ -20,35 +20,6 @@
             position: relative;
         }
 
-        .snow-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .snowflake {
-            position: absolute;
-            top: -10px;
-            width: 5px;
-            height: 5px;
-            background: white;
-            border-radius: 50%;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(100vh);
-            }
-        }
-
         header {
             position: fixed;
             top: 0;
@@ -82,64 +53,33 @@
             color: #cccccc;
         }
 
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            animation: fadeIn 1s ease-in;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            background: var(--steel-white);
-            color: var(--metallic-black);
-            padding: 0.8rem 2rem;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        .btn:hover {
-            background: #cccccc;
-            transform: scale(1.05);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .featured {
             padding: 4rem 0;
             text-align: center;
         }
 
-        .featured h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+        #products {
+            position: relative;
         }
 
-        .brand-section {
-            margin-bottom: 3rem;
+        #grid-view, #detail-view {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: opacity 0.3s ease;
         }
 
-        .brand-section h3 {
-            font-size: 2rem;
-            margin: 1rem 0;
-            text-align: left;
-            padding-left: 2rem;
+        #grid-view {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #detail-view {
+            opacity: 0;
+            pointer-events: none;
+            background: var(--metallic-black);
+            padding: 2rem;
         }
 
         .grid {
@@ -153,14 +93,8 @@
             background: #222222;
             padding: 1rem;
             border-radius: 8px;
-            transition: transform 0.3s, box-shadow 0.3s, opacity 0.5s, transform 0.5s;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .grid-item.visible {
-            opacity: 1;
-            transform: translateY(0);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
         }
 
         .grid-item:hover {
@@ -176,111 +110,43 @@
             margin-bottom: 1rem;
         }
 
-        .grid h4 {
-            margin: 0.5rem 0;
-            font-size: 1.2rem;
+        .detail-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .grid p {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .vendor-bundle {
-            background: #111111;
-            padding: 6rem 0;
-            text-align: center;
-            border-top: 1px solid #333333;
-            border-bottom: 1px solid #333333;
-            margin: 2rem 0;
-        }
-
-        .vendor-bundle h2 {
-            font-size: 3.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        #back-to-grid {
+            background: var(--steel-white);
+            color: var(--metallic-black);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
             margin-bottom: 1rem;
         }
 
-        .vendor-bundle p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .vendor-bundle img {
+        #detail-image {
             width: 100%;
-            max-width: 600px;
-            height: 300px;
-            object-fit: cover;
+            height: auto;
             border-radius: 8px;
             margin-bottom: 1rem;
         }
 
-        footer {
-            background: var(--metallic-black);
-            padding: 2rem;
-            text-align: center;
+        .btn {
+            background: var(--steel-white);
+            color: var(--metallic-black);
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.3s;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .featured h2 {
-                font-size: 2rem;
-            }
-            .brand-section h3 {
-                font-size: 1.5rem;
-                padding-left: 1rem;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .vendor-bundle h2 {
-                font-size: 2.5rem;
-            }
-            .vendor-bundle img {
-                height: 200px;
-            }
+        .btn:hover {
+            background: #cccccc;
         }
     </style>
 </head>
 <body>
-    <div class="snow-container">
-        <div class="snowflake" style="left: 5%; animation-duration: 10s; animation-delay: 0s;"></div>
-        <div class="snowflake" style="left: 10%; animation-duration: 12s; animation-delay: 1s;"></div>
-        <div class="snowflake" style="left: 15%; animation-duration: 8s; animation-delay: 2s;"></div>
-        <div class="snowflake" style="left: 20%; animation-duration: 14s; animation-delay: 0.5s;"></div>
-        <div class="snowflake" style="left: 25%; animation-duration: 9s; animation-delay: 3s;"></div>
-        <div class="snowflake" style="left: 30%; animation-duration: 11s; animation-delay: 1.5s;"></div>
-        <div class="snowflake" style="left: 35%; animation-duration: 7s; animation-delay: 4s;"></div>
-        <div class="snowflake" style="left: 40%; animation-duration: 13s; animation-delay: 2.5s;"></div>
-        <div class="snowflake" style="left: 45%; animation-duration: 10s; animation-delay: 0.8s;"></div>
-        <div class="snowflake" style="left: 50%; animation-duration: 12s; animation-delay: 3.2s;"></div>
-        <div class="snowflake" style="left: 55%; animation-duration: 8s; animation-delay: 1.7s;"></div>
-        <div class="snowflake" style="left: 60%; animation-duration: 14s; animation-delay: 4.5s;"></div>
-        <div class="snowflake" style="left: 65%; animation-duration: 9s; animation-delay: 2.3s;"></div>
-        <div class="snowflake" style="left: 70%; animation-duration: 11s; animation-delay: 0.9s;"></div>
-        <div class="snowflake" style="left: 75%; animation-duration: 7s; animation-delay: 3.8s;"></div>
-        <div class="snowflake" style="left: 80%; animation-duration: 13s; animation-delay: 1.2s;"></div>
-        <div class="snowflake" style="left: 85%; animation-duration: 10s; animation-delay: 4.1s;"></div>
-        <div class="snowflake" style="left: 90%; animation-duration: 12s; animation-delay: 2.6s;"></div>
-        <div class="snowflake" style="left: 95%; animation-duration: 8s; animation-delay: 0.4s;"></div>
-        <div class="snowflake" style="left: 2%; animation-duration: 15s; animation-delay: 3.5s;"></div>
-        <div class="snowflake" style="left: 12%; animation-duration: 9s; animation-delay: 1.9s;"></div>
-        <div class="snowflake" style="left: 22%; animation-duration: 11s; animation-delay: 4.3s;"></div>
-        <div class="snowflake" style="left: 32%; animation-duration: 7s; animation-delay: 2.1s;"></div>
-        <div class="snowflake" style="left: 42%; animation-duration: 13s; animation-delay: 0.7s;"></div>
-        <div class="snowflake" style="left: 52%; animation-duration: 10s; animation-delay: 3.4s;"></div>
-        <div class="snowflake" style="left: 62%; animation-duration: 12s; animation-delay: 1.8s;"></div>
-        <div class="snowflake" style="left: 72%; animation-duration: 8s; animation-delay: 4.2s;"></div>
-        <div class="snowflake" style="left: 82%; animation-duration: 14s; animation-delay: 2.9s;"></div>
-        <div class="snowflake" style="left: 92%; animation-duration: 9s; animation-delay: 0.6s;"></div>
-        <div class="snowflake" style="left: 8%; animation-duration: 11s; animation-delay: 3.7s;"></div>
-    </div>
     <header>
         <div class="logo">YallahVendors</div>
         <nav>
@@ -293,865 +159,105 @@
         </nav>
     </header>
     <main>
-        <section class="hero">
-            <h1>Welcome to YallahVendors</h1>
-            <p>Shop unique vendors from the heart of the market</p>
-            <a href="#products" class="btn">Shop Now</a>
-        </section>
         <section id="products" class="featured">
-            <h2>Fragrances</h2>
-            <!-- Creed Images: Replace placeholder URLs with transparent PNGs from creedboutique.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Creed</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Aventus">
-                        <h4>Aventus</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Silver Mountain Water">
-                        <h4>Silver Mountain Water</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Virgin Island Water">
-                        <h4>Virgin Island Water</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Himalaya">
-                        <h4>Himalaya</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Millésime Impérial">
-                        <h4>Millésime Impérial</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Love in White">
-                        <h4>Love in White</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Viking">
-                        <h4>Viking</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Aventus for Her">
-                        <h4>Aventus for Her</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class–item">
-                        <img src="https://via.placeholder.com/250x200" alt="Absolu Aventus">
-                        <h4>Absolu Aventus</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Carmina">
-                        <h4>Carmina</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Queen of Silk">
-                        <h4>Queen of Silk</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Green Irish Tweed">
-                        <h4>Green Irish Tweed</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
+            <div id="grid-view">
+                <h2>Fragrances</h2>
+                <div class="brand-section">
+                    <h3>Creed</h3>
+                    <div class="grid">
+                        <div class="grid-item" data-product="aventus">
+                            <img src="https://via.placeholder.com/250x200" alt="Aventus">
+                            <h4>Aventus</h4>
+                            <p>$35.00</p>
+                            <a href="#" class="btn">Shop Now</a>
+                        </div>
+                        <div class="grid-item" data-product="silver-mountain-water">
+                            <img src="https://via.placeholder.com/250x200" alt="Silver Mountain Water">
+                            <h4>Silver Mountain Water</h4>
+                            <p>$35.00</p>
+                            <a href="#" class="btn">Shop Now</a>
+                        </div>
+                        <!-- Add more products as needed -->
                     </div>
                 </div>
+                <!-- Add more brand sections as needed -->
             </div>
-            <!-- Giorgio Armani Images: Replace placeholder URLs with transparent PNGs from armanibeauty.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Giorgio Armani</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Vétiver d'Hiver (Vetiver Babylone)">
-                        <h4>Vétiver d'Hiver (Vetiver Babylone)</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
+            <div id="detail-view">
+                <button id="back-to-grid">Back to Products</button>
+                <div class="detail-content">
+                    <img id="detail-image" src="" alt="Product Image">
+                    <h2 id="detail-name"></h2>
+                    <p id="detail-brand"></p>
+                    <p id="detail-price"></p>
+                    <p id="detail-description"></p>
+                    <div id="detail-scent-notes">
+                        <h3>Scent Notes</h3>
+                        <p><strong>Top:</strong> <span id="detail-top-notes"></span></p>
+                        <p><strong>Middle:</strong> <span id="detail-middle-notes"></span></p>
+                        <p><strong>Base:</strong> <span id="detail-base-notes"></span></p>
                     </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Armani Privé Oud Royal">
-                        <h4>Armani Privé Oud Royal</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="My Way">
-                        <h4>My Way</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Acqua di Gio Essenza">
-                        <h4>Acqua di Gio Essenza</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Sì Passione">
-                        <h4>Sì Passione</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Emporio Armani Stronger With You">
-                        <h4>Emporio Armani Stronger With You</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Acqua di Gioia">
-                        <h4>Acqua di Gioia</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Santal Dan Sha">
-                        <h4>Santal Dan Sha</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Rose Alexandrie">
-                        <h4>Rose Alexandrie</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Acqua di Gio">
-                        <h4>Acqua di Gio</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Acqua di Giò Profumo">
-                        <h4>Acqua di Giò Profumo</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
+                    <a href="#" class="btn">Add to Cart</a>
                 </div>
             </div>
-            <!-- Louis Vuitton Images: Replace placeholder URLs with transparent PNGs from louisvuitton.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Louis Vuitton</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Orage">
-                        <h4>Orage</h4>
-                        <p>$55.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Imagination">
-                        <h4>Imagination</h4>
-                        <p>$55.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Les Sables Roses">
-                        <h4>Les Sables Roses</h4>
-                        <p>$55.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="California Dream">
-                        <h4>California Dream</h4>
-                        <p>$55.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Heures d'Absence">
-                        <h4>Heures d'Absence</h4>
-                        <p>$55.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Ombre Nomade">
-                        <h4>Ombre Nomade</h4>
-                        <p>$55.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Matière Noire">
-                        <h4>Matière Noire</h4>
-                        <p>$55.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="L'Immensité">
-                        <h4>L'Immensité</h4>
-                        <p>$55.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Attrape-Rêves">
-                        <h4>Attrape-Rêves</h4>
-                        <p>$55.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Coeur Battant">
-                        <h4>Coeur Battant</h4>
-                        <p>$55.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Fleur du Désert">
-                        <h4>Fleur du Désert</h4>
-                        <p>$55.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Nuit de Feu">
-                        <h4>Nuit de Feu</h4>
-                        <p>$55.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Penhaligon's Images: Replace placeholder URLs with transparent PNGs from penhaligons.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Penhaligon's</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="The Coveted Duchess Rose">
-                        <h4>The Coveted Duchess Rose</h4>
-                        <p>$40.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Much Ado About The Duke">
-                        <h4>Much Ado About The Duke</h4>
-                        <p>$40.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="The Tragedy of Lord George">
-                        <h4>The Tragedy of Lord George</h4>
-                        <p>$40.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="The Revenge Of Lady Blanche">
-                        <h4>The Revenge Of Lady Blanche</h4>
-                        <p>$40.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Chanel Images: Replace placeholder URLs with transparent PNGs from chanel.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Chanel</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="1957">
-                        <h4>1957</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="No 19 Eau de Parfum">
-                        <h4>No 19 Eau de Parfum</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Gabrielle Essence">
-                        <h4>Gabrielle Essence</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="No 5 L'Eau">
-                        <h4>No 5 L'Eau</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Bleu de Chanel Eau de Parfum">
-                        <h4>Bleu de Chanel Eau de Parfum</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Bleu de Chanel">
-                        <h4>Bleu de Chanel</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Chance Eau de Toilette">
-                        <h4>Chance Eau de Toilette</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Chance Eau Vive">
-                        <h4>Chance Eau Vive</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Jean Paul Gaultier Images: Replace placeholder URLs with transparent PNGs from jeanpaulgaultier.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Jean Paul Gaultier</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Le Male">
-                        <h4>Le Male</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Ultra Male">
-                        <h4>Ultra Male</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Le Male Le Parfum">
-                        <h4>Le Male Le Parfum</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Le Male Elixir">
-                        <h4>Le Male Elixir</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Xerjoff Images: Replace placeholder URLs with transparent PNGs from xerjoff.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Xerjoff</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Erba Pura">
-                        <h4>Erba Pura</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Accento">
-                        <h4>Accento</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Soprano">
-                        <h4>Soprano</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Amabile">
-                        <h4>Amabile</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Coro (Selfridges Exclusive)">
-                        <h4>Coro (Selfridges Exclusive)</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Opera">
-                        <h4>Opera</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Erba Gold">
-                        <h4>Erba Gold</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Nio">
-                        <h4>Nio</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Maison Francis Kurkdjian Images: Replace placeholder URLs with transparent PNGs from maisonfranciskurkdjian.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Maison Francis Kurkdjian</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Baccarat Rouge 540 Extrait de Parfum">
-                        <h4>Baccarat Rouge 540 Extrait de Parfum</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Baccarat Rouge 540">
-                        <h4>Baccarat Rouge 540</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Grand Soir">
-                        <h4>Grand Soir</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Oud Satin Mood">
-                        <h4>Oud Satin Mood</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Oud Silk Mood Extrait de parfum">
-                        <h4>Oud Silk Mood Extrait de parfum</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Petit Matin">
-                        <h4>Petit Matin</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="L'eau À la Rose">
-                        <h4>L'eau À la Rose</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="L'Homme À la Rose">
-                        <h4>L'Homme À la Rose</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Tom Ford Images: Replace placeholder URLs with transparent PNGs from tomford.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Tom Ford</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Oud Wood">
-                        <h4>Oud Wood</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="White Suede">
-                        <h4>White Suede</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Soleil Blanc">
-                        <h4>Soleil Blanc</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Ombré Leather">
-                        <h4>Ombré Leather</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Soleil Neige">
-                        <h4>Soleil Neige</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Tobacco Oud">
-                        <h4>Tobacco Oud</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Lost Cherry">
-                        <h4>Lost Cherry</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Oud Wood Intense">
-                        <h4>Oud Wood Intense</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Dior Images: Replace placeholder URLs with transparent PNGs from dior.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Dior</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Eau Sauvage">
-                        <h4>Eau Sauvage</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="J'adore">
-                        <h4>J'adore</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Hypnotic Poison">
-                        <h4>Hypnotic Poison</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Sauvage">
-                        <h4>Sauvage</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Bois D'Argent">
-                        <h4>Bois D'Argent</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Sauvage Elixir">
-                        <h4>Sauvage Elixir</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Homme Eau for Men">
-                        <h4>Homme Eau for Men</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Homme">
-                        <h4>Homme</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Amouage Images: Replace placeholder URLs with transparent PNGs from amouage.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Amouage</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Memoir Man">
-                        <h4>Memoir Man</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Enclave">
-                        <h4>Enclave</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Interlude Man">
-                        <h4>Interlude Man</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Jubilation XXV Man">
-                        <h4>Jubilation XXV Man</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Valentino Images: Replace placeholder URLs with transparent PNGs from valentino.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Valentino</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Donna Born In Roma">
-                        <h4>Donna Born In Roma</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Uomo Born In Roma Coral Fantasy">
-                        <h4>Uomo Born In Roma Coral Fantasy</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Uomo Born in Roma Green Stravaganza">
-                        <h4>Uomo Born in Roma Green Stravaganza</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Donna Born In Roma Yellow Dream">
-                        <h4>Donna Born In Roma Yellow Dream</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Rabanne Images: Replace placeholder URLs with transparent PNGs from rabanne.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Rabanne</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="1 Million">
-                        <h4>1 Million</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="1 Million Parfum">
-                        <h4>1 Million Parfum</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="1 Million Royal">
-                        <h4>1 Million Royal</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Invictus">
-                        <h4>Invictus</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Invictus Legend">
-                        <h4>Invictus Legend</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Invictus Victory">
-                        <h4>Invictus Victory</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Invictus Victory Elixir">
-                        <h4>Invictus Victory Elixir</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Phantom">
-                        <h4>Phantom</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Phantom Intense">
-                        <h4>Phantom Intense</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Pour Homme">
-                        <h4>Pour Homme</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Lady Million">
-                        <h4>Lady Million</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- YSL Yves Saint Laurent Images: Replace placeholder URLs with transparent PNGs from ysl.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>YSL Yves Saint Laurent</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Black Opium">
-                        <h4>Black Opium</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Libre">
-                        <h4>Libre</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Y">
-                        <h4>Y</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Myslf">
-                        <h4>Myslf</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Blouse">
-                        <h4>Blouse</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Rouge Velours">
-                        <h4>Rouge Velours</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Mon Paris Eau de Toilette">
-                        <h4>Mon Paris Eau de Toilette</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Opium Eau de Toilette">
-                        <h4>Opium Eau de Toilette</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Carolina Herrera Images: Replace placeholder URLs with transparent PNGs from carolinaherrera.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Carolina Herrera</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Good Girl">
-                        <h4>Good Girl</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Very Good Girl">
-                        <h4>Very Good Girl</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Good Girl Blush">
-                        <h4>Good Girl Blush</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Good Girl Sparkling Ice">
-                        <h4>Good Girl Sparkling Ice</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="212 Men">
-                        <h4>212 Men</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="212 Sexy">
-                        <h4>212 Sexy</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Bad Boy">
-                        <h4>Bad Boy</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Bad Boy Cobalt Parfum Electrique">
-                        <h4>Bad Boy Cobalt Parfum Electrique</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Versace Images: Replace placeholder URLs with transparent PNGs from versace.com or PNG marketplaces -->
-            <div class="brand-section">
-                <h3>Versace</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Eros">
-                        <h4>Eros</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Dylan Blue Pour Homme">
-                        <h4>Dylan Blue Pour Homme</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Eros Flame">
-                        <h4>Eros Flame</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/250x200" alt="Pour Homme">
-                        <h4>Pour Homme</h4>
-                        <p>$35.00</p>
-                        <a href="#" class="btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="vendor-bundle">
-            <img src="bundle.jpg" alt="VENDOR BUNDLE">
-            <h2>VENDOR BUNDLE</h2>
-            <p>Get all our top products in one exclusive package.</p>
-            <a href="#" class="btn">Add to Cart</a>
         </section>
     </main>
-    <footer>
-        <p>© 2025 YallahVendors. All rights reserved.</p>
-        <p>Contact us at support@yallahvendors.com</p>
-    </footer>
     <script>
+        const productDetails = {
+            "aventus": {
+                name: "Aventus",
+                brand: "Creed",
+                price: "$35.00",
+                image: "https://via.placeholder.com/800x400",
+                description: "Aventus by Creed is a Chypre Fruity fragrance for men, launched in 2010. Inspired by the dramatic life of a historic emperor, it celebrates strength, power, and success.",
+                topNotes: "Pineapple, Bergamot, Black Currant, Apple",
+                middleNotes: "Birch, Patchouli, Moroccan Jasmine, Rose",
+                baseNotes: "Musk, Oak Moss, Ambergris, Vanille"
+            },
+            "silver-mountain-water": {
+                name: "Silver Mountain Water",
+                brand: "Creed",
+                price: "$35.00",
+                image: "https://via.placeholder.com/800x400",
+                description: "Silver Mountain Water by Creed is an Aromatic fragrance for men and women, launched in 1995. It evokes the sparkling streams of the Swiss Alps.",
+                topNotes: "Bergamot, Mandarin",
+                middleNotes: "Green Tea, Black Currant",
+                baseNotes: "Galbanum, Musk, Sandalwood"
+            }
+            // Add more products as needed
+        };
+
         const gridItems = document.querySelectorAll('.grid-item');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+        const gridView = document.getElementById('grid-view');
+        const detailView = document.getElementById('detail-view');
+        const backButton = document.getElementById('back-to-grid');
 
         gridItems.forEach(item => {
-            observer.observe(item);
+            item.addEventListener('click', () => {
+                const productKey = item.getAttribute('data-product');
+                const product = productDetails[productKey];
+                if (product) {
+                    document.getElementById('detail-image').src = product.image;
+                    document.getElementById('detail-name').textContent = product.name;
+                    document.getElementById('detail-brand').textContent = `Brand: ${product.brand}`;
+                    document.getElementById('detail-price').textContent = `Price: ${product.price}`;
+                    document.getElementById('detail-description').textContent = product.description;
+                    document.getElementById('detail-top-notes').textContent = product.topNotes;
+                    document.getElementById('detail-middle-notes').textContent = product.middleNotes;
+                    document.getElementById('detail-base-notes').textContent = product.baseNotes;
+
+                    gridView.style.opacity = '0';
+                    gridView.style.pointerEvents = 'none';
+                    detailView.style.opacity = '1';
+                    detailView.style.pointerEvents = 'auto';
+                }
+            });
+        });
+
+        backButton.addEventListener('click', () => {
+            detailView.style.opacity = '0';
+            detailView.style.pointerEvents = 'none';
+            gridView.style.opacity = '1';
+            gridView.style.pointerEvents = 'auto';
         });
     </script>
 </body>
