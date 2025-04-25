@@ -106,16 +106,35 @@
             margin-top: 2rem;
             display: flex;
             align-items: center;
+            position: relative;
         }
         #search-input {
             width: 600px;
-            padding: 1rem;
+            padding: 1rem 2.5rem 1rem 1rem;
             font-size: 1.2rem;
             border: 2px solid var(--gold-accent);
             background: var(--metallic-black);
             color: var(--steel-white);
             border-radius: 12px;
             outline: none;
+        }
+        #clear-search {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gold-accent);
+            font-size: 1rem;
+            cursor: pointer;
+            display: none;
+        }
+        #no-results {
+            display: none;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: var(--steel-white);
         }
         .featured {
             padding: 4rem 0;
@@ -133,8 +152,13 @@
             background: var(--metallic-black);
             color: var(--steel-white);
             padding: 0.5rem;
-            border: none;
+            border: 2px solid var(--gold-accent);
             border-radius: 4px;
+            font-size: 1rem;
+        }
+        #brand-filter option[selected] {
+            background: var(--gold-accent);
+            color: var(--metallic-black);
         }
         .brand-section {
             margin-bottom: 3rem;
@@ -206,6 +230,7 @@
             width: 90%;
             text-align: center;
             position: relative;
+            border: 2px solid var(--gold-accent);
         }
         #close-detail {
             position: absolute;
@@ -232,6 +257,7 @@
             height: auto;
             border-radius: 8px;
             margin-bottom: 1rem;
+            border: 2px solid var(--gold-accent);
         }
         #detail-scent-notes {
             margin-top: auto;
@@ -327,8 +353,10 @@
             <h1>Welcome to YallahVendors</h1>
             <p>Discover our exclusive collection of fragrances.</p>
             <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search fragrances by name or brand...">
+                <input type="text" id="search-input" placeholder="Search fragrances by name, brand, or description...">
+                <button id="clear-search">X</button>
             </div>
+            <p id="no-results">No results found.</p>
         </section>
         <section id="products" class="featured">
             <h2>Fragrances</h2>
@@ -360,73 +388,73 @@
                     <div class="grid-item" data-product="creed-aventus">
                         <img src="https://via.placeholder.com/250x200" alt="Aventus">
                         <h4>Aventus</h4>
-                        <p>$29.73</p>
+                        <p>$30</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-silver-mountain-water">
                         <img src="https://via.placeholder.com/250x200" alt="Silver Mountain Water">
                         <h4>Silver Mountain Water</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-virgin-island-water">
                         <img src="https://via.placeholder.com/250x200" alt="Virgin Island Water">
                         <h4>Virgin Island Water</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-himalaya">
                         <img src="https://via.placeholder.com/250x200" alt="Himalaya">
                         <h4>Himalaya</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-millesime-imperial">
                         <img src="https://via.placeholder.com/250x200" alt="Millésime Impérial">
                         <h4>Millésime Impérial</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-love-in-white">
                         <img src="https://via.placeholder.com/250x200" alt="Love in White">
                         <h4>Love in White</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-viking">
                         <img src="https://via.placeholder.com/250x200" alt="Viking">
                         <h4>Viking</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-aventus-for-her">
                         <img src="https://via.placeholder.com/250x200" alt="Aventus for Her">
                         <h4>Aventus for Her</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-absolu-aventus">
                         <img src="https://via.placeholder.com/250x200" alt="Absolu Aventus">
                         <h4>Absolu Aventus</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-carmina">
                         <img src="https://via.placeholder.com/250x200" alt="Carmina">
                         <h4>Carmina</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-queen-of-silk">
                         <img src="https://via.placeholder.com/250x200" alt="Queen of Silk">
                         <h4>Queen of Silk</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-green-irish-tweed">
                         <img src="https://via.placeholder.com/250x200" alt="Green Irish Tweed">
                         <h4>Green Irish Tweed</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -437,67 +465,67 @@
                     <div class="grid-item" data-product="giorgio-armani-vetiver-dhiver">
                         <img src="https://via.placeholder.com/250x200" alt="Vétiver d'Hiver">
                         <h4>Vétiver d'Hiver</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-armani-prive-oud-royal">
                         <img src="https://via.placeholder.com/250x200" alt="Armani Privé Oud Royal">
                         <h4>Armani Privé Oud Royal</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-my-way">
                         <img src="https://via.placeholder.com/250x200" alt="My Way">
                         <h4>My Way</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gio-essenza">
                         <img src="https://via.placeholder.com/250x200" alt="Acqua di Gio Essenza">
                         <h4>Acqua di Gio Essenza</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-si-passione">
                         <img src="https://via.placeholder.com/250x200" alt="Sì Passione">
                         <h4>Sì Passione</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-emporio-armani-stronger-with-you">
                         <img src="https://via.placeholder.com/250x200" alt="Emporio Armani Stronger With You">
                         <h4>Emporio Armani Stronger With You</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gioia">
                         <img src="https://via.placeholder.com/250x200" alt="Acqua di Gioia">
                         <h4>Acqua di Gioia</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-santal-dan-sha">
                         <img src="https://via.placeholder.com/250x200" alt="Santal Dan Sha">
                         <h4>Santal Dan Sha</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-rose-alexandrie">
                         <img src="https://via.placeholder.com/250x200" alt="Rose Alexandrie">
                         <h4>Rose Alexandrie</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gio">
                         <img src="https://via.placeholder.com/250x200" alt="Acqua di Gio">
                         <h4>Acqua di Gio</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gio-profumo">
                         <img src="https://via.placeholder.com/250x200" alt="Acqua di Giò Profumo">
                         <h4>Acqua di Giò Profumo</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -508,73 +536,73 @@
                     <div class="grid-item" data-product="louis-vuitton-orage">
                         <img src="https://via.placeholder.com/250x200" alt="Orage">
                         <h4>Orage</h4>
-                        <p>$50.73</p>
+                        <p>$51</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-imagination">
                         <img src="https://via.placeholder.com/250x200" alt="Imagination">
                         <h4>Imagination</h4>
-                        <p>$50.73</p>
+                        <p>$51</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-les-sables-roses">
                         <img src="https://via.placeholder.com/250x200" alt="Les Sables Roses">
                         <h4>Les Sables Roses</h4>
-                        <p>$50.73</p>
+                        <p>$51</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-california-dream">
                         <img src="https://via.placeholder.com/250x200" alt="California Dream">
                         <h4>California Dream</h4>
-                        <p>$50.73</p>
+                        <p>$51</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-heures-dabsence">
                         <img src="https://via.placeholder.com/250x200" alt="Heures d'Absence">
                         <h4>Heures d'Absence</h4>
-                        <p>$50.73</p>
+                        <p>$51</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-ombre-nomade">
                         <img src="https://via.placeholder.com/250x200" alt="Ombre Nomade">
                         <h4>Ombre Nomade</h4>
-                        <p>$50.73</p>
+                        <p>$51</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-matiere-noire">
                         <img src="https://via.placeholder.com/250x200" alt="Matière Noire">
                         <h4>Matière Noire</h4>
-                        <p>$50.73</p>
+                        <p>$51</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-limmensite">
                         <img src="https://via.placeholder.com/250x200" alt="L'Immensité">
                         <h4>L'Immensité</h4>
-                        <p>$50.73</p>
+                        <p>$51</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-attrape-reves">
                         <img src="https://via.placeholder.com/250x200" alt="Attrape-Rêves">
                         <h4>Attrape-Rêves</h4>
-                        <p>$50.73</p>
+                        <p>$51</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-coeur-battant">
                         <img src="https://via.placeholder.com/250x200" alt="Coeur Battant">
                         <h4>Coeur Battant</h4>
-                        <p>$50.73</p>
+                        <p>$51</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-fleur-du-desert">
                         <img src="https://via.placeholder.com/250x200" alt="Fleur du Désert">
                         <h4>Fleur du Désert</h4>
-                        <p>$50.73</p>
+                        <p>$51</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-nuit-de-feu">
                         <img src="https://via.placeholder.com/250x200" alt="Nuit de Feu">
                         <h4>Nuit de Feu</h4>
-                        <p>$50.73</p>
+                        <p>$51</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -585,25 +613,25 @@
                     <div class="grid-item" data-product="penhaligons-the-coveted-duchess-rose">
                         <img src="https://via.placeholder.com/250x200" alt="The Coveted Duchess Rose">
                         <h4>The Coveted Duchess Rose</h4>
-                        <p>$36.73</p>
+                        <p>$37</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="penhaligons-much-ado-about-the-duke">
                         <img src="https://via.placeholder.com/250x200" alt="Much Ado About The Duke">
                         <h4>Much Ado About The Duke</h4>
-                        <p>$36.73</p>
+                        <p>$37</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="penhaligons-the-tragedy-of-lord-george">
                         <img src="https://via.placeholder.com/250x200" alt="The Tragedy of Lord George">
                         <h4>The Tragedy of Lord George</h4>
-                        <p>$36.73</p>
+                        <p>$37</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="penhaligons-the-revenge-of-lady-blanche">
                         <img src="https://via.placeholder.com/250x200" alt="The Revenge Of Lady Blanche">
                         <h4>The Revenge Of Lady Blanche</h4>
-                        <p>$36.73</p>
+                        <p>$37</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -614,49 +642,49 @@
                     <div class="grid-item" data-product="chanel-1957">
                         <img src="https://via.placeholder.com/250x200" alt="1957">
                         <h4>1957</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-no-19-eau-de-parfum">
                         <img src="https://via.placeholder.com/250x200" alt="No 19 Eau de Parfum">
                         <h4>No 19 Eau de Parfum</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-gabrielle-essence">
                         <img src="https://via.placeholder.com/250x200" alt="Gabrielle Essence">
                         <h4>Gabrielle Essence</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-no-5-leau">
                         <img src="https://via.placeholder.com/250x200" alt="No 5 L'Eau">
                         <h4>No 5 L'Eau</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-bleu-de-chanel-eau-de-parfum">
                         <img src="https://via.placeholder.com/250x200" alt="Bleu de Chanel Eau de Parfum">
                         <h4>Bleu de Chanel Eau de Parfum</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-bleu-de-chanel">
                         <img src="https://via.placeholder.com/250x200" alt="Bleu de Chanel">
                         <h4>Bleu de Chanel</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-chance-eau-de-toilette">
                         <img src="https://via.placeholder.com/250x200" alt="Chance Eau de Toilette">
                         <h4>Chance Eau de Toilette</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-chance-eau-vive">
                         <img src="https://via.placeholder.com/250x200" alt="Chance Eau Vive">
                         <h4>Chance Eau Vive</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -667,25 +695,25 @@
                     <div class="grid-item" data-product="jean-paul-gaultier-le-male">
                         <img src="https://via.placeholder.com/250x200" alt="Le Male">
                         <h4>Le Male</h4>
-                        <p>$34.98</p>
+                        <p>$35</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="jean-paul-gaultier-ultra-male">
                         <img src="https://via.placeholder.com/250x200" alt="Ultra Male">
                         <h4>Ultra Male</h4>
-                        <p>$34.98</p>
+                        <p>$35</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="jean-paul-gaultier-le-male-le-parfum">
                         <img src="https://via.placeholder.com/250x200" alt="Le Male Le Parfum">
                         <h4>Le Male Le Parfum</h4>
-                        <p>$34.98</p>
+                        <p>$35</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="jean-paul-gaultier-le-male-elixir">
                         <img src="https://via.placeholder.com/250x200" alt="Le Male Elixir">
                         <h4>Le Male Elixir</h4>
-                        <p>$34.98</p>
+                        <p>$35</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -696,49 +724,49 @@
                     <div class="grid-item" data-product="xerjoff-erba-pura">
                         <img src="https://via.placeholder.com/250x200" alt="Erba Pura">
                         <h4>Erba Pura</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-accento">
                         <img src="https://via.placeholder.com/250x200" alt="Accento">
                         <h4>Accento</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-soprano">
                         <img src="https://via.placeholder.com/250x200" alt="Soprano">
                         <h4>Soprano</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-amabile">
                         <img src="https://via.placeholder.com/250x200" alt="Amabile">
                         <h4>Amabile</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-coro-selfridges-exclusive">
                         <img src="https://via.placeholder.com/250x200" alt="Coro (Selfridges Exclusive)">
                         <h4>Coro (Selfridges Exclusive)</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-opera">
                         <img src="https://via.placeholder.com/250x200" alt="Opera">
                         <h4>Opera</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-erba-gold">
                         <img src="https://via.placeholder.com/250x200" alt="Erba Gold">
                         <h4>Erba Gold</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-nio">
                         <img src="https://via.placeholder.com/250x200" alt="Nio">
                         <h4>Nio</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -749,49 +777,49 @@
                     <div class="grid-item" data-product="maison-francis-kurkdjian-baccarat-rouge-540-extrait-de-parfum">
                         <img src="https://via.placeholder.com/250x200" alt="Baccarat Rouge 540 Extrait de Parfum">
                         <h4>Baccarat Rouge 540 Extrait de Parfum</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-baccarat-rouge-540">
                         <img src="https://via.placeholder.com/250x200" alt="Baccarat Rouge 540">
                         <h4>Baccarat Rouge 540</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-grand-soir">
                         <img src="https://via.placeholder.com/250x200" alt="Grand Soir">
                         <h4>Grand Soir</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-oud-satin-mood">
                         <img src="https://via.placeholder.com/250x200" alt="Oud Satin Mood">
                         <h4>Oud Satin Mood</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-oud-silk-mood-extrait-de-parfum">
                         <img src="https://via.placeholder.com/250x200" alt="Oud Silk Mood Extrait de parfum">
                         <h4>Oud Silk Mood Extrait de parfum</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-petit-matin">
                         <img src="https://via.placeholder.com/250x200" alt="Petit Matin">
                         <h4>Petit Matin</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-leau-a-la-rose">
                         <img src="https://via.placeholder.com/250x200" alt="L'eau À la Rose">
                         <h4>L'eau À la Rose</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-lhomme-a-la-rose">
                         <img src="https://via.placeholder.com/250x200" alt="L'Homme À la Rose">
                         <h4>L'Homme À la Rose</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -802,49 +830,49 @@
                     <div class="grid-item" data-product="tom-ford-oud-wood">
                         <img src="https://via.placeholder.com/250x200" alt="Oud Wood">
                         <h4>Oud Wood</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-white-suede">
                         <img src="https://via.placeholder.com/250x200" alt="White Suede">
                         <h4>White Suede</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-soleil-blanc">
                         <img src="https://via.placeholder.com/250x200" alt="Soleil Blanc">
                         <h4>Soleil Blanc</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-ombre-leather">
                         <img src="https://via.placeholder.com/250x200" alt="Ombré Leather">
                         <h4>Ombré Leather</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-soleil-neige">
                         <img src="https://via.placeholder.com/250x200" alt="Soleil Neige">
                         <h4>Soleil Neige</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-tobacco-oud">
                         <img src="https://via.placeholder.com/250x200" alt="Tobacco Oud">
                         <h4>Tobacco Oud</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-lost-cherry">
                         <img src="https://via.placeholder.com/250x200" alt="Lost Cherry">
                         <h4>Lost Cherry</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-oud-wood-intense">
                         <img src="https://via.placeholder.com/250x200" alt="Oud Wood Intense">
                         <h4>Oud Wood Intense</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -855,49 +883,49 @@
                     <div class="grid-item" data-product="dior-eau-sauvage">
                         <img src="https://via.placeholder.com/250x200" alt="Eau Sauvage">
                         <h4>Eau Sauvage</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-jadore">
                         <img src="https://via.placeholder.com/250x200" alt="J'adore">
                         <h4>J'adore</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-hypnotic-poison">
                         <img src="https://via.placeholder.com/250x200" alt="Hypnotic Poison">
                         <h4>Hypnotic Poison</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-sauvage">
                         <img src="https://via.placeholder.com/250x200" alt="Sauvage">
                         <h4>Sauvage</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-bois-dargent">
                         <img src="https://via.placeholder.com/250x200" alt="Bois D'Argent">
                         <h4>Bois D'Argent</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-sauvage-elixir">
                         <img src="https://via.placeholder.com/250x200" alt="Sauvage Elixir">
                         <h4>Sauvage Elixir</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-homme-eau-for-men">
                         <img src="https://via.placeholder.com/250x200" alt="Homme Eau for Men">
                         <h4>Homme Eau for Men</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-homme">
                         <img src="https://via.placeholder.com/250x200" alt="Homme">
                         <h4>Homme</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -908,25 +936,25 @@
                     <div class="grid-item" data-product="amouage-memoir-man">
                         <img src="https://via.placeholder.com/250x200" alt="Memoir Man">
                         <h4>Memoir Man</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="amouage-enclave">
                         <img src="https://via.placeholder.com/250x200" alt="Enclave">
                         <h4>Enclave</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="amouage-interlude-man">
                         <img src="https://via.placeholder.com/250x200" alt="Interlude Man">
                         <h4>Interlude Man</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="amouage-jubilation-xxv-man">
                         <img src="https://via.placeholder.com/250x200" alt="Jubilation XXV Man">
                         <h4>Jubilation XXV Man</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -937,25 +965,25 @@
                     <div class="grid-item" data-product="valentino-donna-born-in-roma">
                         <img src="https://via.placeholder.com/250x200" alt="Donna Born In Roma">
                         <h4>Donna Born In Roma</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="valentino-uomo-born-in-roma-coral-fantasy">
                         <img src="https://via.placeholder.com/250x200" alt="Uomo Born In Roma Coral Fantasy">
                         <h4>Uomo Born In Roma Coral Fantasy</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="valentino-uomo-born-in-roma-green-stravaganza">
                         <img src="https://via.placeholder.com/250x200" alt="Uomo Born in Roma Green Stravaganza">
                         <h4>Uomo Born in Roma Green Stravaganza</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="valentino-donna-born-in-roma-yellow-dream">
                         <img src="https://via.placeholder.com/250x200" alt="Donna Born In Roma Yellow Dream">
                         <h4>Donna Born In Roma Yellow Dream</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -966,67 +994,67 @@
                     <div class="grid-item" data-product="rabanne-1-million">
                         <img src="https://via.placeholder.com/250x200" alt="1 Million">
                         <h4>1 Million</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-1-million-parfum">
                         <img src="https://via.placeholder.com/250x200" alt="1 Million Parfum">
                         <h4>1 Million Parfum</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-1-million-royal">
                         <img src="https://via.placeholder.com/250x200" alt="1 Million Royal">
                         <h4>1 Million Royal</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-invictus">
                         <img src="https://via.placeholder.com/250x200" alt="Invictus">
                         <h4>Invictus</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-invictus-legend">
                         <img src="https://via.placeholder.com/250x200" alt="Invictus Legend">
                         <h4>Invictus Legend</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-invictus-victory">
                         <img src="https://via.placeholder.com/250x200" alt="Invictus Victory">
                         <h4>Invictus Victory</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-invictus-victory-elixir">
                         <img src="https://via.placeholder.com/250x200" alt="Invictus Victory Elixir">
                         <h4>Invictus Victory Elixir</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-phantom">
                         <img src="https://via.placeholder.com/250x200" alt="Phantom">
                         <h4>Phantom</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-phantom-intense">
                         <img src="https://via.placeholder.com/250x200" alt="Phantom Intense">
                         <h4>Phantom Intense</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-pour-homme">
                         <img src="https://via.placeholder.com/250x200" alt="Pour Homme">
                         <h4>Pour Homme</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-lady-million">
                         <img src="https://via.placeholder.com/250x200" alt="Lady Million">
                         <h4>Lady Million</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -1037,49 +1065,49 @@
                     <div class="grid-item" data-product="ysl-black-opium">
                         <img src="https://via.placeholder.com/250x200" alt="Black Opium">
                         <h4>Black Opium</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="ysl-libre">
                         <img src="https://via.placeholder.com/250x200" alt="Libre">
                         <h4>Libre</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="ysl-y">
                         <img src="https://via.placeholder.com/250x200" alt="Y">
                         <h4>Y</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="ysl-myslf">
                         <img src="https://via.placeholder.com/250x200" alt="Myslf">
                         <h4>Myslf</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="ysl-blouse">
                         <img src="https://via.placeholder.com/250x200" alt="Blouse">
                         <h4>Blouse</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="ysl-rouge-velours">
                         <img src="https://via.placeholder.com/250x200" alt="Rouge Velours">
                         <h4>Rouge Velours</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="ysl-mon-paris-eau-de-toilette">
                         <img src="https://via.placeholder.com/250x200" alt="Mon Paris Eau de Toilette">
                         <h4>Mon Paris Eau de Toilette</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="ysl-opium-eau-de-toilette">
                         <img src="https://via.placeholder.com/250x200" alt="Opium Eau de Toilette">
                         <h4>Opium Eau de Toilette</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -1090,49 +1118,49 @@
                     <div class="grid-item" data-product="carolina-herrera-good-girl">
                         <img src="https://via.placeholder.com/250x200" alt="Good Girl">
                         <h4>Good Girl</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="carolina-herrera-very-good-girl">
                         <img src="https://via.placeholder.com/250x200" alt="Very Good Girl">
                         <h4>Very Good Girl</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="carolina-herrera-good-girl-blush">
                         <img src="https://via.placeholder.com/250x200" alt="Good Girl Blush">
                         <h4>Good Girl Blush</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="carolina-herrera-good-girl-sparkling-ice">
                         <img src="https://via.placeholder.com/250x200" alt="Good Girl Sparkling Ice">
                         <h4>Good Girl Sparkling Ice</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="carolina-herrera-212-men">
                         <img src="https://via.placeholder.com/250x200" alt="212 Men">
                         <h4>212 Men</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="carolina-herrera-212-sexy">
                         <img src="https://via.placeholder.com/250x200" alt="212 Sexy">
                         <h4>212 Sexy</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="carolina-herrera-bad-boy">
                         <img src="https://via.placeholder.com/250x200" alt="Bad Boy">
                         <h4>Bad Boy</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="carolina-herrera-bad-boy-cobalt-parfum-electrique">
                         <img src="https://via.placeholder.com/250x200" alt="Bad Boy Cobalt Parfum Electrique">
                         <h4>Bad Boy Cobalt Parfum Electrique</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -1143,25 +1171,25 @@
                     <div class="grid-item" data-product="versace-eros">
                         <img src="https://via.placeholder.com/250x200" alt="Eros">
                         <h4>Eros</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="versace-dylan-blue-pour-homme">
                         <img src="https://via.placeholder.com/250x200" alt="Dylan Blue Pour Homme">
                         <h4>Dylan Blue Pour Homme</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="versace-eros-flame">
                         <img src="https://via.placeholder.com/250x200" alt="Eros Flame">
                         <h4>Eros Flame</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="versace-pour-homme">
                         <img src="https://via.placeholder.com/250x200" alt="Pour Homme">
                         <h4>Pour Homme</h4>
-                        <p>$33.23</p>
+                        <p>$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
@@ -1190,7 +1218,7 @@
                     <img id="detail-image" src="" alt="">
                     <div id="detail-scent-notes">
                         <h3>Scent Notes</h3>
-                        <p><strong>Top:</strong> <span id="detail-top-notes"></span></p>
+                        <p><strong <strong>Top:</strong> <span id="detail-top-notes"></span></p>
                         <p><strong>Middle:</strong> <span id="detail-middle-notes"></span></p>
                         <p><strong>Base:</strong> <span id="detail-base-notes"></span></p>
                     </div>
@@ -1219,30 +1247,97 @@
         }
         setInterval(createSnowflake, 200);
 
-        // Search bar functionality
-        const searchInput = document.getElementById('search-input');
-        searchInput.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                const query = searchInput.value.toLowerCase().trim();
-                const gridItems = document.querySelectorAll('.grid-item');
-                gridItems.forEach(item => {
+        // Ensure DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const detailView = document.getElementById('detail-view');
+            const detailName = document.getElementById('detail-name');
+            const detailImage = document.getElementById('detail-image');
+            const detailPrice = document.getElementById('detail-price');
+            const detailDescription = document.getElementById('detail-description');
+            const detailTopNotes = document.getElementById('detail-top-notes');
+            const detailMiddleNotes = document.getElementById('detail-middle-notes');
+            const detailBaseNotes = document.getElementById('detail-base-notes');
+            const closeDetail = document.getElementById('close-detail');
+            const searchInput = document.getElementById('search-input');
+            const clearSearch = document.getElementById('clear-search');
+            const noResults = document.getElementById('no-results');
+            const brandFilter = document.getElementById('brand-filter');
+
+            // Details button functionality
+            document.querySelectorAll('.details-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const productId = button.parentElement.dataset.product;
+                    const product = productDetails[productId];
+                    if (product) {
+                        console.log(`Opening details for ${productId}`); // Debug
+                        detailName.textContent = product.name;
+                        detailImage.src = product.image;
+                        detailImage.alt = product.name;
+                        detailPrice.textContent = product.price;
+                        detailDescription.textContent = product.description;
+                        detailTopNotes.textContent = product.topNotes;
+                        detailMiddleNotes.textContent = product.middleNotes;
+                        detailBaseNotes.textContent = product.baseNotes;
+                        detailView.classList.add('visible');
+                    } else {
+                        console.error(`Product not found: ${productId}`);
+                    }
+                });
+            });
+
+            closeDetail.addEventListener('click', () => {
+                detailView.classList.remove('visible');
+            });
+
+            detailView.addEventListener('click', (event) => {
+                if (event.target === detailView) {
+                    detailView.classList.remove('visible');
+                }
+            });
+
+            // Search functionality
+            function filterProducts(query = '', selectedBrand = 'all') {
+                let hasResults = false;
+                document.querySelectorAll('.grid-item').forEach(item => {
                     const productId = item.dataset.product;
                     const product = productDetails[productId];
                     if (product) {
-                        const matches = product.name.toLowerCase().includes(query) || 
-                                      product.brand.toLowerCase().includes(query);
-                        item.classList.toggle('hidden', !matches);
+                        const matchesQuery = !query || 
+                            product.name.toLowerCase().includes(query.toLowerCase()) || 
+                            product.brand.toLowerCase().includes(query.toLowerCase()) || 
+                            product.description.toLowerCase().includes(query.toLowerCase());
+                        const matchesBrand = selectedBrand === 'all' || 
+                            product.brand.toLowerCase() === selectedBrand.toLowerCase();
+                        const isVisible = matchesQuery && matchesBrand;
+                        item.classList.toggle('hidden', !isVisible);
+                        if (isVisible) hasResults = true;
                     }
                 });
+                noResults.style.display = hasResults ? 'none' : 'block';
+                clearSearch.style.display = query ? 'block' : 'none';
             }
+
+            searchInput.addEventListener('input', () => {
+                filterProducts(searchInput.value, brandFilter.value);
+            });
+
+            clearSearch.addEventListener('click', () => {
+                searchInput.value = '';
+                filterProducts('', brandFilter.value);
+            });
+
+            // Brand filter functionality
+            brandFilter.addEventListener('change', () => {
+                filterProducts(searchInput.value, brandFilter.value);
+            });
         });
 
         const productDetails = {
-            // Sample for Versace; full productDetails available in previous updates
+            // Sample for Versace; full productDetails in artifact version 570d1d5a-6f4f-478d-92d0-bb950a9e66fb
             "versace-eros": {
                 name: "Eros",
                 brand: "Versace",
-                price: "$33.23",
+                price: "$33",
                 image: "https://via.placeholder.com/800x400",
                 description: "A vibrant and masculine fragrance.",
                 topNotes: "Mint, Green Apple",
@@ -1252,7 +1347,7 @@
             "versace-dylan-blue-pour-homme": {
                 name: "Dylan Blue Pour Homme",
                 brand: "Versace",
-                price: "$33.23",
+                price: "$33",
                 image: "https://via.placeholder.com/800x400",
                 description: "A fresh and aquatic fragrance for men.",
                 topNotes: "Bergamot, Grapefruit",
@@ -1262,7 +1357,7 @@
             "versace-eros-flame": {
                 name: "Eros Flame",
                 brand: "Versace",
-                price: "$33.23",
+                price: "$33",
                 image: "https://via.placeholder.com/800x400",
                 description: "A passionate and fiery fragrance.",
                 topNotes: "Mandarin, Black Pepper",
@@ -1272,9 +1367,9 @@
             "versace-pour-homme": {
                 name: "Pour Homme",
                 brand: "Versace",
-                price: "$33.23",
+                price: "$33",
                 image: "https://via.placeholder.com/800x400",
-                description: "A fresh and dynamic fragrance for men.",
+                description: "A fresh andynamic fragrance for men.",
                 topNotes: "Lemon, Bergamot",
                 middleNotes: "Hyacinth, Clary Sage",
                 baseNotes: "Cedar, Musk"
