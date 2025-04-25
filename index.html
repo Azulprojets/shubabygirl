@@ -19,28 +19,6 @@
             padding: 0;
             position: relative;
         }
-        .snow-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        .snowflake {
-            position: absolute;
-            top: -10px;
-            width: 5px;
-            height: 5px;
-            background: white;
-            border-radius: 50%;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100vh); }
-        }
         header {
             position: fixed;
             top: 0;
@@ -52,51 +30,38 @@
             align-items: center;
             z-index: 1000;
         }
+        .cart-icon {
+            position: relative;
+            margin-right: 1rem;
+        }
+        #cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+        }
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
         }
         nav ul {
-            list-style: none;
             display: flex;
-            gap: 1rem;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
             margin: 0;
         }
         nav a {
             color: var(--steel-white);
             text-decoration: none;
+            padding: 0 1rem;
         }
         nav a:hover {
             color: #cccccc;
-        }
-        .search-bar {
-            display: flex;
-            align-items: center;
-        }
-        #search-input {
-            padding: 0.5rem;
-            border: none;
-            border-radius: 4px 0 0 4px;
-        }
-        #search-btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 0 4px 4px 0;
-            background: var(--steel-white);
-            color: var(--metallic-black);
-            cursor: pointer;
-        }
-        .account {
-            margin-left: auto;
-        }
-        #login-btn, #high-contrast-btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 4px;
-            background: var(--steel-white);
-            color: var(--metallic-black);
-            cursor: pointer;
-            margin-left: 1rem;
         }
         .hero {
             height: 100vh;
@@ -106,16 +71,52 @@
             align-items: center;
             text-align: center;
         }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+        .search-bar {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+        }
+        #search-input {
+            width: 400px;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border: none;
+            background: var(--metallic-black);
+            color: #fff;
+            border-radius: 8px 0 0 8px;
+        }
+        #search-btn {
+            padding: 1rem;
+            background: var(--metallic-black);
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 0 8px 8px 0;
+        }
         .featured {
             padding: 4rem 0;
             text-align: center;
+        }
+        .featured h2 {
+            font-size: 3rem;
+            font-weight: bold;
         }
         .filter-bar {
             margin-bottom: 2rem;
             text-align: center;
         }
         #brand-filter {
+            background: #333;
+            color: #fff;
             padding: 0.5rem;
+            border: none;
             border-radius: 4px;
         }
         .brand-section {
@@ -158,79 +159,6 @@
             cursor: pointer;
             margin-top: 0.5rem;
         }
-        #detail-view {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(26, 26, 26, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1001;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        #detail-view.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .detail-content {
-            background: #222;
-            padding: 2rem;
-            border-radius: 8px;
-            max-width: 900px;
-            width: 90%;
-            text-align: center;
-            position: relative;
-        }
-        #close-detail {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--steel-white);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        .columns {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-        }
-        .left-column, .right-column {
-            width: 48%;
-            display: flex;
-            flex-direction: column;
-        }
-        #detail-image {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-        #detail-scent-notes {
-            margin-top: auto;
-        }
-        #detail-price {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-        .btn {
-            background: var(--steel-white);
-            color: var(--metallic-black);
-            padding: 0.8rem 2rem;
-            border-radius: 4px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
-        }
-        .btn:hover {
-            background: #cccccc;
-        }
         #cart {
             padding: 2rem;
             text-align: center;
@@ -238,16 +166,11 @@
         #cart-items {
             margin-bottom: 1rem;
         }
-        #back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+        #cart-items div {
+            margin: 1rem 0;
             padding: 1rem;
-            background: var(--steel-white);
-            color: var(--metallic-black);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            background: #222;
+            border-radius: 8px;
         }
         .loading {
             position: fixed;
@@ -264,54 +187,24 @@
         .spinning-bottle {
             width: 100px;
             height: 100px;
+            background: none;
             animation: spin 2s linear infinite;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        body.high-contrast {
-            background-color: #000;
-            color: #fff;
-        }
-        body.high-contrast .grid-item,
-        body.high-contrast .detail-content {
-            background: #333;
-        }
-        body.high-contrast .btn {
-            background: #fff;
-            color: #000;
-        }
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            nav ul {
-                flex-direction: column;
-                width: 100%;
-            }
-            .search-bar {
-                margin: 1rem 0;
-            }
-            .account {
-                margin-left: 0;
-            }
-            .columns {
-                flex-direction: column;
-            }
-            .left-column, .right-column {
-                width: 100%;
-            }
-        }
     </style>
 </head>
 <body>
     <div id="loading" class="loading">
-        <img src="https://via.placeholder.com/100" alt="Loading" class="spinning-bottle">
+        <img src="https://img.freepik.com/premium-vector/perfume-bottle-vector-icon2_733406-836.jpg?w=740" alt="Spinning perfume bottle loading icon" class="spinning-bottle">
     </div>
-    <div class="snow-container"></div>
     <header>
+        <div class="cart-icon">
+            <span id="cart-count">0</span>
+            <img src="https://via.placeholder.com/24" alt="Cart">
+        </div>
         <div class="logo">YallahVendors</div>
         <nav>
             <ul>
@@ -321,19 +214,15 @@
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Search fragrances...">
-            <button id="search-btn">Search</button>
-        </div>
-        <div class="account">
-            <button id="login-btn">Login</button>
-            <button id="high-contrast-btn">High Contrast</button>
-        </div>
     </header>
     <main>
         <section class="hero">
             <h1>Welcome to YallahVendors</h1>
             <p>Discover our exclusive collection of fragrances.</p>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search fragrances...">
+                <button id="search-btn">🔍</button>
+            </div>
         </section>
         <section id="products" class="featured">
             <h2>Fragrances</h2>
@@ -343,23 +232,9 @@
                     <option value="all">All</option>
                     <option value="creed">Creed</option>
                     <option value="giorgio-armani">Giorgio Armani</option>
-                    <option value="louis-vuitton">Louis Vuitton</option>
-                    <option value="penhaligons">Penhaligon's</option>
-                    <option value="chanel">Chanel</option>
-                    <option value="jean-paul-gaultier">Jean Paul Gaultier</option>
-                    <option value="xerjoff">Xerjoff</option>
-                    <option value="maison-francis-kurkdjian">Maison Francis Kurkdjian</option>
-                    <option value="tom-ford">Tom Ford</option>
-                    <option value="dior">Dior</option>
-                    <option value="amouage">Amouage</option>
-                    <option value="valentino">Valentino</option>
-                    <option value="rabanne">Rabanne</option>
-                    <option value="ysl-yves-saint-laurent">YSL Yves Saint Laurent</option>
-                    <option value="carolina-herrera">Carolina Herrera</option>
-                    <option value="versace">Versace</option>
+                    <!-- Add other brands as needed -->
                 </select>
             </div>
-            <!-- Product sections remain unchanged from original script -->
             <div class="brand-section">
                 <h3>Creed</h3>
                 <div class="grid">
@@ -369,40 +244,38 @@
                         <p>$30</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <!-- Other Creed products -->
+                    <!-- Add other Creed products here -->
                 </div>
             </div>
-            <!-- Other brand sections -->
+            <div class="brand-section">
+                <h3>Giorgio Armani</h3>
+                <div class="grid">
+                    <div class="grid-item" data-product="armani-code">
+                        <img src="https://via.placeholder.com/250x200" alt="Code">
+                        <h4>Code</h4>
+                        <p>$25</p>
+                        <button class="details-btn">Details</button>
+                    </div>
+                    <!-- Add other Armani products here -->
+                </div>
+            </div>
+            <!-- Add other brand sections with products here -->
         </section>
         <section id="cart" class="cart">
             <h2>Your Cart</h2>
             <div id="cart-items"></div>
             <p id="cart-total">Total: $0</p>
+            <button id="checkout-btn">Checkout</button>
+            <div id="shipping-details">
+                <h3>Shipping Details</h3>
+                <p>[Shipping form placeholder]</p>
+            </div>
+            <div id="payment-info">
+                <h3>Payment Information</h3>
+                <p>[Payment form placeholder]</p>
+            </div>
         </section>
     </main>
-    <div id="detail-view">
-        <div class="detail-content">
-            <button id="close-detail">X</button>
-            <h2 id="detail-name"></h2>
-            <div class="columns">
-                <div class="left-column">
-                    <img id="detail-image" src="" alt="">
-                    <div id="detail-scent-notes">
-                        <h3>Scent Notes</h3>
-                        <p><strong>Top:</strong> <span id="detail-top-notes"></span></p>
-                        <p><strong>Middle:</strong> <span id="detail-middle-notes"></span></p>
-                        <p><strong>Base:</strong> <span id="detail-base-notes"></span></p>
-                    </div>
-                </div>
-                <div class="right-column">
-                    <p id="detail-price"></p>
-                    <p id="detail-description"></p>
-                    <a href="#" id="add-to-cart-btn" class="btn">Add to Cart</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button id="back-to-top">Back to Top</button>
     <script>
         const productDetails = {
             "creed-aventus": {
@@ -410,57 +283,29 @@
                 brand: "Creed",
                 price: "$30",
                 image: "https://via.placeholder.com/800x400",
-                description: "A bold and powerful fragrance.",
-                topNotes: "Pineapple, Bergamot",
-                middleNotes: "Birch, Patchouli",
-                baseNotes: "Musk, Oakmoss"
+                description: "A bold and powerful fragrance."
             },
-            // Other product details remain unchanged
+            "armani-code": {
+                name: "Code",
+                brand: "Giorgio Armani",
+                price: "$25",
+                image: "https://via.placeholder.com/800x400",
+                description: "A sophisticated and elegant scent."
+            }
+            // Add details for all other products here
         };
 
         let cart = [];
 
         const gridItems = document.querySelectorAll('.grid-item');
-        const detailView = document.getElementById('detail-view');
-        const closeDetail = document.getElementById('close-detail');
-        const allGridItems = document.querySelectorAll('.grid-item');
         const searchBtn = document.getElementById('search-btn');
         const brandFilter = document.getElementById('brand-filter');
-        const addToCartBtn = document.getElementById('add-to-cart-btn');
-        const loginBtn = document.getElementById('login-btn');
-        const snowContainer = document.querySelector('.snow-container');
-        const backToTopBtn = document.getElementById('back-to-top');
-        const highContrastBtn = document.getElementById('high-contrast-btn');
-
-        // Fix close detail button
-        closeDetail.addEventListener('click', () => {
-            detailView.classList.remove('visible');
-        });
-
-        // Product detail view
-        gridItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const productKey = item.getAttribute('data-product');
-                const product = productDetails[productKey];
-                if (product) {
-                    detailView.dataset.productKey = productKey;
-                    document.getElementById('detail-name').textContent = product.name;
-                    document.getElementById('detail-image').src = product.image;
-                    document.getElementById('detail-image').alt = product.name;
-                    document.getElementById('detail-price').textContent = `Price: ${product.price}`;
-                    document.getElementById('detail-description').textContent = product.description;
-                    document.getElementById('detail-top-notes').textContent = product.topNotes;
-                    document.getElementById('detail-middle-notes').textContent = product.middleNotes;
-                    document.getElementById('detail-base-notes').textContent = product.baseNotes;
-                    detailView.classList.add('visible');
-                }
-            });
-        });
+        const checkoutBtn = document.getElementById('checkout-btn');
 
         // Search functionality
         searchBtn.addEventListener('click', () => {
             const searchTerm = document.getElementById('search-input').value.toLowerCase();
-            allGridItems.forEach(item => {
+            gridItems.forEach(item => {
                 const productName = item.querySelector('h4').textContent.toLowerCase();
                 item.style.display = productName.includes(searchTerm) ? 'block' : 'none';
             });
@@ -469,70 +314,63 @@
         // Filter by brand
         brandFilter.addEventListener('change', () => {
             const selectedBrand = brandFilter.value;
-            allGridItems.forEach(item => {
+            gridItems.forEach(item => {
                 const brandSection = item.closest('.brand-section');
                 const brand = brandSection.querySelector('h3').textContent.toLowerCase().replace(/\s+/g, '-');
                 item.style.display = (selectedBrand === 'all' || brand === selectedBrand) ? 'block' : 'none';
             });
         });
 
-        // Cart functionality
-        addToCartBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const productKey = detailView.dataset.productKey;
-            const product = productDetails[productKey];
-            cart.push(product);
-            updateCart();
-            alert(`${product.name} has been added to your cart.`);
+        // Add to cart from grid item (simplified for brevity)
+        gridItems.forEach(item => {
+            const detailsBtn = item.querySelector('.details-btn');
+            detailsBtn.addEventListener('click', () => {
+                const productKey = item.getAttribute('data-product');
+                const product = productDetails[productKey];
+                cart.push(product);
+                updateCart();
+                alert(`${product.name} has been added to your cart.`);
+            });
         });
 
+        // Update cart
         function updateCart() {
             const cartItemsDiv = document.getElementById('cart-items');
             cartItemsDiv.innerHTML = '';
             let total = 0;
-            cart.forEach((item) => {
+            cart.forEach((item, index) => {
                 const itemDiv = document.createElement('div');
-                itemDiv.textContent = `${item.name} - ${item.price}`;
+                itemDiv.innerHTML = `
+                    <h4>${item.name}</h4>
+                    <p>Price: ${item.price}</p>
+                    <p>${item.description}</p>
+                    <button class="remove-item" data-index="${index}">Remove</button>
+                `;
                 cartItemsDiv.appendChild(itemDiv);
                 total += parseFloat(item.price.replace('$', ''));
             });
             document.getElementById('cart-total').textContent = `Total: $${total.toFixed(2)}`;
+            document.getElementById('cart-count').textContent = cart.length;
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const index = btn.getAttribute('data-index');
+                    cart.splice(index, 1);
+                    updateCart();
+                });
+            });
         }
 
-        // Login button (placeholder)
-        loginBtn.addEventListener('click', () => {
-            alert('Login functionality to be implemented.');
+        // Checkout button
+        checkoutBtn.addEventListener('click', () => {
+            alert('Checkout functionality to be implemented.');
         });
 
-        // Snowfall effect
-        function createSnowflakes() {
-            for (let i = 0; i < 100; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                snowflake.style.left = `${Math.random() * 100}vw`;
-                snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`;
-                snowflake.style.opacity = Math.random();
-                snowContainer.appendChild(snowflake);
-            }
-        }
-        createSnowflakes();
-
-        // Back to top
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Loading animation
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loading').style.display = 'none';
-            }, 2000);
-        });
-
-        // High contrast mode
-        highContrastBtn.addEventListener('click', () => {
-            document.body.classList.toggle('high-contrast');
-        });
+        // TODO: Add logic to hide loading animation after page load
+        // Example: window.addEventListener('load', () => {
+        //     setTimeout(() => {
+        //         document.getElementById('loading').style.display = 'none';
+        //     }, 2000);
+        // });
     </script>
 </body>
 </html>
