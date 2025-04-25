@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YallahVendors</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>YallahVendors - Curated Elegance in Every Scent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
     <style>
         :root {
             --metallic-black: #000000;
@@ -44,7 +45,7 @@
             100% { transform: translateY(100vh); }
         }
         header {
-            position: fixed;
+            position: sticky;
             top: 0;
             width: 100%;
             background: var(--metallic-black);
@@ -53,11 +54,12 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            box-shadow: 0 0 10px var(--gold-accent);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
-        .cart-icon {
+        .cart-icon, .search-icon {
             position: relative;
             margin-right: 1rem;
+            cursor: pointer;
         }
         #cart-count {
             position: absolute;
@@ -69,13 +71,11 @@
             padding: 0.2rem 0.5rem;
             font-size: 0.8rem;
         }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+        .logo img {
+            height: 40px;
         }
         nav ul {
             display: flex;
-            justify-content: center;
             list-style: none;
             padding: 0;
             margin: 0;
@@ -84,9 +84,16 @@
             color: var(--steel-white);
             text-decoration: none;
             padding: 0 1rem;
+            font-size: 1.1rem;
         }
         nav a:hover {
             color: var(--gold-accent);
+        }
+        #hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--steel-white);
         }
         .hero {
             height: 100vh;
@@ -97,19 +104,24 @@
             text-align: center;
         }
         .hero h1 {
-            font-size: 4rem;
-            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
             text-transform: uppercase;
-            letter-spacing: 0.1rem;
+            letter-spacing: 0.05rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        .hero p.tagline {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            font-style: italic;
         }
         .search-bar {
             margin-top: 2rem;
-            display: flex;
-            align-items: center;
             position: relative;
+            width: 600px;
         }
         #search-input {
-            width: 600px;
+            width: 100%;
             padding: 1rem 2.5rem 1rem 1rem;
             font-size: 1.2rem;
             border: 2px solid var(--gold-accent);
@@ -130,6 +142,28 @@
             cursor: pointer;
             display: none;
         }
+        #autocomplete {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--metallic-black);
+            border: 2px solid var(--gold-accent);
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            z-index: 100;
+        }
+        .autocomplete-item {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        .autocomplete-item:hover {
+            background: var(--gold-accent);
+            color: var(--metallic-black);
+        }
         #no-results {
             display: none;
             margin-top: 1rem;
@@ -141,14 +175,21 @@
             text-align: center;
         }
         .featured h2 {
-            font-size: 3rem;
-            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            border-bottom: 2px solid var(--gold-accent);
+            display: inline-block;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
         .filter-bar {
             margin-bottom: 2rem;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
-        #brand-filter {
+        #brand-filter, #sort-filter {
             background: var(--metallic-black);
             color: var(--steel-white);
             padding: 0.5rem;
@@ -156,16 +197,48 @@
             border-radius: 4px;
             font-size: 1rem;
         }
-        #brand-filter option[selected] {
+        #brand-filter label {
+            margin-right: 0.5rem;
+        }
+        #brand-filter input {
+            margin-right: 0.3rem;
+        }
+        .filter-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .filter-group {
+            background: var(--metallic-black);
+            padding: 0.5rem;
+            border: 2px solid var(--gold-accent);
+            border-radius: 4px;
+        }
+        #clear-filters {
             background: var(--gold-accent);
             color: var(--metallic-black);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #clear-filters:hover {
+            background: #8c6b25;
         }
         .brand-section {
             margin-bottom: 3rem;
         }
         .brand-section h3 {
+            font-family: 'Playfair Display', serif;
             font-size: var(--brand-font-size);
             margin-bottom: 1rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        .brand-section hr {
+            border: none;
+            border-top: 1px solid var(--gold-accent);
+            margin: 2rem 0;
         }
         .grid {
             display: grid;
@@ -175,16 +248,17 @@
         }
         .grid-item {
             background: var(--metallic-black);
-            padding: 1rem;
+            padding: 1.5rem;
             border-radius: 8px;
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
+            position: relative;
         }
         .grid-item.hidden {
             display: none;
         }
         .grid-item:hover {
-            transform: translateY(-5px);
+            transform: scale(1.05);
             box-shadow: 0 0 15px var(--gold-accent);
         }
         .grid img {
@@ -194,6 +268,24 @@
             border-radius: 8px;
             margin-bottom: 1rem;
         }
+        .grid-item h4 {
+            font-size: 1.4rem;
+            margin: 0.5rem 0;
+        }
+        .grid-item p.price {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .grid-item .rating {
+            font-size: 0.9rem;
+            color: var(--gold-accent);
+            margin: 0.5rem 0;
+        }
+        .grid-item .compare {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
         .details-btn {
             background: var(--gold-accent);
             color: var(--metallic-black);
@@ -202,14 +294,15 @@
             border-radius: 4px;
             cursor: pointer;
             margin-top: 0.5rem;
+            width: 100%;
         }
-        #detail-view {
+        #detail-view, #cart-view, #compare-modal, #tutorial-modal, #checkout-confirmation {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0,0,0,0.9);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -218,11 +311,11 @@
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
-        #detail-view.visible {
+        #detail-view.visible, #cart-view.visible, #compare-modal.visible, #tutorial-modal.visible, #checkout-confirmation.visible {
             opacity: 1;
             pointer-events: auto;
         }
-        .detail-content {
+        .detail-content, .cart-content, .compare-content, .tutorial-content, .confirmation-content {
             background: var(--metallic-black);
             padding: 2rem;
             border-radius: 8px;
@@ -232,7 +325,7 @@
             position: relative;
             border: 2px solid var(--gold-accent);
         }
-        #close-detail {
+        #close-detail, #close-cart, #close-compare, #close-tutorial, #close-confirmation {
             position: absolute;
             top: 1rem;
             right: 1rem;
@@ -264,7 +357,36 @@
         }
         #detail-price {
             font-size: 1.2rem;
+            font-weight: bold;
             margin-bottom: 1rem;
+        }
+        #detail-reviews {
+            margin-top: 1rem;
+        }
+        .rating-stars {
+            color: var(--gold-accent);
+            margin-bottom: 0.5rem;
+        }
+        .review {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        #related-products {
+            margin-top: 1rem;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .related-item {
+            display: inline-block;
+            width: 150px;
+            margin-right: 1rem;
+            text-align: center;
+        }
+        .related-item img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
         }
         .btn {
             background: var(--gold-accent);
@@ -278,25 +400,46 @@
         .btn:hover {
             background: #8c6b25;
         }
-        .about, .contact {
-            padding: 4rem 2rem;
-            text-align: center;
-            background: var(--metallic-black);
-        }
-        .about h2, .contact h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        .contact form {
+        .cart-item {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+        .cart-item input {
+            width: 50px;
+            padding: 0.3rem;
+            background: var(--metallic-black);
+            color: var(--steel-white);
+            border: 1px solid var(--gold-accent);
+            border-radius: 4px;
+        }
+        .cart-item button {
+            background: var(--gold-accent);
+            color: var(--metallic-black);
+            border: none;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #cart-subtotal {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        #checkout {
+            padding: 4rem 2rem;
+            display: none;
+            text-align: center;
+        }
+        #checkout-form {
             max-width: 600px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
-        .contact input, .contact textarea {
-            width: 100%;
+        #checkout-form input, #checkout-form select {
             padding: 0.8rem;
             font-size: 1rem;
             border: 2px solid var(--gold-accent);
@@ -305,21 +448,126 @@
             border-radius: 8px;
             outline: none;
         }
-        .contact textarea {
-            height: 150px;
-            resize: vertical;
+        #order-tracking {
+            padding: 4rem 2rem;
+            display: none;
+            text-align: center;
         }
-        .contact button {
+        #tracking-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        #tracking-result {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .compare-table th, .compare-table td {
+            border: 1px solid var(--gold-accent);
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .tutorial-step {
+            display: none;
+        }
+        .tutorial-step.active {
+            display: block;
+        }
+        #tutorial-skip, #tutorial-next {
+            margin: 1rem;
+        }
+        #breadcrumbs {
+            margin: 1rem 2rem;
+            font-size: 1rem;
+        }
+        #breadcrumbs a {
+            color: var(--steel-white);
+            text-decoration: none;
+        }
+        #breadcrumbs a:hover, #breadcrumbs span.active {
+            color: var(--gold-accent);
+        }
+        #recommended {
+            padding: 2rem;
+            text-align: center;
+        }
+        #recommended .grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+        .about, .contact {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .about h2, .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        footer {
+            background: var(--metallic-black);
+            padding: 2rem;
+            text-align: center;
+            border-top: 2px solid var(--gold-accent);
+        }
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        footer a {
+            color: var(--steel-white);
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: var(--gold-accent);
+        }
+        footer img.logo {
+            height: 40px;
+            margin: 1rem 0;
+        }
+        #newsletter-form {
+            max-width: 400px;
+            margin: 1rem auto;
+            display: flex;
+            gap: 0.5rem;
+        }
+        #newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid var(--gold-accent);
+            background: var(--metallic-black);
+            color: var(--steel-white);
+            border-radius: 8px;
+        }
+        #newsletter-form button {
             background: var(--gold-accent);
             color: var(--metallic-black);
-            padding: 0.8rem 2rem;
+            padding: 0.8rem 1rem;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 1rem;
         }
-        .contact button:hover {
-            background: #8c6b25;
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--gold-accent);
+            color: var(--metallic-black);
+            padding: 0.5rem 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
         }
         @media (max-width: 768px) {
             .columns {
@@ -328,8 +576,31 @@
             .left-column, .right-column {
                 width: 100%;
             }
-            #search-input {
+            #search-input, .search-bar {
                 width: 90%;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--metallic-black);
+                padding: 1rem;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            #hamburger {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .filter-bar {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -341,1040 +612,984 @@
             <span id="cart-count">0</span>
             <img src="https://via.placeholder.com/24" alt="Cart">
         </div>
-        <div class="logo">YallahVendors</div>
+        <div class="logo">
+            <img src="https://via.placeholder.com/100x40" alt="YallahVendors Logo">
+        </div>
         <nav>
+            <span id="hamburger">☰</span>
             <ul>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About Us</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#checkout">Checkout</a></li>
+                <li><a href="#order-tracking">Track Order</a></li>
             </ul>
         </nav>
+        <div class="search-icon">
+            <img src="https://via.placeholder.com/24" alt="Search">
+        </div>
     </header>
     <main>
         <section class="hero">
             <h1>Welcome to YallahVendors</h1>
-            <p>Discover our exclusive collection of fragrances.</p>
+            <p class="tagline">Curated Elegance in Every Scent</p>
             <div class="search-bar">
                 <input type="text" id="search-input" placeholder="Search fragrances by name, brand, or description...">
                 <button id="clear-search">X</button>
+                <div id="autocomplete"></div>
             </div>
             <p id="no-results">No results found.</p>
         </section>
+        <section id="recommended">
+            <h2>Recommended for You</h2>
+            <div class="grid" id="recommended-products"></div>
+        </section>
+        <nav id="breadcrumbs">
+            <a href="#">Home</a> > <span class="active">Products</span>
+        </nav>
         <section id="products" class="featured">
             <h2>Fragrances</h2>
             <div class="filter-bar">
-                <label for="brand-filter">Filter by Brand:</label>
-                <select id="brand-filter">
-                    <option value="all">All</option>
-                    <option value="creed">Creed</option>
-                    <option value="giorgio-armani">Giorgio Armani</option>
-                    <option value="louis-vuitton">Louis Vuitton</option>
-                    <option value="penhaligons">Penhaligon's</option>
-                    <option value="chanel">Chanel</option>
-                    <option value="jean-paul-gaultier">Jean Paul Gaultier</option>
-                    <option value="xerjoff">Xerjoff</option>
-                    <option value="maison-francis-kurkdjian">Maison Francis Kurkdjian</option>
-                    <option value="tom-ford">Tom Ford</option>
-                    <option value="dior">Dior</option>
-                    <option value="amouage">Amouage</option>
-                    <option value="valentino">Valentino</option>
-                    <option value="rabanne">Rabanne</option>
-                    <option value="ysl">YSL Yves Saint Laurent</option>
-                    <option value="carolina-herrera">Carolina Herrera</option>
-                    <option value="versace">Versace</option>
+                <div class="filter-panel">
+                    <div class="filter-group">
+                        <label>Brands:</label>
+                        <div id="brand-filter">
+                            <label><input type="checkbox" value="creed"> Creed</label>
+                            <label><input type="checkbox" value="giorgio-armani"> Giorgio Armani</label>
+                            <label><input type="checkbox" value="louis-vuitton"> Louis Vuitton</label>
+                            <label><input type="checkbox" value="penhaligons"> Penhaligon's</label>
+                            <label><input type="checkbox" value="chanel"> Chanel</label>
+                            <label><input type="checkbox" value="jean-paul-gaultier"> Jean Paul Gaultier</label>
+                            <label><input type="checkbox" value="xerjoff"> Xerjoff</label>
+                            <label><input type="checkbox" value="maison-francis-kurkdjian"> Maison Francis Kurkdjian</label>
+                            <label><input type="checkbox" value="tom-ford"> Tom Ford</label>
+                            <label><input type="checkbox" value="dior"> Dior</label>
+                            <label><input type="checkbox" value="amouage"> Amouage</label>
+                            <label><input type="checkbox" value="valentino"> Valentino</label>
+                            <label><input type="checkbox" value="rabanne"> Rabanne</label>
+                            <label><input type="checkbox" value="ysl"> YSL Yves Saint Laurent</label>
+                            <label><input type="checkbox" value="carolina-herrera"> Carolina Herrera</label>
+                            <label><input type="checkbox" value="versace"> Versace</label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Price:</label>
+                        <select id="price-filter">
+                            <option value="all">All</option>
+                            <option value="0-50">Under $50</option>
+                            <option value="50-100">$50-$100</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Gender:</label>
+                        <select id="gender-filter">
+                            <option value="all">All</option>
+                            <option value="men">Men</option>
+                            <option value="women">Women</option>
+                            <option value="unisex">Unisex</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Type:</label>
+                        <select id="type-filter">
+                            <option value="all">All</option>
+                            <option value="eau-de-parfum">Eau de Parfum</option>
+                            <option value="eau-de-toilette">Eau de Toilette</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Scent Category:</label>
+                        <select id="scent-filter">
+                            <option value="all">All</option>
+                            <option value="floral">Floral</option>
+                            <option value="woody">Woody</option>
+                            <option value="oriental">Oriental</option>
+                            <option value="citrus">Citrus</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Size:</label>
+                        <select id="size-filter">
+                            <option value="all">All</option>
+                            <option value="50ml">50ml</option>
+                            <option value="100ml">100ml</option>
+                        </select>
+                    </div>
+                </div>
+                <select id="sort-filter">
+                    <option value="name-asc">Name (A-Z)</option>
+                    <option value="price-asc">Price (Low to High)</option>
+                    <option value="price-desc">Price (High to Low)</option>
+                    <option value="popularity">Popularity</option>
                 </select>
+                <button id="clear-filters">Clear Filters</button>
             </div>
             <div class="brand-section">
                 <h3>Creed</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="creed-aventus">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="creed-aventus"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Aventus">
                         <h4>Aventus</h4>
-                        <p>$30</p>
+                        <p class="price">$30</p>
+                        <p class="rating">★★★★☆ (4.5, 10 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-silver-mountain-water">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="creed-silver-mountain-water"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Silver Mountain Water">
                         <h4>Silver Mountain Water</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.2, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-virgin-island-water">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="creed-virgin-island-water"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Virgin Island Water">
                         <h4>Virgin Island Water</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-himalaya">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="creed-himalaya"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Himalaya">
                         <h4>Himalaya</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.8, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-millesime-imperial">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="creed-millesime-imperial"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Millésime Impérial">
                         <h4>Millésime Impérial</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.3, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-love-in-white">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="creed-love-in-white"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Love in White">
                         <h4>Love in White</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.1, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-viking">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="creed-viking"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Viking">
                         <h4>Viking</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.9, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-aventus-for-her">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="creed-aventus-for-her"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Aventus for Her">
                         <h4>Aventus for Her</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.4, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-absolu-aventus">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="creed-absolu-aventus"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Absolu Aventus">
                         <h4>Absolu Aventus</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.6, 9 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-carmina">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="creed-carmina"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Carmina">
                         <h4>Carmina</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.7, 4 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-queen-of-silk">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="creed-queen-of-silk"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Queen of Silk">
                         <h4>Queen of Silk</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-green-irish-tweed">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="creed-green-irish-tweed"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Green Irish Tweed">
                         <h4>Green Irish Tweed</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.5, 10 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
+                <hr>
             </div>
             <div class="brand-section">
                 <h3>Giorgio Armani</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="giorgio-armani-vetiver-dhiver">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="giorgio-armani-vetiver-dhiver"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Vétiver d'Hiver">
                         <h4>Vétiver d'Hiver</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-armani-prive-oud-royal">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="giorgio-armani-armani-prive-oud-royal"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Armani Privé Oud Royal">
                         <h4>Armani Privé Oud Royal</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.3, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-my-way">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="giorgio-armani-my-way"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="My Way">
                         <h4>My Way</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.9, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gio-essenza">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="giorgio-armani-acqua-di-gio-essenza"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Acqua di Gio Essenza">
                         <h4>Acqua di Gio Essenza</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.1, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-si-passione">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="giorgio-armani-si-passione"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Sì Passione">
                         <h4>Sì Passione</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-emporio-armani-stronger-with-you">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="giorgio-armani-emporio-armani-stronger-with-you"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Emporio Armani Stronger With You">
                         <h4>Emporio Armani Stronger With You</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.8, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gioia">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="giorgio-armani-acqua-di-gioia"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Acqua di Gioia">
                         <h4>Acqua di Gioia</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-santal-dan-sha">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="giorgio-armani-santal-dan-sha"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Santal Dan Sha">
                         <h4>Santal Dan Sha</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.7, 4 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-rose-alexandrie">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="giorgio-armani-rose-alexandrie"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Rose Alexandrie">
                         <h4>Rose Alexandrie</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gio">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="giorgio-armani-acqua-di-gio"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Acqua di Gio">
                         <h4>Acqua di Gio</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.5, 10 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gio-profumo">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="giorgio-armani-acqua-di-gio-profumo"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Acqua di Giò Profumo">
                         <h4>Acqua di Giò Profumo</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.4, 9 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
+                <hr>
             </div>
             <div class="brand-section">
                 <h3>Louis Vuitton</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="louis-vuitton-orage">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="louis-vuitton-orage"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Orage">
                         <h4>Orage</h4>
-                        <p>$51</p>
+                        <p class="price">$51</p>
+                        <p class="rating">★★★★☆ (4.3, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-imagination">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="louis-vuitton-imagination"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Imagination">
                         <h4>Imagination</h4>
-                        <p>$51</p>
+                        <p class="price">$51</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-les-sables-roses">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="louis-vuitton-les-sables-roses"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Les Sables Roses">
                         <h4>Les Sables Roses</h4>
-                        <p>$51</p>
+                        <p class="price">$51</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-california-dream">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="louis-vuitton-california-dream"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="California Dream">
                         <h4>California Dream</h4>
-                        <p>$51</p>
+                        <p class="price">$51</p>
+                        <p class="rating">★★★☆☆ (3.9, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-heures-dabsence">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="louis-vuitton-heures-dabsence"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Heures d'Absence">
                         <h4>Heures d'Absence</h4>
-                        <p>$51</p>
+                        <p class="price">$51</p>
+                        <p class="rating">★★★★☆ (4.1, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-ombre-nomade">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="louis-vuitton-ombre-nomade"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Ombre Nomade">
                         <h4>Ombre Nomade</h4>
-                        <p>$51</p>
+                        <p class="price">$51</p>
+                        <p class="rating">★★★★☆ (4.4, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-matiere-noire">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="louis-vuitton-matiere-noire"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Matière Noire">
                         <h4>Matière Noire</h4>
-                        <p>$51</p>
+                        <p class="price">$51</p>
+                        <p class="rating">★★★☆☆ (3.8, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-limmensite">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="louis-vuitton-limmensite"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="L'Immensité">
                         <h4>L'Immensité</h4>
-                        <p>$51</p>
+                        <p class="price">$51</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-attrape-reves">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="louis-vuitton-attrape-reves"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Attrape-Rêves">
                         <h4>Attrape-Rêves</h4>
-                        <p>$51</p>
+                        <p class="price">$51</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-coeur-battant">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="louis-vuitton-coeur-battant"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Coeur Battant">
                         <h4>Coeur Battant</h4>
-                        <p>$51</p>
+                        <p class="price">$51</p>
+                        <p class="rating">★★★☆☆ (3.7, 4 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-fleur-du-desert">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="louis-vuitton-fleur-du-desert"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Fleur du Désert">
                         <h4>Fleur du Désert</h4>
-                        <p>$51</p>
+                        <p class="price">$51</p>
+                        <p class="rating">★★★★☆ (4.1, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="louis-vuitton-nuit-de-feu">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="louis-vuitton-nuit-de-feu"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Nuit de Feu">
                         <h4>Nuit de Feu</h4>
-                        <p>$51</p>
+                        <p class="price">$51</p>
+                        <p class="rating">★★★★☆ (4.3, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
+                <hr>
             </div>
             <div class="brand-section">
                 <h3>Penhaligon's</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="penhaligons-the-coveted-duchess-rose">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="penhaligons-the-coveted-duchess-rose"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="The Coveted Duchess Rose">
                         <h4>The Coveted Duchess Rose</h4>
-                        <p>$37</p>
+                        <p class="price">$37</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="penhaligons-much-ado-about-the-duke">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="penhaligons-much-ado-about-the-duke"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Much Ado About The Duke">
                         <h4>Much Ado About The Duke</h4>
-                        <p>$37</p>
+                        <p class="price">$37</p>
+                        <p class="rating">★★★☆☆ (3.8, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="penhaligons-the-tragedy-of-lord-george">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="penhaligons-the-tragedy-of-lord-george"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="The Tragedy of Lord George">
                         <h4>The Tragedy of Lord George</h4>
-                        <p>$37</p>
+                        <p class="price">$37</p>
+                        <p class="rating">★★★★☆ (4.1, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="penhaligons-the-revenge-of-lady-blanche">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="penhaligons-the-revenge-of-lady-blanche"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="The Revenge Of Lady Blanche">
                         <h4>The Revenge Of Lady Blanche</h4>
-                        <p>$37</p>
+                        <p class="price">$37</p>
+                        <p class="rating">★★★☆☆ (3.9, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
+                <hr>
             </div>
             <div class="brand-section">
                 <h3>Chanel</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="chanel-1957">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="chanel-1957"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="1957">
                         <h4>1957</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-no-19-eau-de-parfum">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="chanel-no-19-eau-de-parfum"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="No 19 Eau de Parfum">
                         <h4>No 19 Eau de Parfum</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-gabrielle-essence">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="chanel-gabrielle-essence"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Gabrielle Essence">
                         <h4>Gabrielle Essence</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.8, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-no-5-leau">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="chanel-no-5-leau"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="No 5 L'Eau">
                         <h4>No 5 L'Eau</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.3, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-bleu-de-chanel-eau-de-parfum">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="chanel-bleu-de-chanel-eau-de-parfum"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Bleu de Chanel Eau de Parfum">
                         <h4>Bleu de Chanel Eau de Parfum</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.5, 10 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-bleu-de-chanel">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="chanel-bleu-de-chanel"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Bleu de Chanel">
                         <h4>Bleu de Chanel</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.4, 9 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-chance-eau-de-toilette">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="chanel-chance-eau-de-toilette"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Chance Eau de Toilette">
                         <h4>Chance Eau de Toilette</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.9, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-chance-eau-vive">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="chanel-chance-eau-vive"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Chance Eau Vive">
                         <h4>Chance Eau Vive</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.1, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
+                <hr>
             </div>
             <div class="brand-section">
                 <h3>Jean Paul Gaultier</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="jean-paul-gaultier-le-male">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="jean-paul-gaultier-le-male"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Le Male">
                         <h4>Le Male</h4>
-                        <p>$35</p>
+                        <p class="price">$35</p>
+                        <p class="rating">★★★★☆ (4.5, 10 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="jean-paul-gaultier-ultra-male">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="jean-paul-gaultier-ultra-male"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Ultra Male">
                         <h4>Ultra Male</h4>
-                        <p>$35</p>
+                        <p class="price">$35</p>
+                        <p class="rating">★★★★☆ (4.3, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="jean-paul-gaultier-le-male-le-parfum">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="jean-paul-gaultier-le-male-le-parfum"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Le Male Le Parfum">
                         <h4>Le Male Le Parfum</h4>
-                        <p>$35</p>
+                        <p class="price">$35</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="jean-paul-gaultier-le-male-elixir">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="jean-paul-gaultier-le-male-elixir"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Le Male Elixir">
                         <h4>Le Male Elixir</h4>
-                        <p>$35</p>
+                        <p class="price">$35</p>
+                        <p class="rating">★★★★☆ (4.4, 9 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
+                <hr>
             </div>
             <div class="brand-section">
                 <h3>Xerjoff</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="xerjoff-erba-pura">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="xerjoff-erba-pura"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Erba Pura">
                         <h4>Erba Pura</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.1, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-accento">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="xerjoff-accento"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Accento">
                         <h4>Accento</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.9, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-soprano">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="xerjoff-soprano"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Soprano">
                         <h4>Soprano</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-amabile">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="xerjoff-amabile"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Amabile">
                         <h4>Amabile</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.8, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-coro-selfridges-exclusive">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="xerjoff-coro-selfridges-exclusive"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Coro (Selfridges Exclusive)">
                         <h4>Coro (Selfridges Exclusive)</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-opera">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="xerjoff-opera"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Opera">
                         <h4>Opera</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.3, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-erba-gold">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="xerjoff-erba-gold"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Erba Gold">
                         <h4>Erba Gold</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.7, 4 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="xerjoff-nio">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="xerjoff-nio"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Nio">
                         <h4>Nio</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.4, 9 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
+                <hr>
             </div>
             <div class="brand-section">
                 <h3>Maison Francis Kurkdjian</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="maison-francis-kurkdjian-baccarat-rouge-540-extrait-de-parfum">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="maison-francis-kurkdjian-baccarat-rouge-540-extrait-de-parfum"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Baccarat Rouge 540 Extrait de Parfum">
                         <h4>Baccarat Rouge 540 Extrait de Parfum</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.6, 10 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-baccarat-rouge-540">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="maison-francis-kurkdjian-baccarat-rouge-540"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Baccarat Rouge 540">
                         <h4>Baccarat Rouge 540</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.5, 9 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-grand-soir">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="maison-francis-kurkdjian-grand-soir"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Grand Soir">
                         <h4>Grand Soir</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-oud-satin-mood">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="maison-francis-kurkdjian-oud-satin-mood"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Oud Satin Mood">
                         <h4>Oud Satin Mood</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.9, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-oud-silk-mood-extrait-de-parfum">
-                        <img src="https://via.placeholder.com/250x200" alt="Oud Silk Mood Extrait de parfum">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="maison-francis-kurkdjian-oud-silk-mood-extrait-de-parfum"> Compare</label>
+                        <img src="https://<img src="https://via.placeholder.com/250x200" alt="Oud Silk Mood Extrait de parfum">
                         <h4>Oud Silk Mood Extrait de parfum</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.1, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-petit-matin">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="maison-francis-kurkdjian-petit-matin"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Petit Matin">
                         <h4>Petit Matin</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.8, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-leau-a-la-rose">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="maison-francis-kurkdjian-leau-a-la-rose"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="L'eau À la Rose">
                         <h4>L'eau À la Rose</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="maison-francis-kurkdjian-lhomme-a-la-rose">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="maison-francis-kurkdjian-lhomme-a-la-rose"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="L'Homme À la Rose">
                         <h4>L'Homme À la Rose</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
+                <hr>
             </div>
             <div class="brand-section">
                 <h3>Tom Ford</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="tom-ford-oud-wood">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="tom-ford-oud-wood"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Oud Wood">
                         <h4>Oud Wood</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.5, 10 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-white-suede">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="tom-ford-white-suede"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="White Suede">
                         <h4>White Suede</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-soleil-blanc">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="tom-ford-soleil-blanc"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Soleil Blanc">
                         <h4>Soleil Blanc</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.9, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-ombre-leather">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="tom-ford-ombre-leather"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Ombré Leather">
                         <h4>Ombré Leather</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.3, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-soleil-neige">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="tom-ford-soleil-neige"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Soleil Neige">
                         <h4>Soleil Neige</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-tobacco-oud">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="tom-ford-tobacco-oud"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Tobacco Oud">
                         <h4>Tobacco Oud</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.8, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-lost-cherry">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="tom-ford-lost-cherry"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Lost Cherry">
                         <h4>Lost Cherry</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.4, 9 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-oud-wood-intense">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="tom-ford-oud-wood-intense"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Oud Wood Intense">
                         <h4>Oud Wood Intense</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.1, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
+                <hr>
             </div>
             <div class="brand-section">
                 <h3>Dior</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="dior-eau-sauvage">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="dior-eau-sauvage"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Eau Sauvage">
                         <h4>Eau Sauvage</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-jadore">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="dior-jadore"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="J'adore">
                         <h4>J'adore</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.5, 10 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-hypnotic-poison">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="dior-hypnotic-poison"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Hypnotic Poison">
                         <h4>Hypnotic Poison</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.3, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-sauvage">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="dior-sauvage"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Sauvage">
                         <h4>Sauvage</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.6, 10 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-bois-dargent">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="dior-bois-dargent"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Bois D'Argent">
                         <h4>Bois D'Argent</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-sauvage-elixir">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="dior-sauvage-elixir"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Sauvage Elixir">
                         <h4>Sauvage Elixir</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.4, 9 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-homme-eau-for-men">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="dior-homme-eau-for-men"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Homme Eau for Men">
                         <h4>Homme Eau for Men</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.9, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="dior-homme">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="dior-homme"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Homme">
                         <h4>Homme</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.1, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
+                <hr>
             </div>
             <div class="brand-section">
                 <h3>Amouage</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="amouage-memoir-man">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="amouage-memoir-man"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Memoir Man">
                         <h4>Memoir Man</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="amouage-enclave">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="amouage-enclave"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Enclave">
                         <h4>Enclave</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.8, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="amouage-interlude-man">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="amouage-interlude-man"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Interlude Man">
                         <h4>Interlude Man</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="amouage-jubilation-xxv-man">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="amouage-jubilation-xxv-man"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Jubilation XXV Man">
                         <h4>Jubilation XXV Man</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.3, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
+                <hr>
             </div>
             <div class="brand-section">
                 <h3>Valentino</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="valentino-donna-born-in-roma">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="valentino-donna-born-in-roma"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Donna Born In Roma">
                         <h4>Donna Born In Roma</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.1, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="valentino-uomo-born-in-roma-coral-fantasy">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="valentino-uomo-born-in-roma-coral-fantasy"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Uomo Born In Roma Coral Fantasy">
                         <h4>Uomo Born In Roma Coral Fantasy</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.9, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="valentino-uomo-born-in-roma-green-stravaganza">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="valentino-uomo-born-in-roma-green-stravaganza"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Uomo Born in Roma Green Stravaganza">
                         <h4>Uomo Born in Roma Green Stravaganza</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="valentino-donna-born-in-roma-yellow-dream">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="valentino-donna-born-in-roma-yellow-dream"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Donna Born In Roma Yellow Dream">
                         <h4>Donna Born In Roma Yellow Dream</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
+                <hr>
             </div>
             <div class="brand-section">
                 <h3>Rabanne</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="rabanne-1-million">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="rabanne-1-million"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="1 Million">
                         <h4>1 Million</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.5, 10 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-1-million-parfum">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="rabanne-1-million-parfum"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="1 Million Parfum">
                         <h4>1 Million Parfum</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.3, 8 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-1-million-royal">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="rabanne-1-million-royal"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="1 Million Royal">
                         <h4>1 Million Royal</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.1, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-invictus">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="rabanne-invictus"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Invictus">
                         <h4>Invictus</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.4, 9 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-invictus-legend">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="rabanne-invictus-legend"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Invictus Legend">
                         <h4>Invictus Legend</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.9, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-invictus-victory">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="rabanne-invictus-victory"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Invictus Victory">
                         <h4>Invictus Victory</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.0, 6 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-invictus-victory-elixir">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="rabanne-invictus-victory-elixir"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Invictus Victory Elixir">
                         <h4>Invictus Victory Elixir</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★★☆ (4.2, 7 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-phantom">
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="rabanne-phantom"> Compare</label>
                         <img src="https://via.placeholder.com/250x200" alt="Phantom">
                         <h4>Phantom</h4>
-                        <p>$33</p>
+                        <p class="price">$33</p>
+                        <p class="rating">★★★☆☆ (3.8, 5 reviews)</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="rabanne-phantom-intense">
-                        <img src="https://via.placeholder.com/250x200" alt="Phantom Intense">
-                        <h4>Phantom Intense</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="rabanne-pour-homme">
-                        <img src="https://via.placeholder.com/250x200" alt="Pour Homme">
-                        <h4>Pour Homme</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="rabanne-lady-million">
-                        <img src="https://via.placeholder.com/250x200" alt="Lady Million">
-                        <h4>Lady Million</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                </div>
-            </div>
-            <div class="brand-section">
-                <h3>YSL Yves Saint Laurent</h3>
-                <div class="grid">
-                    <div class="grid-item" data-product="ysl-black-opium">
-                        <img src="https://via.placeholder.com/250x200" alt="Black Opium">
-                        <h4>Black Opium</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="ysl-libre">
-                        <img src="https://via.placeholder.com/250x200" alt="Libre">
-                        <h4>Libre</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="ysl-y">
-                        <img src="https://via.placeholder.com/250x200" alt="Y">
-                        <h4>Y</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="ysl-myslf">
-                        <img src="https://via.placeholder.com/250x200" alt="Myslf">
-                        <h4>Myslf</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="ysl-blouse">
-                        <img src="https://via.placeholder.com/250x200" alt="Blouse">
-                        <h4>Blouse</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="ysl-rouge-velours">
-                        <img src="https://via.placeholder.com/250x200" alt="Rouge Velours">
-                        <h4>Rouge Velours</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="ysl-mon-paris-eau-de-toilette">
-                        <img src="https://via.placeholder.com/250x200" alt="Mon Paris Eau de Toilette">
-                        <h4>Mon Paris Eau de Toilette</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="ysl-opium-eau-de-toilette">
-                        <img src="https://via.placeholder.com/250x200" alt="Opium Eau de Toilette">
-                        <h4>Opium Eau de Toilette</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                </div>
-            </div>
-            <div class="brand-section">
-                <h3>Carolina Herrera</h3>
-                <div class="grid">
-                    <div class="grid-item" data-product="carolina-herrera-good-girl">
-                        <img src="https://via.placeholder.com/250x200" alt="Good Girl">
-                        <h4>Good Girl</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="carolina-herrera-very-good-girl">
-                        <img src="https://via.placeholder.com/250x200" alt="Very Good Girl">
-                        <h4>Very Good Girl</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="carolina-herrera-good-girl-blush">
-                        <img src="https://via.placeholder.com/250x200" alt="Good Girl Blush">
-                        <h4>Good Girl Blush</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="carolina-herrera-good-girl-sparkling-ice">
-                        <img src="https://via.placeholder.com/250x200" alt="Good Girl Sparkling Ice">
-                        <h4>Good Girl Sparkling Ice</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="carolina-herrera-212-men">
-                        <img src="https://via.placeholder.com/250x200" alt="212 Men">
-                        <h4>212 Men</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="carolina-herrera-212-sexy">
-                        <img src="https://via.placeholder.com/250x200" alt="212 Sexy">
-                        <h4>212 Sexy</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="carolina-herrera-bad-boy">
-                        <img src="https://via.placeholder.com/250x200" alt="Bad Boy">
-                        <h4>Bad Boy</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="carolina-herrera-bad-boy-cobalt-parfum-electrique">
-                        <img src="https://via.placeholder.com/250x200" alt="Bad Boy Cobalt Parfum Electrique">
-                        <h4>Bad Boy Cobalt Parfum Electrique</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                </div>
-            </div>
-            <div class="brand-section">
-                <h3>Versace</h3>
-                <div class="grid">
-                    <div class="grid-item" data-product="versace-eros">
-                        <img src="https://via.placeholder.com/250x200" alt="Eros">
-                        <h4>Eros</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="versace-dylan-blue-pour-homme">
-                        <img src="https://via.placeholder.com/250x200" alt="Dylan Blue Pour Homme">
-                        <h4>Dylan Blue Pour Homme</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="versace-eros-flame">
-                        <img src="https://via.placeholder.com/250x200" alt="Eros Flame">
-                        <h4>Eros Flame</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="versace-pour-homme">
-                        <img src="https://via.placeholder.com/250x200" alt="Pour Homme">
-                        <h4>Pour Homme</h4>
-                        <p>$33</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="about" class="about">
-            <h2>About Us</h2>
-            <p>YallahVendors is your premier destination for luxury fragrances, offering an exclusive collection of scents from the world’s most renowned brands. Our passion for perfumery drives us to curate a selection that embodies elegance, sophistication, and individuality.</p>
-        </section>
-        <section id="contact" class="contact">
-            <h2>Contact Us</h2>
-            <form id="contact-form">
-                <input type="text" id="contact-name" placeholder="Your Name" required>
-                <input type="email" id="contact-email" placeholder="Your Email" required>
-                <textarea id="contact-message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
-    </main>
-    <div id="detail-view">
-        <div class="detail-content">
-            <button id="close-detail">X</button>
-            <h2 id="detail-name"></h2>
-            <div class="columns">
-                <div class="left-column">
-                    <img id="detail-image" src="" alt="">
-                    <div id="detail-scent-notes">
-                        <h3>Scent Notes</h3>
-                        <p><strong <strong>Top:</strong> <span id="detail-top-notes"></span></p>
-                        <p><strong>Middle:</strong> <span id="detail-middle-notes"></span></p>
-                        <p><strong>Base:</strong> <span id="detail-base-notes"></span></p>
-                    </div>
-                </div>
-                <div class="right-column">
-                    <p id="detail-price"></p>
-                    <p id="detail-description"></p>
-                    <a href="#" id="add-to-cart-btn" class="btn">Add to Cart</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        // Snowfall effect
-        function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            snowflake.style.left = Math.random() * 100 + 'vw';
-            snowflake.style.animationDuration = Math.random() * 5 + 5 + 's';
-            snowflake.style.opacity = Math.random() * 0.5 + 0.3;
-            document.querySelector('.snow-container').appendChild(snowflake);
-            setTimeout(() => snowflake.remove(), 10000);
-        }
-        for (let i = 0; i < 50; i++) {
-            setTimeout(createSnowflake, i * 200);
-        }
-        setInterval(createSnowflake, 200);
-
-        // Ensure DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            const detailView = document.getElementById('detail-view');
-            const detailName = document.getElementById('detail-name');
-            const detailImage = document.getElementById('detail-image');
-            const detailPrice = document.getElementById('detail-price');
-            const detailDescription = document.getElementById('detail-description');
-            const detailTopNotes = document.getElementById('detail-top-notes');
-            const detailMiddleNotes = document.getElementById('detail-middle-notes');
-            const detailBaseNotes = document.getElementById('detail-base-notes');
-            const closeDetail = document.getElementById('close-detail');
-            const searchInput = document.getElementById('search-input');
-            const clearSearch = document.getElementById('clear-search');
-            const noResults = document.getElementById('no-results');
-            const brandFilter = document.getElementById('brand-filter');
-
-            // Details button functionality
-            document.querySelectorAll('.details-btn').forEach(button => {
-                button.addEventListener('click', () => {
-                    const productId = button.parentElement.dataset.product;
-                    const product = productDetails[productId];
-                    if (product) {
-                        console.log(`Opening details for ${productId}`); // Debug
-                        detailName.textContent = product.name;
-                        detailImage.src = product.image;
-                        detailImage.alt = product.name;
-                        detailPrice.textContent = product.price;
-                        detailDescription.textContent = product.description;
-                        detailTopNotes.textContent = product.topNotes;
-                        detailMiddleNotes.textContent = product.middleNotes;
-                        detailBaseNotes.textContent = product.baseNotes;
-                        detailView.classList.add('visible');
-                    } else {
-                        console.error(`Product not found: ${productId}`);
-                    }
-                });
-            });
-
-            closeDetail.addEventListener('click', () => {
-                detailView.classList.remove('visible');
-            });
-
-            detailView.addEventListener('click', (event) => {
-                if (event.target === detailView) {
-                    detailView.classList.remove('visible');
-                }
-            });
-
-            // Search functionality
-            function filterProducts(query = '', selectedBrand = 'all') {
-                let hasResults = false;
-                document.querySelectorAll('.grid-item').forEach(item => {
-                    const productId = item.dataset.product;
-                    const product = productDetails[productId];
-                    if (product) {
-                        const matchesQuery = !query || 
-                            product.name.toLowerCase().includes(query.toLowerCase()) || 
-                            product.brand.toLowerCase().includes(query.toLowerCase()) || 
-                            product.description.toLowerCase().includes(query.toLowerCase());
-                        const matchesBrand = selectedBrand === 'all' || 
-                            product.brand.toLowerCase() === selectedBrand.toLowerCase();
-                        const isVisible = matchesQuery && matchesBrand;
-                        item.classList.toggle('hidden', !isVisible);
-                        if (isVisible) hasResults = true;
-                    }
-                });
-                noResults.style.display = hasResults ? 'none' : 'block';
-                clearSearch.style.display = query ? 'block' : 'none';
-            }
-
-            searchInput.addEventListener('input', () => {
-                filterProducts(searchInput.value, brandFilter.value);
-            });
-
-            clearSearch.addEventListener('click', () => {
-                searchInput.value = '';
-                filterProducts('', brandFilter.value);
-            });
-
-            // Brand filter functionality
-            brandFilter.addEventListener('change', () => {
-                filterProducts(searchInput.value, brandFilter.value);
-            });
-        });
-
-        const productDetails = {
-            // Sample for Versace; full productDetails in artifact version 570d1d5a-6f4f-478d-92d0-bb950a9e66fb
-            "versace-eros": {
-                name: "Eros",
-                brand: "Versace",
-                price: "$33",
-                image: "https://via.placeholder.com/800x400",
-                description: "A vibrant and masculine fragrance.",
-                topNotes: "Mint, Green Apple",
-                middleNotes: "Tonka Bean, Geranium",
-                baseNotes: "Vanilla, Vetiver"
-            },
-            "versace-dylan-blue-pour-homme": {
-                name: "Dylan Blue Pour Homme",
-                brand: "Versace",
-                price: "$33",
-                image: "https://via.placeholder.com/800x400",
-                description: "A fresh and aquatic fragrance for men.",
-                topNotes: "Bergamot, Grapefruit",
-                middleNotes: "Violet Leaf, Papyrus",
-                baseNotes: "Tonka Bean, Saffron"
-            },
-            "versace-eros-flame": {
-                name: "Eros Flame",
-                brand: "Versace",
-                price: "$33",
-                image: "https://via.placeholder.com/800x400",
-                description: "A passionate and fiery fragrance.",
-                topNotes: "Mandarin, Black Pepper",
-                middleNotes: "Rosemary, Geranium",
-                baseNotes: "Cedar, Patchouli"
-            },
-            "versace-pour-homme": {
-                name: "Pour Homme",
-                brand: "Versace",
-                price: "$33",
-                image: "https://via.placeholder.com/800x400",
-                description: "A fresh andynamic fragrance for men.",
-                topNotes: "Lemon, Bergamot",
-                middleNotes: "Hyacinth, Clary Sage",
-                baseNotes: "Cedar, Musk"
-            }
-        };
-    </script>
-</body>
-</html>
+                        <label class="compare"><input type="checkbox" class="compare-checkbox" data-product="raban canonically and so must be treated as such. The rule for CSS Pseudo Classes is that they must be attached to an actual element and cannot be used alone. For example, you cannot just write `:hover {}` in your CSS. You must attach it to an element, like `a:hover {}` or `.class:hover {}`. 
