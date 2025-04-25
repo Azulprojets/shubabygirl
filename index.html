@@ -29,11 +29,11 @@
             background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--gold-accent); /* Gold */
+            background: var(--gold-accent);
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #8c6b25; /* Darker gold on hover */
+            background: #8c6b25;
         }
         /* Firefox scrollbar styling */
         html {
@@ -389,13 +389,6 @@
         #tutorial-skip, #tutorial-next {
             margin: 1rem;
         }
-        #recommended {
-            padding: 2rem;
-            text-align: center;
-        }
-        #recommended .grid {
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        }
         .about, .contact {
             padding: 4rem 2rem;
             text-align: center;
@@ -498,10 +491,10 @@
     <header>
         <div class="cart-icon">
             <span id="cart-count">0</span>
-            <img src="https://via.placeholder.com/24" alt="Cart">
+            <img src="images/cart-icon.png" alt="Cart">
         </div>
         <div class="logo">
-            <img src="https://via.placeholder.com/100x40" alt="YallahVendors Logo">
+            <img src="images/logo.png" alt="YallahVendors Logo">
         </div>
         <nav>
             <span id="hamburger">☰</span>
@@ -522,83 +515,79 @@
             </div>
             <p id="no-results">No results found.</p>
         </section>
-        <section id="recommended">
-            <h2>Recommended for You</h2>
-            <div class="grid" id="recommended-products"></div>
-        </section>
         <section id="products" class="featured">
             <h2>Fragrances</h2>
             <div class="brand-section">
                 <h3>Creed</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="creed-aventus">
-                        <img src="https://via.placeholder.com/250x200" alt="Aventus">
+                        <img src="images/creed-aventus.jpg" alt="Aventus">
                         <h4>Aventus</h4>
                         <p class="price">$30</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-silver-mountain-water">
-                        <img src="https://via.placeholder.com/250x200" alt="Silver Mountain Water">
+                        <img src="images/creed-silver-mountain-water.jpg" alt="Silver Mountain Water">
                         <h4>Silver Mountain Water</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-virgin-island-water">
-                        <img src="https://via.placeholder.com/250x200" alt="Virgin Island Water">
+                        <img src="images/creed-virgin-island-water.jpg" alt="Virgin Island Water">
                         <h4>Virgin Island Water</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-himalaya">
-                        <img src="https://via.placeholder.com/250x200" alt="Himalaya">
+                        <img src="images/creed-himalaya.jpg" alt="Himalaya">
                         <h4>Himalaya</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-millesime-imperial">
-                        <img src="https://via.placeholder.com/250x200" alt="Millésime Impérial">
+                        <img src="images/creed-millesime-imperial.jpg" alt="Millésime Impérial">
                         <h4>Millésime Impérial</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-love-in-white">
-                        <img src="https://via.placeholder.com/250x200" alt="Love in White">
+                        <img src="images/creed-love-in-white.jpg" alt="Love in White">
                         <h4>Love in White</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-viking">
-                        <img src="https://via.placeholder.com/250x200" alt="Viking">
+                        <img src="images/creed-viking.jpg" alt="Viking">
                         <h4>Viking</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-aventus-for-her">
-                        <img src="https://via.placeholder.com/250x200" alt="Aventus for Her">
+                        <img src="images/creed-aventus-for-her.jpg" alt="Aventus for Her">
                         <h4>Aventus for Her</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-absolu-aventus">
-                        <img src="https://via.placeholder.com/250x200" alt="Absolu Aventus">
+                        <img src="images/creed-absolu-aventus.jpg" alt="Absolu Aventus">
                         <h4>Absolu Aventus</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-carmina">
-                        <img src="https://via.placeholder.com/250x200" alt="Carmina">
+                        <img src="images/creed-carmina.jpg" alt="Carmina">
                         <h4>Carmina</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-queen-of-silk">
-                        <img src="https://via.placeholder.com/250x200" alt="Queen of Silk">
+                        <img src="images/creed-queen-of-silk.jpg" alt="Queen of Silk">
                         <h4>Queen of Silk</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="creed-green-irish-tweed">
-                        <img src="https://via.placeholder.com/250x200" alt="Green Irish Tweed">
+                        <img src="images/creed-green-irish-tweed.jpg" alt="Green Irish Tweed">
                         <h4>Green Irish Tweed</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
@@ -610,67 +599,67 @@
                 <h3>Giorgio Armani</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="giorgio-armani-vetiver-dhiver">
-                        <img src="https://via.placeholder.com/250x200" alt="Vétiver d'Hiver">
+                        <img src="images/giorgio-armani-vetiver-dhiver.jpg" alt="Vétiver d'Hiver">
                         <h4>Vétiver d'Hiver</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-armani-prive-oud-royal">
-                        <img src="https://via.placeholder.com/250x200" alt="Armani Privé Oud Royal">
+                        <img src="images/giorgio-armani-armani-prive-oud-royal.jpg" alt="Armani Privé Oud Royal">
                         <h4>Armani Privé Oud Royal</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-my-way">
-                        <img src="https://via.placeholder.com/250x200" alt="My Way">
+                        <img src="images/giorgio-armani-my-way.jpg" alt="My Way">
                         <h4>My Way</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gio-essenza">
-                        <img src="https://via.placeholder.com/250x200" alt="Acqua di Gio Essenza">
+                        <img src="images/giorgio-armani-acqua-di-gio-essenza.jpg" alt="Acqua di Gio Essenza">
                         <h4>Acqua di Gio Essenza</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-si-passione">
-                        <img src="https://via.placeholder.com/250x200" alt="Sì Passione">
+                        <img src="images/giorgio-armani-si-passione.jpg" alt="Sì Passione">
                         <h4>Sì Passione</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-emporio-armani-stronger-with-you">
-                        <img src="https://via.placeholder.com/250x200" alt="Emporio Armani Stronger With You">
+                        <img src="images/giorgio-armani-emporio-armani-stronger-with-you.jpg" alt="Emporio Armani Stronger With You">
                         <h4>Emporio Armani Stronger With You</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gioia">
-                        <img src="https://via.placeholder.com/250x200" alt="Acqua di Gioia">
+                        <img src="images/giorgio-armani-acqua-di-gioia.jpg" alt="Acqua di Gioia">
                         <h4>Acqua di Gioia</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-santal-dan-sha">
-                        <img src="https://via.placeholder.com/250x200" alt="Santal Dan Sha">
+                        <img src="images/giorgio-armani-santal-dan-sha.jpg" alt="Santal Dan Sha">
                         <h4>Santal Dan Sha</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-rose-alexandrie">
-                        <img src="https://via.placeholder.com/250x200" alt="Rose Alexandrie">
+                        <img src="images/giorgio-armani-rose-alexandrie.jpg" alt="Rose Alexandrie">
                         <h4>Rose Alexandrie</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gio">
-                        <img src="https://via.placeholder.com/250x200" alt="Acqua di Gio">
+                        <img src="images/giorgio-armani-acqua-di-gio.jpg" alt="Acqua di Gio">
                         <h4>Acqua di Gio</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gio-profumo">
-                        <img src="https://via.placeholder.com/250x200" alt="Acqua di Giò Profumo">
+                        <img src="images/giorgio-armani-acqua-di-gio-profumo.jpg" alt="Acqua di Giò Profumo">
                         <h4>Acqua di Giò Profumo</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
@@ -682,49 +671,49 @@
                 <h3>Chanel</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="chanel-1957">
-                        <img src="https://via.placeholder.com/250x200" alt="1957">
+                        <img src="images/chanel-1957.jpg" alt="1957">
                         <h4>1957</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-no-19-eau-de-parfum">
-                        <img src="https://via.placeholder.com/250x200" alt="No 19 Eau de Parfum">
+                        <img src="images/chanel-no-19-eau-de-parfum.jpg" alt="No 19 Eau de Parfum">
                         <h4>No 19 Eau de Parfum</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-gabrielle-essence">
-                        <img src="https://via.placeholder.com/250x200" alt="Gabrielle Essence">
+                        <img src="images/chanel-gabrielle-essence.jpg" alt="Gabrielle Essence">
                         <h4>Gabrielle Essence</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-no-5-leau">
-                        <img src="https://via.placeholder.com/250x200" alt="No 5 L'Eau">
+                        <img src="images/chanel-no-5-leau.jpg" alt="No 5 L'Eau">
                         <h4>No 5 L'Eau</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-bleu-de-chanel-eau-de-parfum">
-                        <img src="https://via.placeholder.com/250x200" alt="Bleu de Chanel Eau de Parfum">
+                        <img src="images/chanel-bleu-de-chanel-eau-de-parfum.jpg" alt="Bleu de Chanel Eau de Parfum">
                         <h4>Bleu de Chanel Eau de Parfum</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-bleu-de-chanel">
-                        <img src="https://via.placeholder.com/250x200" alt="Bleu de Chanel">
+                        <img src="images/chanel-bleu-de-chanel.jpg" alt="Bleu de Chanel">
                         <h4>Bleu de Chanel</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-chance-eau-de-toilette">
-                        <img src="https://via.placeholder.com/250x200" alt="Chance Eau de Toilette">
+                        <img src="images/chanel-chance-eau-de-toilette.jpg" alt="Chance Eau de Toilette">
                         <h4>Chance Eau de Toilette</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
                     </div>
                     <div class="grid-item" data-product="chanel-chance-eau-vive">
-                        <img src="https://via.placeholder.com/250x200" alt="Chance Eau Vive">
+                        <img src="images/chanel-chance-eau-vive.jpg" alt="Chance Eau Vive">
                         <h4>Chance Eau Vive</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
@@ -749,7 +738,7 @@
         </section>
     </main>
     <footer>
-        <img src="https://via.placeholder.com/100x40" alt="YallahVendors Logo" class="logo">
+        <img src="images/logo.png" alt="YallahVendors Logo" class="logo">
     </footer>
     <div id="back-to-top">↑</div>
     <div id="detail-view">
@@ -790,6 +779,7 @@
         </div>
     </div>
     <script>
+        // Snow effect
         function createSnowflake() {
             const snowflake = document.createElement('div');
             snowflake.classList.add('snowflake');
@@ -799,6 +789,45 @@
             setTimeout(() => snowflake.remove(), 10000);
         }
         setInterval(createSnowflake, 100);
+
+        // Details pop-up functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const detailView = document.getElementById('detail-view');
+            const detailImage = document.getElementById('detail-image');
+            const detailTitle = document.getElementById('detail-title');
+            const detailPrice = document.getElementById('detail-price');
+            const detailScentNotes = document.getElementById('detail-scent-notes');
+            const closeDetail = document.getElementById('close-detail');
+            const detailButtons = document.querySelectorAll('.details-btn');
+
+            detailButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const gridItem = button.closest('.grid-item');
+                    const productId = gridItem.dataset.product;
+                    const title = gridItem.querySelector('h4').textContent;
+                    const price = gridItem.querySelector('.price').textContent;
+                    const imageSrc = gridItem.querySelector('img').src;
+                    
+                    detailImage.src = imageSrc;
+                    detailImage.alt = title;
+                    detailTitle.textContent = title;
+                    detailPrice.textContent = price;
+                    detailScentNotes.textContent = 'Scent Notes: Placeholder notes for ' + title;
+                    
+                    detailView.classList.add('visible');
+                });
+            });
+
+            closeDetail.addEventListener('click', () => {
+                detailView.classList.remove('visible');
+            });
+
+            detailView.addEventListener('click', (e) => {
+                if (e.target === detailView) {
+                    detailView.classList.remove('visible');
+                }
+            });
+        });
     </script>
 </body>
 </html>
