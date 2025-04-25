@@ -9,7 +9,7 @@
         :root {
             --metallic-black: #000000; /* 60% Primary Color (Matte Black) */
             --steel-white: #C0C0C0; /* 30% Secondary Color (Silver) */
-            --gold-accent: #A37E2C; /* 10% Accent Color (Rolex Gold) */
+            --silver-accent: #D3D3D3; /* 10% Accent Color (Brighter Silver) */
             --brand-font-size: 2.5rem;
         }
         body {
@@ -53,7 +53,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            box-shadow: 0 0 10px var(--gold-accent); /* Restored glow */
+            box-shadow: 0 0 10px var(--silver-accent); /* Glow with silver accent */
         }
         .cart-icon {
             position: relative;
@@ -63,7 +63,7 @@
             position: absolute;
             top: -5px;
             right: -5px;
-            background: var(--gold-accent);
+            background: var(--silver-accent);
             color: var(--metallic-black);
             border-radius: 50%;
             padding: 0.2rem 0.5rem;
@@ -86,7 +86,7 @@
             padding: 0 1rem;
         }
         nav a:hover {
-            color: var(--gold-accent);
+            color: var(--silver-accent);
         }
         .hero {
             height: 100vh;
@@ -111,7 +111,7 @@
             width: 600px;
             padding: 1rem;
             font-size: 1.2rem;
-            border: 2px solid var(--gold-accent);
+            border: 2px solid var(--silver-accent);
             background: var(--metallic-black);
             color: var(--steel-white);
             border-radius: 12px;
@@ -161,7 +161,7 @@
         }
         .grid-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 15px var(--gold-accent);
+            box-shadow: 0 0 15px var(--silver-accent);
         }
         .grid img {
             width: 100%;
@@ -171,7 +171,7 @@
             margin-bottom: 1rem;
         }
         .details-btn {
-            background: var(--gold-accent);
+            background: var(--silver-accent);
             color: var(--metallic-black);
             padding: 0.5rem 1rem;
             border: none;
@@ -241,7 +241,7 @@
             margin-bottom: 1rem;
         }
         .btn {
-            background: var(--gold-accent);
+            background: var(--silver-accent);
             color: var(--metallic-black);
             padding: 0.8rem 2rem;
             border-radius: 4px;
@@ -250,7 +250,7 @@
             margin-top: 1rem;
         }
         .btn:hover {
-            background: #8c6b25;
+            background: #B0B0B0; /* Darker silver for hover */
         }
         .about, .contact {
             padding: 4rem 2rem;
@@ -273,7 +273,7 @@
             width: 100%;
             padding: 0.8rem;
             font-size: 1rem;
-            border: 2px solid var(--gold-accent);
+            border: 2px solid var(--silver-accent);
             background: var(--metallic-black);
             color: var(--steel-white);
             border-radius: 8px;
@@ -284,7 +284,7 @@
             resize: vertical;
         }
         .contact button {
-            background: var(--gold-accent);
+            background: var(--silver-accent);
             color: var(--metallic-black);
             padding: 0.8rem 2rem;
             border: none;
@@ -293,7 +293,7 @@
             font-size: 1rem;
         }
         .contact button:hover {
-            background: #8c6b25;
+            background: #B0B0B0;
         }
         @media (max-width: 768px) {
             .columns {
@@ -354,137 +354,142 @@
                     <option value="versace">Versace</option>
                 </select>
             </div>
-            <!-- Previous brand sections (Creed, Giorgio Armani, Louis Vuitton, Penhaligon's, Chanel, Jean Paul Gaultier, Xerjoff, Maison Francis Kurkdjian, Tom Ford, Dior) remain -->
+            <!-- Previous brand sections (Creed, Giorgio Armani, Louis Vuitton, Penhaligon's, Chanel, Jean Paul Gaultier, Xerjoff, Maison Francis Kurkdjian, Tom Ford, Dior, Amouage, Valentino, Rabanne) remain -->
             <div class="brand-section">
-                <h3>Amouage</h3>
+                <h3>YSL Yves Saint Laurent</h3>
                 <div class="grid">
-                    <div class="grid-item" data-product="amouage-memoir-man">
-                        <img src="https://via.placeholder.com/250x200" alt="Memoir Man">
-                        <h4>Memoir Man</h4>
+                    <div class="grid-item" data-product="ysl-black-opium">
+                        <img src="https://via.placeholder.com/250x200" alt="Black Opium">
+                        <h4>Black Opium</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="amouage-enclave">
-                        <img src="https://via.placeholder.com/250x200" alt="Enclave">
-                        <h4>Enclave</h4>
+                    <div class="grid-item" data-product="ysl-libre">
+                        <img src="https://via.placeholder.com/250x200" alt="Libre">
+                        <h4>Libre</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="amouage-interlude-man">
-                        <img src="https://via.placeholder.com/250x200" alt="Interlude Man">
-                        <h4>Interlude Man</h4>
+                    <div class="grid-item" data-product="ysl-y">
+                        <img src="https://via.placeholder.com/250x200" alt="Y">
+                        <h4>Y</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="amouage-jubilation-xxv-man">
-                        <img src="https://via.placeholder.com/250x200" alt="Jubilation XXV Man">
-                        <h4>Jubilation XXV Man</h4>
+                    <div class="grid-item" data-product="ysl-myslf">
+                        <img src="https://via.placeholder.com/250x200" alt="Myslf">
+                        <h4>Myslf</h4>
+                        <p>$33.23</p>
+                        <button class="details-btn">Details</button>
+                    </div>
+                    <div class="grid-item" data-product="ysl-blouse">
+                        <img src="https://via.placeholder.com/250x200" alt="Blouse">
+                        <h4>Blouse</h4>
+                        <p>$33.23</p>
+                        <button class="details-btn">Details</button>
+                    </div>
+                    <div class="grid-item" data-product="ysl-rouge-velours">
+                        <img src="https://via.placeholder.com/250x200" alt="Rouge Velours">
+                        <h4>Rouge Velours</h4>
+                        <p>$33.23</p>
+                        <button class="details-btn">Details</button>
+                    </div>
+                    <div class="grid-item" data-product="ysl-mon-paris-eau-de-toilette">
+                        <img src="https://via.placeholder.com/250x200" alt="Mon Paris Eau de Toilette">
+                        <h4>Mon Paris Eau de Toilette</h4>
+                        <p>$33.23</p>
+                        <button class="details-btn">Details</button>
+                    </div>
+                    <div class="grid-item" data-product="ysl-opium-eau-de-toilette">
+                        <img src="https://via.placeholder.com/250x200" alt="Opium Eau de Toilette">
+                        <h4>Opium Eau de Toilette</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
             </div>
             <div class="brand-section">
-                <h3>Valentino</h3>
+                <h3>Carolina Herrera</h3>
                 <div class="grid">
-                    <div class="grid-item" data-product="valentino-donna-born-in-roma">
-                        <img src="https://via.placeholder.com/250x200" alt="Donna Born In Roma">
-                        <h4>Donna Born In Roma</h4>
+                    <div class="grid-item" data-product="carolina-herrera-good-girl">
+                        <img src="https://via.placeholder.com/250x200" alt="Good Girl">
+                        <h4>Good Girl</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="valentino-uomo-born-in-roma-coral-fantasy">
-                        <img src="https://via.placeholder.com/250x200" alt="Uomo Born In Roma Coral Fantasy">
-                        <h4>Uomo Born In Roma Coral Fantasy</h4>
+                    <div class="grid-item" data-product="carolina-herrera-very-good-girl">
+                        <img src="https://via.placeholder.com/250x200" alt="Very Good Girl">
+                        <h4>Very Good Girl</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="valentino-uomo-born-in-roma-green-stravaganza">
-                        <img src="https://via.placeholder.com/250x200" alt="Uomo Born in Roma Green Stravaganza">
-                        <h4>Uomo Born in Roma Green Stravaganza</h4>
+                    <div class="grid-item" data-product="carolina-herrera-good-girl-blush">
+                        <img src="https://via.placeholder.com/250x200" alt="Good Girl Blush">
+                        <h4>Good Girl Blush</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="valentino-donna-born-in-roma-yellow-dream">
-                        <img src="https://via.placeholder.com/250x200" alt="Donna Born In Roma Yellow Dream">
-                        <h4>Donna Born In Roma Yellow Dream</h4>
+                    <div class="grid-item" data-product="carolina-herrera-good-girl-sparkling-ice">
+                        <img src="https://via.placeholder.com/250x200" alt="Good Girl Sparkling Ice">
+                        <h4>Good Girl Sparkling Ice</h4>
+                        <p>$33.23</p>
+                        <button class="details-btn">Details</button>
+                    </div>
+                    <div class="grid-item" data-product="carolina-herrera-212-men">
+                        <img src="https://via.placeholder.com/250x200" alt="212 Men">
+                        <h4>212 Men</h4>
+                        <p>$33.23</p>
+                        <button class="details-btn">Details</button>
+                    </div>
+                    <div class="grid-item" data-product="carolina-herrera-212-sexy">
+                        <img src="https://via.placeholder.com/250x200" alt="212 Sexy">
+                        <h4>212 Sexy</h4>
+                        <p>$33.23</p>
+                        <button class="details-btn">Details</button>
+                    </div>
+                    <div class="grid-item" data-product="carolina-herrera-bad-boy">
+                        <img src="https://via.placeholder.com/250x200" alt="Bad Boy">
+                        <h4>Bad Boy</h4>
+                        <p>$33.23</p>
+                        <button class="details-btn">Details</button>
+                    </div>
+                    <div class="grid-item" data-product="carolina-herrera-bad-boy-cobalt-parfum-electrique">
+                        <img src="https://via.placeholder.com/250x200" alt="Bad Boy Cobalt Parfum Electrique">
+                        <h4>Bad Boy Cobalt Parfum Electrique</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
             </div>
             <div class="brand-section">
-                <h3>Rabanne</h3>
+                <h3>Versace</h3>
                 <div class="grid">
-                    <div class="grid-item" data-product="rabanne-1-million">
-                        <img src="https://via.placeholder.com/250x200" alt="1 Million">
-                        <h4>1 Million</h4>
+                    <div class="grid-item" data-product="versace-eros">
+                        <img src="https://via.placeholder.com/250x200" alt="Eros">
+                        <h4>Eros</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="rabanne-1-million-parfum">
-                        <img src="https://via.placeholder.com/250x200" alt="1 Million Parfum">
-                        <h4>1 Million Parfum</h4>
+                    <div class="grid-item" data-product="versace-dylan-blue-pour-homme">
+                        <img src="https://via.placeholder.com/250x200" alt="Dylan Blue Pour Homme">
+                        <h4>Dylan Blue Pour Homme</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="rabanne-1-million-royal">
-                        <img src="https://via.placeholder.com/250x200" alt="1 Million Royal">
-                        <h4>1 Million Royal</h4>
+                    <div class="grid-item" data-product="versace-eros-flame">
+                        <img src="https://via.placeholder.com/250x200" alt="Eros Flame">
+                        <h4>Eros Flame</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="rabanne-invictus">
-                        <img src="https://via.placeholder.com/250x200" alt="Invictus">
-                        <h4>Invictus</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="rabanne-invictus-legend">
-                        <img src="https://via.placeholder.com/250x200" alt="Invictus Legend">
-                        <h4>Invictus Legend</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="rabanne-invictus-victory">
-                        <img src="https://via.placeholder.com/250x200" alt="Invictus Victory">
-                        <h4>Invictus Victory</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="rabanne-invictus-victory-elixir">
-                        <img src="https://via.placeholder.com/250x200" alt="Invictus Victory Elixir">
-                        <h4>Invictus Victory Elixir</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="rabanne-phantom">
-                        <img src="https://via.placeholder.com/250x200" alt="Phantom">
-                        <h4>Phantom</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="rabanne-phantom-intense">
-                        <img src="https://via.placeholder.com/250x200" alt="Phantom Intense">
-                        <h4>Phantom Intense</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="rabanne-pour-homme">
+                    <div class="grid-item" data-product="versace-pour-homme">
                         <img src="https://via.placeholder.com/250x200" alt="Pour Homme">
                         <h4>Pour Homme</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="rabanne-lady-million">
-                        <img src="https://via.placeholder.com/250x200" alt="Lady Million">
-                        <h4>Lady Million</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
                 </div>
             </div>
-            <!-- Remaining brands (YSL, Carolina Herrera, Versace) to be added in follow-up -->
         </section>
         <section id="about" class="about">
             <h2>About Us</h2>
@@ -557,195 +562,205 @@
         });
 
         const productDetails = {
-            "amouage-memoir-man": {
-                name: "Memoir Man",
-                brand: "Amouage",
+            "ysl-black-opium": {
+                name: "Black Opium",
+                brand: "YSL Yves Saint Laurent",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A complex and aromatic fragrance.",
-                topNotes: "Basil, Mint",
-                middleNotes: "Lavender, Incense",
-                baseNotes: "Oakmoss, Leather"
-            },
-            "amouage-enclave": {
-                name: "Enclave",
-                brand: "Amouage",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A fresh and spicy fragrance.",
-                topNotes: "Cardamom, Cinnamon",
-                middleNotes: "Rose, Olibanum",
-                baseNotes: "Vetiver, Leather"
-            },
-            "amouage-interlude-man": {
-                name: "Interlude Man",
-                brand: "Amouage",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A bold and smoky fragrance.",
-                topNotes: "Bergamot, Oregano",
-                middleNotes: "Amber, Frankincense",
-                baseNotes: "Leather, Oud"
-            },
-            "amouage-jubilation-xxv-man": {
-                name: "Jubilation XXV Man",
-                brand: "Amouage",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A rich and luxurious fragrance.",
-                topNotes: "Blackberry, Olibanum",
-                middleNotes: "Cinnamon, Clove",
-                baseNotes: "Oud, Myrrh"
-            },
-            "valentino-donna-born-in-roma": {
-                name: "Donna Born In Roma",
-                brand: "Valentino",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A modern and floral fragrance for women.",
-                topNotes: "Black Currant, Bergamot",
-                middleNotes: "Jasmine, Peony",
-                baseNotes: "Bourbon Vanilla, Guaiac Wood"
-            },
-            "valentino-uomo-born-in-roma-coral-fantasy": {
-                name: "Uomo Born In Roma Coral Fantasy",
-                brand: "Valentino",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A fresh and vibrant fragrance for men.",
-                topNotes: "Red Apple, Bergamot",
-                middleNotes: "Geranium, Clary Sage",
-                baseNotes: "Patchouli, Vetiver"
-            },
-            "valentino-uomo-born-in-roma-green-stravaganza": {
-                name: "Uomo Born in Roma Green Stravaganza",
-                brand: "Valentino",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A green and aromatic fragrance.",
-                topNotes: "Calamansi, Bergamot",
-                middleNotes: "Basil, Lavender",
-                baseNotes: "Vetiver, Cedarwood"
-            },
-            "valentino-donna-born-in-roma-yellow-dream": {
-                name: "Donna Born In Roma Yellow Dream",
-                brand: "Valentino",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A bright and floral fragrance for women.",
-                topNotes: "Lemon, Litchi",
-                middleNotes: "Rose, Peony",
-                baseNotes: "Musk, Cedar"
-            },
-            "rabanne-1-million": {
-                name: "1 Million",
-                brand: "Rabanne",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A bold and seductive fragrance for men.",
-                topNotes: "Blood Mandarin, Grapefruit",
-                middleNotes: "Cinnamon, Mint",
-                baseNotes: "Leather, Amber"
-            },
-            "rabanne-1-million-parfum": {
-                name: "1 Million Parfum",
-                brand: "Rabanne",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "An intense and leathery version of 1 Million.",
-                topNotes: "Tuberose, Salt",
-                middleNotes: "Leather, Pine",
-                baseNotes: "Labdanum, Amber"
-            },
-            "rabanne-1-million-royal": {
-                name: "1 Million Royal",
-                brand: "Rabanne",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A luxurious and woody fragrance.",
-                topNotes: "Bergamot, Mandarin",
-                middleNotes: "Lavender, Violet Leaf",
+                description: "A seductive and addictive fragrance for women.",
+                topNotes: "Coffee, Vanilla",
+                middleNotes: "Jasmine, Orange Blossom",
                 baseNotes: "Cedarwood, Patchouli"
             },
-            "rabanne-invictus": {
-                name: "Invictus",
-                brand: "Rabanne",
+            "ysl-libre": {
+                name: "Libre",
+                brand: "YSL Yves Saint Laurent",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A bold and floral fragrance for women.",
+                topNotes: "Lavender, Mandarin",
+                middleNotes: "Jasmine, Orange Blossom",
+                baseNotes: "Vanilla, Amber"
+            },
+            "ysl-y": {
+                name: "Y",
+                brand: "YSL Yves Saint Laurent",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A fresh and masculine fragrance.",
+                topNotes: "Bergamot, Ginger",
+                middleNotes: "Sage, Geranium",
+                baseNotes: "Cedarwood, Fir Balsam"
+            },
+            "ysl-myslf": {
+                name: "Myslf",
+                brand: "YSL Yves Saint Laurent",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A modern and woody fragrance for men.",
+                topNotes: "Bergamot, Grapefruit",
+                middleNotes: "Lavender, Orange Blossom",
+                baseNotes: "Patchouli, Ambroxan"
+            },
+            "ysl-blouse": {
+                name: "Blouse",
+                brand: "YSL Yves Saint Laurent",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A soft and elegant fragrance.",
+                topNotes: "Bergamot, Mandarin",
+                middleNotes: "Rose, Jasmine",
+                baseNotes: "Musk, Amber"
+            },
+            "ysl-rouge-velours": {
+                name: "Rouge Velours",
+                brand: "YSL Yves Saint Laurent",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A rich and velvety fragrance.",
+                topNotes: "Bergamot, Pink Pepper",
+                middleNotes: "Rose, Patchouli",
+                baseNotes: "Vanilla, Amber"
+            },
+            "ysl-mon-paris-eau-de-toilette": {
+                name: "Mon Paris Eau de Toilette",
+                brand: "YSL Yves Saint Laurent",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A romantic and fruity fragrance.",
+                topNotes: "Strawberry, Raspberry",
+                middleNotes: "Peony, Jasmine",
+                baseNotes: "Patchouli, Musk"
+            },
+            "ysl-opium-eau-de-toilette": {
+                name: "Opium Eau de Toilette",
+                brand: "YSL Yves Saint Laurent",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A spicy and oriental fragrance.",
+                topNotes: "Mandarin, Bergamot",
+                middleNotes: "Jasmine, Carnation",
+                baseNotes: "Vanilla, Patchouli"
+            },
+            "carolina-herrera-good-girl": {
+                name: "Good Girl",
+                brand: "Carolina Herrera",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A bold and sophisticated fragrance for women.",
+                topNotes: "Almond, Coffee",
+                middleNotes: "Jasmine, Tuberose",
+                baseNotes: "Tonka Bean, Cocoa"
+            },
+            "carolina-herrera-very-good-girl": {
+                name: "Very Good Girl",
+                brand: "Carolina Herrera",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A fruity and floral fragrance.",
+                topNotes: "Red Currant, Litchi",
+                middleNotes: "Rose",
+                baseNotes: "Vanilla, Vetiver"
+            },
+            "carolina-herrera-good-girl-blush": {
+                name: "Good Girl Blush",
+                brand: "Carolina Herrera",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A soft and feminine version of Good Girl.",
+                topNotes: "Bergamot, Mandarin",
+                middleNotes: "Peony, Ylang-Ylang",
+                baseNotes: "Vanilla, Tonka Bean"
+            },
+            "carolina-herrera-good-girl-sparkling-ice": {
+                name: "Good Girl Sparkling Ice",
+                brand: "Carolina Herrera",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A fresh and sparkling fragrance.",
+                topNotes: "Lemon, Bergamot",
+                middleNotes: "Rose, Jasmine",
+                baseNotes: "Musk, Amber"
+            },
+            "carolina-herrera-212-men": {
+                name: "212 Men",
+                brand: "Carolina Herrera",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A fresh and masculine fragrance.",
+                topNotes: "Grapefruit, Ginger",
+                middleNotes: "Gardenia, Violet",
+                baseNotes: "Sandalwood, Musk"
+            },
+            "carolina-herrera-212-sexy": {
+                name: "212 Sexy",
+                brand: "Carolina Herrera",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A sensual and oriental fragrance for women.",
+                topNotes: "Pink Pepper, Mandarin",
+                middleNotes: "Gardenia, Cotton Candy",
+                baseNotes: "Vanilla, Sandalwood"
+            },
+            "carolina-herrera-bad-boy": {
+                name: "Bad Boy",
+                brand: "Carolina Herrera",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A bold and spicy fragrance for men.",
+                topNotes: "Black Pepper, White Pepper",
+                middleNotes: "Cedarwood, Sage",
+                baseNotes: "Tonka Bean, Cocoa"
+            },
+            "carolina-herrera-bad-boy-cobalt-parfum-electrique": {
+                name: "Bad Boy Cobalt Parfum Electrique",
+                brand: "Carolina Herrera",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "An electrifying and fresh fragrance.",
+                topNotes: "Pink Pepper, Plum",
+                middleNotes: "Geranium, Truffle",
+                baseNotes: "Vetiver, Cedarwood"
+            },
+            "versace-eros": {
+                name: "Eros",
+                brand: "Versace",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A vibrant and masculine fragrance.",
+                topNotes: "Mint, Green Apple",
+                middleNotes: "Tonka Bean, Geranium",
+                baseNotes: "Vanilla, Vetiver"
+            },
+            "versace-dylan-blue-pour-homme": {
+                name: "Dylan Blue Pour Homme",
+                brand: "Versace",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
                 description: "A fresh and aquatic fragrance for men.",
-                topNotes: "Grapefruit, Marine Accord",
-                middleNotes: "Bay Leaf, Jasmine",
-                baseNotes: "Guaiac Wood, Patchouli"
-            },
-            "rabanne-invictus-legend": {
-                name: "Invictus Legend",
-                brand: "Rabanne",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A woody and aromatic fragrance.",
-                topNotes: "Grapefruit, Sea Salt",
-                middleNotes: "Geranium, Spices",
-                baseNotes: "Guaiac Wood, Amber"
-            },
-            "rabanne-invictus-victory": {
-                name: "Invictus Victory",
-                brand: "Rabanne",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A powerful and oriental fragrance.",
-                topNotes: "Lemon, Pink Pepper",
-                middleNotes: "Lavender, Olibanum",
-                baseNotes: "Vanilla, Tonka Bean"
-            },
-            "rabanne-invictus-victory-elixir": {
-                name: "Invictus Victory Elixir",
-                brand: "Rabanne",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "An intense and invigorating fragrance.",
                 topNotes: "Bergamot, Grapefruit",
-                middleNotes: "Pepper, Olibanum",
-                baseNotes: "Patchouli, Benzoin"
+                middleNotes: "Violet Leaf, Papyrus",
+                baseNotes: "Tonka Bean, Saffron"
             },
-            "rabanne-phantom": {
-                name: "Phantom",
-                brand: "Rabanne",
+            "versace-eros-flame": {
+                name: "Eros Flame",
+                brand: "Versace",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A futuristic and aromatic fragrance.",
-                topNotes: "Lemon, Vetiver",
-                middleNotes: "Lavender, Apple",
-                baseNotes: "Patchouli, Vanilla"
+                description: "A passionate and fiery fragrance.",
+                topNotes: "Mandarin, Black Pepper",
+                middleNotes: "Rosemary, Geranium",
+                baseNotes: "Cedar, Patchouli"
             },
-            "rabanne-phantom-intense": {
-                name: "Phantom Intense",
-                brand: "Rabanne",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A bolder version of Phantom with deeper notes.",
-                topNotes: "Bergamot, Cardamom",
-                middleNotes: "Jasmine, Rum",
-                baseNotes: "Cedarwood, Patchouli"
-            },
-            "rabanne-pour-homme": {
+            "versace-pour-homme": {
                 name: "Pour Homme",
-                brand: "Rabanne",
+                brand: "Versace",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A classic and timeless fragrance for men.",
-                topNotes: "Clary Sage, Rosemary",
-                middleNotes: "Geranium, Tonka Bean",
-                baseNotes: "Moss, Honey"
-            },
-            "rabanne-lady-million": {
-                name: "Lady Million",
-                brand: "Rabanne",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A glamorous and floral fragrance for women.",
-                topNotes: "Neroli, Bitter Orange",
-                middleNotes: "Raspberry, Orange Flower",
-                baseNotes: "Honey, Patchouli"
+                description: "A fresh and dynamic fragrance for men.",
+                topNotes: "Lemon, Bergamot",
+                middleNotes: "Hyacinth, Clary Sage",
+                baseNotes: "Cedar, Musk"
             }
         };
     </script>
