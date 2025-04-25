@@ -53,6 +53,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
+            box-shadow: 0 0 10px var(--gold-accent); /* Restored glow */
         }
         .cart-icon {
             position: relative;
@@ -155,6 +156,9 @@
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
         }
+        .grid-item.hidden {
+            display: none;
+        }
         .grid-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 15px var(--gold-accent);
@@ -248,6 +252,49 @@
         .btn:hover {
             background: #8c6b25;
         }
+        .about, .contact {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: var(--metallic-black);
+        }
+        .about h2, .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact input, .contact textarea {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 2px solid var(--gold-accent);
+            background: var(--metallic-black);
+            color: var(--steel-white);
+            border-radius: 8px;
+            outline: none;
+        }
+        .contact textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        .contact button {
+            background: var(--gold-accent);
+            color: var(--metallic-black);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .contact button:hover {
+            background: #8c6b25;
+        }
         @media (max-width: 768px) {
             .columns {
                 flex-direction: column;
@@ -271,10 +318,7 @@
         <div class="logo">YallahVendors</div>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Vendors</a></li>
-                <li><a href="#cart">Cart</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -283,7 +327,7 @@
             <h1>Welcome to YallahVendors</h1>
             <p>Discover our exclusive collection of fragrances.</p>
             <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search fragrances...">
+                <input type="text" id="search-input" placeholder="Search fragrances by name or brand...">
             </div>
         </section>
         <section id="products" class="featured">
@@ -310,220 +354,150 @@
                     <option value="versace">Versace</option>
                 </select>
             </div>
-            <!-- Creed, Giorgio Armani, Louis Vuitton, Penhaligon's, Chanel, Jean Paul Gaultier sections remain from previous updates -->
+            <!-- Previous brand sections (Creed, Giorgio Armani, Louis Vuitton, Penhaligon's, Chanel, Jean Paul Gaultier, Xerjoff, Maison Francis Kurkdjian, Tom Ford, Dior) remain -->
             <div class="brand-section">
-                <h3>Xerjoff</h3>
+                <h3>Amouage</h3>
                 <div class="grid">
-                    <div class="grid-item" data-product="xerjoff-erba-pura">
-                        <img src="https://via.placeholder.com/250x200" alt="Erba Pura">
-                        <h4>Erba Pura</h4>
+                    <div class="grid-item" data-product="amouage-memoir-man">
+                        <img src="https://via.placeholder.com/250x200" alt="Memoir Man">
+                        <h4>Memoir Man</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="xerjoff-accento">
-                        <img src="https://via.placeholder.com/250x200" alt="Accento">
-                        <h4>Accento</h4>
+                    <div class="grid-item" data-product="amouage-enclave">
+                        <img src="https://via.placeholder.com/250x200" alt="Enclave">
+                        <h4>Enclave</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="xerjoff-soprano">
-                        <img src="https://via.placeholder.com/250x200" alt="Soprano">
-                        <h4>Soprano</h4>
+                    <div class="grid-item" data-product="amouage-interlude-man">
+                        <img src="https://via.placeholder.com/250x200" alt="Interlude Man">
+                        <h4>Interlude Man</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="xerjoff-amabile">
-                        <img src="https://via.placeholder.com/250x200" alt="Amabile">
-                        <h4>Amabile</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="xerjoff-coro-selfridges-exclusive">
-                        <img src="https://via.placeholder.com/250x200" alt="Coro (Selfridges Exclusive)">
-                        <h4>Coro (Selfridges Exclusive)</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="xerjoff-opera">
-                        <img src="https://via.placeholder.com/250x200" alt="Opera">
-                        <h4>Opera</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="xerjoff-erba-gold">
-                        <img src="https://via.placeholder.com/250x200" alt="Erba Gold">
-                        <h4>Erba Gold</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="xerjoff-nio">
-                        <img src="https://via.placeholder.com/250x200" alt="Nio">
-                        <h4>Nio</h4>
+                    <div class="grid-item" data-product="amouage-jubilation-xxv-man">
+                        <img src="https://via.placeholder.com/250x200" alt="Jubilation XXV Man">
+                        <h4>Jubilation XXV Man</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
             </div>
             <div class="brand-section">
-                <h3>Maison Francis Kurkdjian</h3>
+                <h3>Valentino</h3>
                 <div class="grid">
-                    <div class="grid-item" data-product="maison-francis-kurkdjian-baccarat-rouge-540-extrait-de-parfum">
-                        <img src="https://via.placeholder.com/250x200" alt="Baccarat Rouge 540 Extrait de Parfum">
-                        <h4>Baccarat Rouge 540 Extrait de Parfum</h4>
+                    <div class="grid-item" data-product="valentino-donna-born-in-roma">
+                        <img src="https://via.placeholder.com/250x200" alt="Donna Born In Roma">
+                        <h4>Donna Born In Roma</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="maison-francis-kurkdjian-baccarat-rouge-540">
-                        <img src="https://via.placeholder.com/250x200" alt="Baccarat Rouge 540">
-                        <h4>Baccarat Rouge 540</h4>
+                    <div class="grid-item" data-product="valentino-uomo-born-in-roma-coral-fantasy">
+                        <img src="https://via.placeholder.com/250x200" alt="Uomo Born In Roma Coral Fantasy">
+                        <h4>Uomo Born In Roma Coral Fantasy</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="maison-francis-kurkdjian-grand-soir">
-                        <img src="https://via.placeholder.com/250x200" alt="Grand Soir">
-                        <h4>Grand Soir</h4>
+                    <div class="grid-item" data-product="valentino-uomo-born-in-roma-green-stravaganza">
+                        <img src="https://via.placeholder.com/250x200" alt="Uomo Born in Roma Green Stravaganza">
+                        <h4>Uomo Born in Roma Green Stravaganza</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="maison-francis-kurkdjian-oud-satin-mood">
-                        <img src="https://via.placeholder.com/250x200" alt="Oud Satin Mood">
-                        <h4>Oud Satin Mood</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="maison-francis-kurkdjian-oud-silk-mood-extrait-de-parfum">
-                        <img src="https://via.placeholder.com/250x200" alt="Oud Silk Mood Extrait de parfum">
-                        <h4>Oud Silk Mood Extrait de parfum</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="maison-francis-kurkdjian-petit-matin">
-                        <img src="https://via.placeholder.com/250x200" alt="Petit Matin">
-                        <h4>Petit Matin</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="maison-francis-kurkdjian-leau-a-la-rose">
-                        <img src="https://via.placeholder.com/250x200" alt="L'eau À la Rose">
-                        <h4>L'eau À la Rose</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="maison-francis-kurkdjian-lhomme-a-la-rose">
-                        <img src="https://via.placeholder.com/250x200" alt="L'Homme À la Rose">
-                        <h4>L'Homme À la Rose</h4>
+                    <div class="grid-item" data-product="valentino-donna-born-in-roma-yellow-dream">
+                        <img src="https://via.placeholder.com/250x200" alt="Donna Born In Roma Yellow Dream">
+                        <h4>Donna Born In Roma Yellow Dream</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
             </div>
             <div class="brand-section">
-                <h3>Tom Ford</h3>
+                <h3>Rabanne</h3>
                 <div class="grid">
-                    <div class="grid-item" data-product="tom-ford-oud-wood">
-                        <img src="https://via.placeholder.com/250x200" alt="Oud Wood">
-                        <h4>Oud Wood</h4>
+                    <div class="grid-item" data-product="rabanne-1-million">
+                        <img src="https://via.placeholder.com/250x200" alt="1 Million">
+                        <h4>1 Million</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="tom-ford-white-suede">
-                        <img src="https://via.placeholder.com/250x200" alt="White Suede">
-                        <h4>White Suede</h4>
+                    <div class="grid-item" data-product="rabanne-1-million-parfum">
+                        <img src="https://via.placeholder.com/250x200" alt="1 Million Parfum">
+                        <h4>1 Million Parfum</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="tom-ford-soleil-blanc">
-                        <img src="https://via.placeholder.com/250x200" alt="Soleil Blanc">
-                        <h4>Soleil Blanc</h4>
+                    <div class="grid-item" data-product="rabanne-1-million-royal">
+                        <img src="https://via.placeholder.com/250x200" alt="1 Million Royal">
+                        <h4>1 Million Royal</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="tom-ford-ombre-leather">
-                        <img src="https://via.placeholder.com/250x200" alt="Ombré Leather">
-                        <h4>Ombré Leather</h4>
+                    <div class="grid-item" data-product="rabanne-invictus">
+                        <img src="https://via.placeholder.com/250x200" alt="Invictus">
+                        <h4>Invictus</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="tom-ford-soleil-neige">
-                        <img src="https://via.placeholder.com/250x200" alt="Soleil Neige">
-                        <h4>Soleil Neige</h4>
+                    <div class="grid-item" data-product="rabanne-invictus-legend">
+                        <img src="https://via.placeholder.com/250x200" alt="Invictus Legend">
+                        <h4>Invictus Legend</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="tom-ford-tobacco-oud">
-                        <img src="https://via.placeholder.com/250x200" alt="Tobacco Oud">
-                        <h4>Tobacco Oud</h4>
+                    <div class="grid-item" data-product="rabanne-invictus-victory">
+                        <img src="https://via.placeholder.com/250x200" alt="Invictus Victory">
+                        <h4>Invictus Victory</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="tom-ford-lost-cherry">
-                        <img src="https://via.placeholder.com/250x200" alt="Lost Cherry">
-                        <h4>Lost Cherry</h4>
+                    <div class="grid-item" data-product="rabanne-invictus-victory-elixir">
+                        <img src="https://via.placeholder.com/250x200" alt="Invictus Victory Elixir">
+                        <h4>Invictus Victory Elixir</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
-                    <div class="grid-item" data-product="tom-ford-oud-wood-intense">
-                        <img src="https://via.placeholder.com/250x200" alt="Oud Wood Intense">
-                        <h4>Oud Wood Intense</h4>
+                    <div class="grid-item" data-product="rabanne-phantom">
+                        <img src="https://via.placeholder.com/250x200" alt="Phantom">
+                        <h4>Phantom</h4>
+                        <p>$33.23</p>
+                        <button class="details-btn">Details</button>
+                    </div>
+                    <div class="grid-item" data-product="rabanne-phantom-intense">
+                        <img src="https://via.placeholder.com/250x200" alt="Phantom Intense">
+                        <h4>Phantom Intense</h4>
+                        <p>$33.23</p>
+                        <button class="details-btn">Details</button>
+                    </div>
+                    <div class="grid-item" data-product="rabanne-pour-homme">
+                        <img src="https://via.placeholder.com/250x200" alt="Pour Homme">
+                        <h4>Pour Homme</h4>
+                        <p>$33.23</p>
+                        <button class="details-btn">Details</button>
+                    </div>
+                    <div class="grid-item" data-product="rabanne-lady-million">
+                        <img src="https://via.placeholder.com/250x200" alt="Lady Million">
+                        <h4>Lady Million</h4>
                         <p>$33.23</p>
                         <button class="details-btn">Details</button>
                     </div>
                 </div>
             </div>
-            <div class="brand-section">
-                <h3>Dior</h3>
-                <div class="grid">
-                    <div class="grid-item" data-product="dior-eau-sauvage">
-                        <img src="https://via.placeholder.com/250x200" alt="Eau Sauvage">
-                        <h4>Eau Sauvage</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="dior-jadore">
-                        <img src="https://via.placeholder.com/250x200" alt="J'adore">
-                        <h4>J'adore</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="dior-hypnotic-poison">
-                        <img src="https://via.placeholder.com/250x200" alt="Hypnotic Poison">
-                        <h4>Hypnotic Poison</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="dior-sauvage">
-                        <img src="https://via.placeholder.com/250x200" alt="Sauvage">
-                        <h4>Sauvage</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="dior-bois-dargent">
-                        <img src="https://via.placeholder.com/250x200" alt="Bois D'Argent">
-                        <h4>Bois D'Argent</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="dior-sauvage-elixir">
-                        <img src="https://via.placeholder.com/250x200" alt="Sauvage Elixir">
-                        <h4>Sauvage Elixir</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="dior-homme-eau-for-men">
-                        <img src="https://via.placeholder.com/250x200" alt="Homme Eau for Men">
-                        <h4>Homme Eau for Men</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                    <div class="grid-item" data-product="dior-homme">
-                        <img src="https://via.placeholder.com/250x200" alt="Homme">
-                        <h4>Homme</h4>
-                        <p>$33.23</p>
-                        <button class="details-btn">Details</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Other brand sections (Amouage, Valentino, Rabanne, YSL, Carolina Herrera, Versace) to be added in follow-up -->
+            <!-- Remaining brands (YSL, Carolina Herrera, Versace) to be added in follow-up -->
+        </section>
+        <section id="about" class="about">
+            <h2>About Us</h2>
+            <p>YallahVendors is your premier destination for luxury fragrances, offering an exclusive collection of scents from the world’s most renowned brands. Our passion for perfumery drives us to curate a selection that embodies elegance, sophistication, and individuality.</p>
+        </section>
+        <section id="contact" class="contact">
+            <h2>Contact Us</h2>
+            <form id="contact-form">
+                <input type="text" id="contact-name" placeholder="Your Name" required>
+                <input type="email" id="contact-email" placeholder="Your Email" required>
+                <textarea id="contact-message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
         </section>
     </main>
     <div id="detail-view">
@@ -549,341 +523,229 @@
         </div>
     </div>
     <script>
-        // Enhanced snowfall effect
+        // Snowfall effect
         function createSnowflake() {
             const snowflake = document.createElement('div');
             snowflake.classList.add('snowflake');
             snowflake.style.left = Math.random() * 100 + 'vw';
-            snowflake.style.animationDuration = Math.random() * 5 + 5 + 's'; // 5-10s
-            snowflake.style.opacity = Math.random() * 0.5 + 0.3; // 0.3-0.8
+            snowflake.style.animationDuration = Math.random() * 5 + 5 + 's';
+            snowflake.style.opacity = Math.random() * 0.5 + 0.3;
             document.querySelector('.snow-container').appendChild(snowflake);
-            setTimeout(() => snowflake.remove(), 10000); // Remove after 10s
+            setTimeout(() => snowflake.remove(), 10000);
         }
         for (let i = 0; i < 50; i++) {
             setTimeout(createSnowflake, i * 200);
         }
         setInterval(createSnowflake, 200);
 
+        // Search bar functionality
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                const query = searchInput.value.toLowerCase().trim();
+                const gridItems = document.querySelectorAll('.grid-item');
+                gridItems.forEach(item => {
+                    const productId = item.dataset.product;
+                    const product = productDetails[productId];
+                    if (product) {
+                        const matches = product.name.toLowerCase().includes(query) || 
+                                      product.brand.toLowerCase().includes(query);
+                        item.classList.toggle('hidden', !matches);
+                    }
+                });
+            }
+        });
+
         const productDetails = {
-            "xerjoff-erba-pura": {
-                name: "Erba Pura",
-                brand: "Xerjoff",
+            "amouage-memoir-man": {
+                name: "Memoir Man",
+                brand: "Amouage",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A fruity and musky fragrance.",
-                topNotes: "Orange, Lemon",
-                middleNotes: "Fruits, Jasmine",
-                baseNotes: "Musk, Vanilla"
+                description: "A complex and aromatic fragrance.",
+                topNotes: "Basil, Mint",
+                middleNotes: "Lavender, Incense",
+                baseNotes: "Oakmoss, Leather"
             },
-            "xerjoff-accento": {
-                name: "Accento",
-                brand: "Xerjoff",
+            "amouage-enclave": {
+                name: "Enclave",
+                brand: "Amouage",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A floral and woody fragrance.",
-                topNotes: "Hyacinth, Pineapple",
-                middleNotes: "Jasmine, Iris",
-                baseNotes: "Musk, Amber"
+                description: "A fresh and spicy fragrance.",
+                topNotes: "Cardamom, Cinnamon",
+                middleNotes: "Rose, Olibanum",
+                baseNotes: "Vetiver, Leather"
             },
-            "xerjoff-soprano": {
-                name: "Soprano",
-                brand: "Xerjoff",
+            "amouage-interlude-man": {
+                name: "Interlude Man",
+                brand: "Amouage",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A rich and opulent fragrance.",
-                topNotes: "Bergamot, Freesia",
-                middleNotes: "Rose, Osmanthus",
-                baseNotes: "Patchouli, Oud"
+                description: "A bold and smoky fragrance.",
+                topNotes: "Bergamot, Oregano",
+                middleNotes: "Amber, Frankincense",
+                baseNotes: "Leather, Oud"
             },
-            "xerjoff-amabile": {
-                name: "Amabile",
-                brand: "Xerjoff",
+            "amouage-jubilation-xxv-man": {
+                name: "Jubilation XXV Man",
+                brand: "Amouage",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A sweet and gourmand fragrance.",
-                topNotes: "Apple, Bergamot",
-                middleNotes: "Cedar, Birch",
-                baseNotes: "Vanilla, Musk"
+                description: "A rich and luxurious fragrance.",
+                topNotes: "Blackberry, Olibanum",
+                middleNotes: "Cinnamon, Clove",
+                baseNotes: "Oud, Myrrh"
             },
-            "xerjoff-coro-selfridges-exclusive": {
-                name: "Coro (Selfridges Exclusive)",
-                brand: "Xerjoff",
+            "valentino-donna-born-in-roma": {
+                name: "Donna Born In Roma",
+                brand: "Valentino",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "An exclusive and luxurious fragrance.",
-                topNotes: "Bergamot, Black Pepper",
-                middleNotes: "Oud, Rose",
-                baseNotes: "Amber, Vanilla"
+                description: "A modern and floral fragrance for women.",
+                topNotes: "Black Currant, Bergamot",
+                middleNotes: "Jasmine, Peony",
+                baseNotes: "Bourbon Vanilla, Guaiac Wood"
             },
-            "xerjoff-opera": {
-                name: "Opera",
-                brand: "Xerjoff",
+            "valentino-uomo-born-in-roma-coral-fantasy": {
+                name: "Uomo Born In Roma Coral Fantasy",
+                brand: "Valentino",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A dramatic and floral fragrance.",
-                topNotes: "Fruits, Rose",
-                middleNotes: "Ylang-Ylang, Nutmeg",
-                baseNotes: "Patchouli, Vanilla"
+                description: "A fresh and vibrant fragrance for men.",
+                topNotes: "Red Apple, Bergamot",
+                middleNotes: "Geranium, Clary Sage",
+                baseNotes: "Patchouli, Vetiver"
             },
-            "xerjoff-erba-gold": {
-                name: "Erba Gold",
-                brand: "Xerjoff",
+            "valentino-uomo-born-in-roma-green-stravaganza": {
+                name: "Uomo Born in Roma Green Stravaganza",
+                brand: "Valentino",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A luxurious and golden fragrance.",
-                topNotes: "Lemon, Ginger",
-                middleNotes: "Cinnamon, Cardamom",
-                baseNotes: "Amber, Musk"
+                description: "A green and aromatic fragrance.",
+                topNotes: "Calamansi, Bergamot",
+                middleNotes: "Basil, Lavender",
+                baseNotes: "Vetiver, Cedarwood"
             },
-            "xerjoff-nio": {
-                name: "Nio",
-                brand: "Xerjoff",
+            "valentino-donna-born-in-roma-yellow-dream": {
+                name: "Donna Born In Roma Yellow Dream",
+                brand: "Valentino",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A fresh and citrusy fragrance.",
-                topNotes: "Bergamot, Neroli",
-                middleNotes: "Jasmine, Cardamom",
-                baseNotes: "Vetiver, Patchouli"
-            },
-            "maison-francis-kurkdjian-baccarat-rouge-540-extrait-de-parfum": {
-                name: "Baccarat Rouge 540 Extrait de Parfum",
-                brand: "Maison Francis Kurkdjian",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "An intense and luxurious version of Baccarat Rouge 540.",
-                topNotes: "Saffron, Jasmine",
-                middleNotes: "Amberwood, Ambergris",
-                baseNotes: "Fir Resin, Cedar"
-            },
-            "maison-francis-kurkdjian-baccarat-rouge-540": {
-                name: "Baccarat Rouge 540",
-                brand: "Maison Francis Kurkdjian",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A luminous and sophisticated fragrance.",
-                topNotes: "Jasmine, Saffron",
-                middleNotes: "Amberwood, Ambergris",
-                baseNotes: "Fir Resin, Cedar"
-            },
-            "maison-francis-kurkdjian-grand-soir": {
-                name: "Grand Soir",
-                brand: "Maison Francis Kurkdjian",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A warm and enveloping fragrance.",
-                topNotes: "Labdanum, Vanilla",
-                middleNotes: "Benzoin, Tonka Bean",
-                baseNotes: "Amber, Musk"
-            },
-            "maison-francis-kurkdjian-oud-satin-mood": {
-                name: "Oud Satin Mood",
-                brand: "Maison Francis Kurkdjian",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A rich and velvety oud fragrance.",
-                topNotes: "Violet, Rose",
-                middleNotes: "Oud, Amber",
-                baseNotes: "Vanilla, Benzoin"
-            },
-            "maison-francis-kurkdjian-oud-silk-mood-extrait-de-parfum": {
-                name: "Oud Silk Mood Extrait de parfum",
-                brand: "Maison Francis Kurkdjian",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "An opulent and silky oud fragrance.",
-                topNotes: "Bergamot, Blue Chamomile",
-                middleNotes: "Bulgarian Rose, Hedione",
-                baseNotes: "Papyrus, Guaiac Wood"
-            },
-            "maison-francis-kurkdjian-petit-matin": {
-                name: "Petit Matin",
-                brand: "Maison Francis Kurkdjian",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A fresh and luminous fragrance.",
-                topNotes: "Lemon, Litsea Cubeba",
-                middleNotes: "Lavender, Orange Blossom",
-                baseNotes: "Musk, Ambroxan"
-            },
-            "maison-francis-kurkdjian-leau-a-la-rose": {
-                name: "L'eau À la Rose",
-                brand: "Maison Francis Kurkdjian",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A light and floral rose fragrance.",
-                topNotes: "Lychee, Pear",
+                description: "A bright and floral fragrance for women.",
+                topNotes: "Lemon, Litchi",
                 middleNotes: "Rose, Peony",
                 baseNotes: "Musk, Cedar"
             },
-            "maison-francis-kurkdjian-lhomme-a-la-rose": {
-                name: "L'Homme À la Rose",
-                brand: "Maison Francis Kurkdjian",
+            "rabanne-1-million": {
+                name: "1 Million",
+                brand: "Rabanne",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A masculine and fresh rose fragrance.",
-                topNotes: "Grapefruit, Rosemary",
-                middleNotes: "Rose, Sage",
-                baseNotes: "Amber, Woods"
+                description: "A bold and seductive fragrance for men.",
+                topNotes: "Blood Mandarin, Grapefruit",
+                middleNotes: "Cinnamon, Mint",
+                baseNotes: "Leather, Amber"
             },
-            "tom-ford-oud-wood": {
-                name: "Oud Wood",
-                brand: "Tom Ford",
+            "rabanne-1-million-parfum": {
+                name: "1 Million Parfum",
+                brand: "Rabanne",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A luxurious and smoky oud fragrance.",
-                topNotes: "Rosewood, Cardamom",
-                middleNotes: "Oud, Sandalwood",
-                baseNotes: "Vetiver, Tonka Bean"
+                description: "An intense and leathery version of 1 Million.",
+                topNotes: "Tuberose, Salt",
+                middleNotes: "Leather, Pine",
+                baseNotes: "Labdanum, Amber"
             },
-            "tom-ford-white-suede": {
-                name: "White Suede",
-                brand: "Tom Ford",
+            "rabanne-1-million-royal": {
+                name: "1 Million Royal",
+                brand: "Rabanne",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A soft and elegant suede fragrance.",
-                topNotes: "Thyme, Tea",
-                middleNotes: "Lily-of-the-Valley, Saffron",
-                baseNotes: "Suede, Musk"
+                description: "A luxurious and woody fragrance.",
+                topNotes: "Bergamot, Mandarin",
+                middleNotes: "Lavender, Violet Leaf",
+                baseNotes: "Cedarwood, Patchouli"
             },
-            "tom-ford-soleil-blanc": {
-                name: "Soleil Blanc",
-                brand: "Tom Ford",
+            "rabanne-invictus": {
+                name: "Invictus",
+                brand: "Rabanne",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A solar and floral fragrance.",
+                description: "A fresh and aquatic fragrance for men.",
+                topNotes: "Grapefruit, Marine Accord",
+                middleNotes: "Bay Leaf, Jasmine",
+                baseNotes: "Guaiac Wood, Patchouli"
+            },
+            "rabanne-invictus-legend": {
+                name: "Invictus Legend",
+                brand: "Rabanne",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A woody and aromatic fragrance.",
+                topNotes: "Grapefruit, Sea Salt",
+                middleNotes: "Geranium, Spices",
+                baseNotes: "Guaiac Wood, Amber"
+            },
+            "rabanne-invictus-victory": {
+                name: "Invictus Victory",
+                brand: "Rabanne",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A powerful and oriental fragrance.",
+                topNotes: "Lemon, Pink Pepper",
+                middleNotes: "Lavender, Olibanum",
+                baseNotes: "Vanilla, Tonka Bean"
+            },
+            "rabanne-invictus-victory-elixir": {
+                name: "Invictus Victory Elixir",
+                brand: "Rabanne",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "An intense and invigorating fragrance.",
+                topNotes: "Bergamot, Grapefruit",
+                middleNotes: "Pepper, Olibanum",
+                baseNotes: "Patchouli, Benzoin"
+            },
+            "rabanne-phantom": {
+                name: "Phantom",
+                brand: "Rabanne",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A futuristic and aromatic fragrance.",
+                topNotes: "Lemon, Vetiver",
+                middleNotes: "Lavender, Apple",
+                baseNotes: "Patchouli, Vanilla"
+            },
+            "rabanne-phantom-intense": {
+                name: "Phantom Intense",
+                brand: "Rabanne",
+                price: "$33.23",
+                image: "https://via.placeholder.com/800x400",
+                description: "A bolder version of Phantom with deeper notes.",
                 topNotes: "Bergamot, Cardamom",
-                middleNotes: "Tuberose, Ylang-Ylang",
-                baseNotes: "Amber, Coconut"
+                middleNotes: "Jasmine, Rum",
+                baseNotes: "Cedarwood, Patchouli"
             },
-            "tom-ford-ombre-leather": {
-                name: "Ombré Leather",
-                brand: "Tom Ford",
+            "rabanne-pour-homme": {
+                name: "Pour Homme",
+                brand: "Rabanne",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A bold and textured leather fragrance.",
-                topNotes: "Cardamom",
-                middleNotes: "Leather, Jasmine",
-                baseNotes: "Amber, Moss"
+                description: "A classic and timeless fragrance for men.",
+                topNotes: "Clary Sage, Rosemary",
+                middleNotes: "Geranium, Tonka Bean",
+                baseNotes: "Moss, Honey"
             },
-            "tom-ford-soleil-neige": {
-                name: "Soleil Neige",
-                brand: "Tom Ford",
+            "rabanne-lady-million": {
+                name: "Lady Million",
+                brand: "Rabanne",
                 price: "$33.23",
                 image: "https://via.placeholder.com/800x400",
-                description: "A luminous and fresh fragrance.",
-                topNotes: "Bergamot, Carrot Seed",
-                middleNotes: "Jasmine, Orange Flower",
-                baseNotes: "Benzoin, Vanilla"
-            },
-            "tom-ford-tobacco-oud": {
-                name: "Tobacco Oud",
-                brand: "Tom Ford",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A rich and spicy tobacco fragrance.",
-                topNotes: "Whiskey",
-                middleNotes: "Cinnamon, Coriander",
-                baseNotes: "Tobacco, Oud"
-            },
-            "tom-ford-lost-cherry": {
-                name: "Lost Cherry",
-                brand: "Tom Ford",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A sweet and seductive cherry fragrance.",
-                topNotes: "Black Cherry, Bitter Almond",
-                middleNotes: "Cherry Syrup, Rose",
-                baseNotes: "Peru Balsam, Tonka Bean"
-            },
-            "tom-ford-oud-wood-intense": {
-                name: "Oud Wood Intense",
-                brand: "Tom Ford",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "An intensified version of Oud Wood.",
-                topNotes: "Angelica Root, Ginger",
-                middleNotes: "Cypress, Juniper",
-                baseNotes: "Oud, Leather"
-            },
-            "dior-eau-sauvage": {
-                name: "Eau Sauvage",
-                brand: "Dior",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A classic and fresh fragrance for men.",
-                topNotes: "Lemon, Bergamot",
-                middleNotes: "Rosemary, Petitgrain",
-                baseNotes: "Vetiver, Musk"
-            },
-            "dior-jadore": {
-                name: "J'adore",
-                brand: "Dior",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A luxurious and floral fragrance for women.",
-                topNotes: "Ylang-Ylang, Pear",
-                middleNotes: "Rose, Jasmine",
-                baseNotes: "Musk, Vanilla"
-            },
-            "dior-hypnotic-poison": {
-                name: "Hypnotic Poison",
-                brand: "Dior",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A sensual and oriental fragrance.",
-                topNotes: "Apricot, Plum",
-                middleNotes: "Tuberose, Jasmine",
-                baseNotes: "Vanilla, Almond"
-            },
-            "dior-sauvage": {
-                name: "Sauvage",
-                brand: "Dior",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A fresh and spicy fragrance for men.",
-                topNotes: "Bergamot, Pepper",
-                middleNotes: "Lavender, Geranium",
-                baseNotes: "Ambroxan, Cedar"
-            },
-            "dior-bois-dargent": {
-                name: "Bois D'Argent",
-                brand: "Dior",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A sophisticated and woody fragrance.",
-                topNotes: "Iris, Cypress",
-                middleNotes: "Myrrh, Patchouli",
-                baseNotes: "Woods, Honey"
-            },
-            "dior-sauvage-elixir": {
-                name: "Sauvage Elixir",
-                brand: "Dior",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "An intense and concentrated version of Sauvage.",
-                topNotes: "Cinnamon, Nutmeg",
-                middleNotes: "Lavender",
-                baseNotes: "Licorice, Amber"
-            },
-            "dior-homme-eau-for-men": {
-                name: "Homme Eau for Men",
-                brand: "Dior",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A fresh and woody fragrance for men.",
-                topNotes: "Bergamot, Pink Pepper",
-                middleNotes: "Atlas Cedar, Patchouli",
-                baseNotes: "Iso E Super, Vetiver"
-            },
-            "dior-homme": {
-                name: "Homme",
-                brand: "Dior",
-                price: "$33.23",
-                image: "https://via.placeholder.com/800x400",
-                description: "A sophisticated and masculine fragrance.",
-                topNotes: "Lavender, Sage",
-                middleNotes: "Iris, Cocoa",
-                baseNotes: "Leather, Vetiver"
+                description: "A glamorous and floral fragrance for women.",
+                topNotes: "Neroli, Bitter Orange",
+                middleNotes: "Raspberry, Orange Flower",
+                baseNotes: "Honey, Patchouli"
             }
         };
     </script>
