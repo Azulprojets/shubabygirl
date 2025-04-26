@@ -320,34 +320,29 @@
             margin-bottom: 1rem;
             border: 2px solid var(--gold-accent);
         }
-        #detail-scent-notes {
-            margin-top: auto;
-        }
         #detail-price {
-            font-size: 1.2rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            margin-bottom: 1rem;
-        }
-        #related-products {
-            margin-top: 1rem;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-        .related-item {
-            display: inline-block;
-            width: 150px;
-            margin-right: 1rem;
             text-align: center;
+            margin: 0.5rem 0;
         }
-        .related-item img {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
+        .detail-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 1rem 0 0.5rem;
+        }
+        #detail-scent-notes, #detail-description, #detail-vibe {
+            font-size: 1rem;
+            text-align: center;
+            margin: 0.5rem auto;
+            max-width: 80%;
         }
         .contact-note {
-            margin-top: 1rem;
             font-size: 1rem;
+            text-align: center;
+            margin-top: 1rem;
         }
         .contact-note a {
             color: var(--gold-accent);
@@ -454,6 +449,12 @@
                 font-size: 1rem;
                 padding: 0 1rem;
             }
+            #detail-price {
+                font-size: 1.6rem;
+            }
+            .detail-content h4 {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -478,7 +479,7 @@
             <div class="contact-banner">
                 To place an order, <a href="mailto:blitzazula@gmail.com">email us</a> or message @coo0k1e or @wockgimp on Discord. We'll send a PayPal payment link to complete your purchase.
             </div>
-            <div class="search-bar Departamento de ventas en línea">
+            <div class="search-bar">
                 <input type="text" id="search-input" placeholder="Search fragrances by name, brand, or description...">
                 <button id="clear-search">X</button>
                 <div id="autocomplete"></div>
@@ -721,7 +722,12 @@
                 <div class="right-column">
                     <h3 id="detail-title"></h3>
                     <p id="detail-price"></p>
+                    <h4>Scent Notes</h4>
                     <p id="detail-scent-notes"></p>
+                    <h4>Details</h4>
+                    <p id="detail-description"></p>
+                    <h4>Vibe</h4>
+                    <p id="detail-vibe"></p>
                     <p class="contact-note">To order, please <a href="mailto:blitzazula@gmail.com">email us</a> or message @coo0k1e or @wockgimp on Discord.</p>
                 </div>
             </div>
@@ -751,6 +757,165 @@
         }
         setInterval(createSnowflake, 100);
 
+        // Product details
+        const productDetails = {
+            'creed-aventus': {
+                scentNotes: 'Pineapple, bergamot, black currant, apple, birch, patchouli, jasmine, rose, musk, oakmoss, ambergris, vanilla',
+                description: 'A bold, fruity-chypre fragrance with a smoky, masculine edge, blending fresh pineapple and bergamot with woody birch and creamy musk.',
+                vibe: 'Charismatic, powerful, sophisticated'
+            },
+            'creed-silver-mountain-water': {
+                scentNotes: 'Bergamot, mandarin, green tea, black currant, galbanum, musk, sandalwood, petitgrain',
+                description: 'A crisp, aquatic fragrance evoking alpine streams, with citrusy bergamot and green tea over a musky, woody base.',
+                vibe: 'Clean, invigorating, serene'
+            },
+            'creed-virgin-island-water': {
+                scentNotes: 'Coconut, lime, white bergamot, mandarin, hibiscus, jasmine, ylang-ylang, tonka bean, musk',
+                description: 'A tropical, citrusy fragrance with creamy coconut and zesty lime, reminiscent of a Caribbean beach.',
+                vibe: 'Sunny, relaxed, exotic'
+            },
+            'creed-himalaya': {
+                scentNotes: 'Grapefruit, bergamot, lemon, sandalwood, vetiver, cedar, musk, ambergris, tonka bean',
+                description: 'A fresh, woody fragrance inspired by mountain air, with citrus top notes and a warm, musky base.',
+                vibe: 'Majestic, crisp, masculine'
+            },
+            'creed-millesime-imperial': {
+                scentNotes: 'Bergamot, lemon, mandarin, sea salt, iris, cedar, musk, tonka bean',
+                description: 'A luxurious, marine fragrance with salty sea notes, citrus, and creamy musk, evoking coastal elegance.',
+                vibe: 'Regal, refreshing, opulent'
+            },
+            'creed-love-in-white': {
+                scentNotes: 'Orange zest, rice, iris, white jasmine, magnolia, rose, vanilla, ambergris, sandalwood',
+                description: 'A delicate, floral fragrance with creamy vanilla and soft ambergris, radiating purity and elegance.',
+                vibe: 'Feminine, serene, luxurious'
+            },
+            'creed-viking': {
+                scentNotes: 'Bergamot, pepper, rose, mint, lavender, sandalwood, vetiver, patchouli, olibanum',
+                description: 'A fiery, aromatic fragrance with spicy pepper and rose, grounded by woody sandalwood, inspired by Norse explorers.',
+                vibe: 'Courageous, spicy, epic'
+            },
+            'creed-aventus-for-her': {
+                scentNotes: 'Peach, green apple, black currant, ylang-ylang, rose, sandalwood, musk, amber',
+                description: 'A feminine take on Aventus, blending fruity peach and apple with floral rose and creamy sandalwood.',
+                vibe: 'Empowering, fruity, elegant'
+            },
+            'creed-absolu-aventus': {
+                scentNotes: 'Black currant, bergamot, grapefruit, pineapple, ginger, patchouli, vetiver, musk, cinnamon',
+                description: 'A richer, spicier Aventus variant with intense citrus, ginger, and musky patchouli, offering a bold twist.',
+                vibe: 'Intense, dynamic, commanding'
+            },
+            'creed-carmina': {
+                scentNotes: 'Black cherry, rose, saffron, cashmere wood, peony, musk, amber, oud',
+                description: 'A sensual, floral-oriental fragrance with tart cherry, lush rose, and smoky oud, exuding femininity.',
+                vibe: 'Alluring, opulent, mysterious'
+            },
+            'creed-queen-of-silk': {
+                scentNotes: 'Osmanthus, passionfruit, tuberose, patchouli, incense, myrrh, vanilla, musk',
+                description: 'A creamy, exotic fragrance with fruity osmanthus, rich tuberose, and smoky incense, evoking silky luxury.',
+                vibe: 'Luxurious, sensual, captivating'
+            },
+            'creed-green-irish-tweed': {
+                scentNotes: 'Lemon verbena, iris, violet leaf, sandalwood, amber, musk',
+                description: 'A classic, green-fougère fragrance with fresh lemon verbena and powdery iris over a woody base.',
+                vibe: 'Refined, fresh, distinguished'
+            },
+            'giorgio-armani-vetiver-dhiver': {
+                scentNotes: 'Bergamot, cardamom, lemon, vetiver, basil, tonka bean, heliotrope, amber',
+                description: 'A fresh, green fragrance with zesty citrus, aromatic vetiver, and warm tonka, evoking a winter garden.',
+                vibe: 'Earthy, crisp, elegant'
+            },
+            'giorgio-armani-armani-prive-oud-royal': {
+                scentNotes: 'Oud, rose, saffron, amber, sandalwood, cardamom, myrrh',
+                description: 'A rich, oriental fragrance with smoky oud, lush rose, and spicy saffron, exuding Middle Eastern luxury.',
+                vibe: 'Regal, exotic, intense'
+            },
+            'giorgio-armani-my-way': {
+                scentNotes: 'Bergamot, orange blossom, tuberose, jasmine, vanilla, cedarwood, white musk',
+                description: 'A bright, floral fragrance with creamy tuberose and sweet vanilla, celebrating feminine exploration.',
+                vibe: 'Youthful, floral, uplifting'
+            },
+            'giorgio-armani-acqua-di-gio-essenza': {
+                scentNotes: 'Bergamot, grapefruit, sea notes, jasmine, patchouli, cedar, incense, ambergris',
+                description: 'A deep, aquatic fragrance with fresh citrus, marine notes, and smoky incense, refining the classic Acqua di Giò.',
+                vibe: 'Refined, oceanic, mysterious'
+            },
+            'giorgio-armani-si-passione': {
+                scentNotes: 'Black currant, pear, rose, jasmine, vanilla, cedarwood, amber',
+                description: 'A vibrant, fruity-floral fragrance with juicy black currant and passionate rose, embodying bold femininity.',
+                vibe: 'Romantic, fiery, feminine'
+            },
+            'giorgio-armani-emporio-armani-stronger-with-you': {
+                scentNotes: 'Cardamom, pink pepper, violet leaf, chestnut, sage, vanilla, musk',
+                description: 'A warm, spicy fragrance with sweet chestnut and creamy vanilla, evoking modern masculinity.',
+                vibe: 'Warm, intimate, youthful'
+            },
+            'giorgio-armani-acqua-di-gioia': {
+                scentNotes: 'Lemon, mint, jasmine, peony, pink pepper, cedar, brown sugar',
+                description: 'A fresh, aquatic-floral fragrance with zesty lemon and soft jasmine, inspired by coastal serenity.',
+                vibe: 'Fresh, serene, feminine'
+            },
+            'giorgio-armani-santal-dan-sha': {
+                scentNotes: 'Bergamot, cardamom, sandalwood, violet, amber, musk, incense',
+                description: 'A creamy, woody fragrance with smooth sandalwood and spicy cardamom, offering an exotic warmth.',
+                vibe: 'Warm, exotic, meditative'
+            },
+            'giorgio-armani-rose-alexandrie': {
+                scentNotes: 'Rose, mimosa, mandarin, neroli, patchouli, sandalwood, vanilla',
+                description: 'A lush, floral fragrance centered on rich rose, with sweet mandarin and creamy vanilla accents.',
+                vibe: 'Classic, floral, luxurious'
+            },
+            'giorgio-armani-acqua-di-gio': {
+                scentNotes: 'Bergamot, neroli, green tangerine, jasmine, rosemary, persimmon, patchouli, amber',
+                description: 'A timeless, aquatic fragrance with fresh citrus and herbal rosemary, evoking Mediterranean seas.',
+                vibe: 'Fresh, classic, effortless'
+            },
+            'giorgio-armani-acqua-di-gio-profumo': {
+                scentNotes: 'Bergamot, sea notes, geranium, rosemary, sage, patchouli, incense, amber',
+                description: 'A sophisticated, aquatic-woody fragrance with smoky incense and fresh bergamot, deepening the original.',
+                vibe: 'Deep, elegant, mysterious'
+            },
+            'chanel-1957': {
+                scentNotes: 'Bergamot, iris, orange blossom, jasmine, rose, musk, vanilla, cedar, honey',
+                description: 'A luminous, musky fragrance with powdery iris and creamy musk, celebrating Chanel’s heritage.',
+                vibe: 'Elegant, refined, nostalgic'
+            },
+            'chanel-no-19-eau-de-parfum': {
+                scentNotes: 'Galbanum, neroli, bergamot, iris, rose, lily of the valley, vetiver, oakmoss, leather',
+                description: 'A bold, green-floral fragrance with sharp galbanum and powdery iris, exuding strength and elegance.',
+                vibe: 'Sophisticated, green, assertive'
+            },
+            'chanel-gabrielle-essence': {
+                scentNotes: 'Citrus, jasmine, ylang-ylang, tuberose, orange blossom, vanilla, sandalwood, musk',
+                description: 'A radiant, floral fragrance with creamy tuberose and warm vanilla, embodying modern femininity.',
+                vibe: 'Radiant, feminine, uplifting'
+            },
+            'chanel-no-5-leau': {
+                scentNotes: 'Lemon, mandarin, orange, rose, jasmine, ylang-ylang, vanilla, cedar, musk',
+                description: 'A fresh, modern take on No 5 with bright citrus and soft florals, maintaining timeless elegance.',
+                vibe: 'Fresh, elegant, iconic'
+            },
+            'chanel-bleu-de-chanel-eau-de-parfum': {
+                scentNotes: 'Lemon, bergamot, mint, grapefruit, sandalwood, cedar, vetiver, incense, ginger',
+                description: 'A refined, woody-aromatic fragrance with fresh citrus and smoky incense, balancing strength and elegance.',
+                vibe: 'Polished, masculine, timeless'
+            },
+            'chanel-bleu-de-chanel': {
+                scentNotes: 'Lemon, bergamot, mint, grapefruit, nutmeg, jasmine, cedar, sandalwood, amber',
+                description: 'A fresh, woody fragrance with zesty citrus and warm cedar, offering a lighter take on Bleu de Chanel.',
+                vibe: 'Fresh, versatile, confident'
+            },
+            'chanel-chance-eau-de-toilette': {
+                scentNotes: 'Lemon, pineapple, hyacinth, jasmine, rose, patchouli, vetiver, vanilla, musk',
+                description: 'A lively, floral-chypre fragrance with fruity pineapple and creamy vanilla, radiating youthful energy.',
+                vibe: 'Vibrant, feminine, carefree'
+            },
+            'chanel-chance-eau-vive': {
+                scentNotes: 'Grapefruit, blood orange, jasmine, cedar, iris, vetiver, musk',
+                description: 'A zesty, floral fragrance with bright grapefruit and soft jasmine, bursting with vitality.',
+                vibe: 'Fresh, lively, youthful'
+            }
+        };
+
         // Details pop-up functionality
         document.addEventListener('DOMContentLoaded', () => {
             const detailView = document.getElementById('detail-view');
@@ -758,6 +923,8 @@
             const detailTitle = document.getElementById('detail-title');
             const detailPrice = document.getElementById('detail-price');
             const detailScentNotes = document.getElementById('detail-scent-notes');
+            const detailDescription = document.getElementById('detail-description');
+            const detailVibe = document.getElementById('detail-vibe');
             const closeDetail = document.getElementById('close-detail');
             const detailButtons = document.querySelectorAll('.details-btn');
 
@@ -768,12 +935,19 @@
                     const title = gridItem.querySelector('h4').textContent;
                     const price = gridItem.querySelector('.price').textContent;
                     const imageSrc = gridItem.querySelector('img').src;
+                    const details = productDetails[productId] || {
+                        scentNotes: 'Notes not available.',
+                        description: 'Description not available.',
+                        vibe: 'Vibe not specified.'
+                    };
                     
                     detailImage.src = imageSrc;
                     detailImage.alt = title;
                     detailTitle.textContent = title;
                     detailPrice.textContent = price;
-                    detailScentNotes.textContent = 'Scent Notes: Placeholder notes for ' + title;
+                    detailScentNotes.textContent = details.scentNotes;
+                    detailDescription.textContent = details.description;
+                    detailVibe.textContent = details.vibe;
                     
                     detailView.classList.add('visible');
                 });
