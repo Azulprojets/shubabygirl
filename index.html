@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YallahVendors - Luxury Fragrances Home</title>
+    <title>AzulaBlitz - Luxury Fragrances Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico">
     <style>
@@ -75,21 +75,6 @@
             z-index: 1000;
             box-shadow: 0 0 15px 5px rgba(163, 126, 44, 0.7);
         }
-        .cart-icon {
-            position: relative;
-            margin-right: 1rem;
-            cursor: pointer;
-        }
-        #cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: var(--gold-accent);
-            color: var(--metallic-black);
-            border-radius: 50%;
-            padding: 0.2rem 0.5rem;
-            font-size: 0.8rem;
-        }
         .logo img {
             height: 40px;
         }
@@ -133,6 +118,18 @@
             font-size: 1.5rem;
             margin-top: 1rem;
             font-style: italic;
+        }
+        .contact-banner {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+        .contact-banner a {
+            color: var(--gold-accent);
+            text-decoration: none;
+        }
+        .contact-banner a:hover {
+            text-decoration: underline;
         }
         .search-bar {
             margin-top: 2rem;
@@ -259,8 +256,15 @@
             cursor: pointer;
             margin-top: 0.5rem;
             width: 100%;
+            font-size: 1rem;
+            text-decoration: none;
+            display: block;
+            text-align: center;
         }
-        #detail-view, #cart-view, #tutorial-modal {
+        .details-btn:hover {
+            background: #8c6b25;
+        }
+        #detail-view, #tutorial-modal {
             position: fixed;
             top: 0;
             left: 0;
@@ -275,11 +279,11 @@
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
-        #detail-view.visible, #cart-view.visible, #tutorial-modal.visible {
+        #detail-view.visible, #tutorial-modal.visible {
             opacity: 1;
             pointer-events: auto;
         }
-        .detail-content, .cart-content, .tutorial-content {
+        .detail-content, .tutorial-content {
             background: var(--metallic-black);
             padding: 2rem;
             border-radius: 8px;
@@ -289,7 +293,7 @@
             position: relative;
             border: 2px solid var(--gold-accent);
         }
-        #close-detail, #close-cart, #close-tutorial {
+        #close-detail, #close-tutorial {
             position: absolute;
             top: 1rem;
             right: 1rem;
@@ -341,53 +345,16 @@
             object-fit: cover;
             border-radius: 8px;
         }
-        .btn {
-            background: var(--gold-accent);
-            color: var(--metallic-black);
-            padding: 0.8rem 2rem;
-            border-radius: 4px;
+        .contact-note {
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+        .contact-note a {
+            color: var(--gold-accent);
             text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
         }
-        .btn:hover {
-            background: #8c6b25;
-        }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 0.5rem 0;
-        }
-        .cart-item input {
-            width: 50px;
-            padding: 0.3rem;
-            background: var(--metallic-black);
-            color: var(--steel-white);
-            border: 1px solid var(--gold-accent);
-            border-radius: 4px;
-        }
-        .cart-item button {
-            background: var(--gold-accent);
-            color: var(--metallic-black);
-            border: none;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        #cart-subtotal {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-top: 1rem;
-        }
-        .tutorial-step {
-            display: none;
-        }
-        .tutorial-step.active {
-            display: block;
-        }
-        #tutorial-skip, #tutorial-next {
-            margin: 1rem;
+        .contact-note a:hover {
+            text-decoration: underline;
         }
         .about, .contact {
             padding: 4rem 2rem;
@@ -483,18 +450,18 @@
             .hero h1 {
                 font-size: 3rem;
             }
+            .contact-banner {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="snow-container"></div>
     <header>
-        <div class="cart-icon">
-            <span id="cart-count">0</span>
-            <img src="images/cart-icon.png" alt="Cart">
-        </div>
         <div class="logo">
-            <img src="images/logo.png" alt="YallahVendors Logo">
+            <img src="images/logo.png" alt="AzulaBlitz Logo">
         </div>
         <nav>
             <span id="hamburger">☰</span>
@@ -506,9 +473,12 @@
     </header>
     <main>
         <section class="hero">
-            <h1>Welcome to YallahVendors</h1>
+            <h1>Welcome to AzulaBlitz</h1>
             <p class="tagline">Curated Elegance in Every Scent</p>
-            <div class="search-bar">
+            <div class="contact-banner">
+                To place an order, <a href="mailto:blitzazula@gmail.com">email us</a> or message @coo0k1e or @wockgimp on Discord. We'll send a PayPal payment link to complete your purchase.
+            </div>
+            <div class="search-bar Departamento de ventas en línea">
                 <input type="text" id="search-input" placeholder="Search fragrances by name, brand, or description...">
                 <button id="clear-search">X</button>
                 <div id="autocomplete"></div>
@@ -521,7 +491,7 @@
                 <h3>Creed</h3>
                 <div class="grid">
                     <div class="grid-item" data-product="creed-aventus">
-                        <img src="https://media.discordapp.net/attachments/1167836397181349950/1365358851037069363/Untitleddesign-2024-01-31T121748.png?ex=680d0505&is=680bb385&hm=2625d0d1197a6d1676b1e447ff63dceb1cb99c00087019526b9ea847a34a84aa&=&format=webp&quality=lossless&width=1008&height=1008">
+                        <img src="https://media.discordapp.net/attachments/1167836397181349950/1365358851037069363/Untitleddesign-2024-01-31T121748.png?ex=680d0505&is=680bb385&hm=2625d0d1197a6d1676b1e447ff63dceb1cb99c00087019526b9ea847a34a84aa&=&format=webp&quality=lossless&width=1008&height=1008" alt="Aventus">
                         <h4>Aventus</h4>
                         <p class="price">$30</p>
                         <button class="details-btn">Details</button>
@@ -724,21 +694,21 @@
         </section>
         <section id="about" class="about">
             <h2>About Us</h2>
-            <p>At YallahVendors, we are passionate about bringing you the finest selection of luxury fragrances from renowned brands worldwide. Our mission is to curate an elegant and unforgettable scent experience, helping you find the perfect fragrance that reflects your unique style and personality.</p>
+            <p>At AzulaBlitz, we are passionate about bringing you the finest selection of luxury fragrances from renowned brands worldwide. Our mission is to curate an elegant and unforgettable scent experience, helping you find the perfect fragrance that reflects your unique style and personality.</p>
         </section>
         <section id="contact" class="contact">
             <h2>Contact Us</h2>
-            <p>Have questions or need assistance? Reach out to us, and we’ll be happy to help!</p>
-            <form id="contact-form">
+            <p>Have questions or want to place an order? Email us at <a href="mailto:blitzazula@gmail.com">blitzazula@gmail.com</a> or message @coo0k1e or @wockgimp on Discord. We'll send a PayPal payment link to complete your purchase.</p>
+            <form id="contact-form" action="mailto:blitzazula@gmail.com" method="post" enctype="text/plain">
                 <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <textarea name="message" placeholder="Your Message (e.g., order details)" rows="5" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
         </section>
     </main>
     <footer>
-        <img src="images/logo.png" alt="YallahVendors Logo" class="logo">
+        <img src="images/logo.png" alt="AzulaBlitz Logo" class="logo">
     </footer>
     <div id="back-to-top">↑</div>
     <div id="detail-view">
@@ -752,26 +722,17 @@
                     <h3 id="detail-title"></h3>
                     <p id="detail-price"></p>
                     <p id="detail-scent-notes"></p>
-                    <button class="btn">Add to Cart</button>
+                    <p class="contact-note">To order, please <a href="mailto:blitzazula@gmail.com">email us</a> or message @coo0k1e or @wockgimp on Discord.</p>
                 </div>
             </div>
             <div id="related-products"></div>
-        </div>
-    </div>
-    <div id="cart-view">
-        <div class="cart-content">
-            <button id="close-cart">X</button>
-            <h3>Shopping Cart</h3>
-            <div id="cart-items"></div>
-            <p id="cart-subtotal"></p>
-            <a href="#contact" class="btn">Contact Us</a>
         </div>
     </div>
     <div id="tutorial-modal">
         <div class="tutorial-content">
             <button id="close-tutorial">X</button>
             <div class="tutorial-step active">
-                <h3>Welcome to YallahVendors</h3>
+                <h3>Welcome to AzulaBlitz</h3>
                 <p>Explore our curated collection of luxury fragrances.</p>
             </div>
             <button id="tutorial-skip">Skip</button>
