@@ -407,6 +407,21 @@
         #checkout-btn:hover {
             background: #8c6b25;
         }
+        #shipping-form {
+            margin: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        #shipping-form input {
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 2px solid var(--gold-accent);
+            background: var(--metallic-black);
+            color: var(--steel-white);
+            border-radius: 8px;
+            outline: none;
+        }
         .about, .contact {
             padding: 4rem 2rem;
             text-align: center;
@@ -709,7 +724,7 @@
                         <h4>Acqua di Gio</h4>
                         <p class="price">$33</p>
                         <button class="details-btn">Details</button>
-                        voidaan<button class="add-to-cart-btn" data-product-id="giorgio-armani-acqua-di-gio" data-price="33">Add to Cart</button>
+                        <button class="add-to-cart-btn" data-product-id="giorgio-armani-acqua-di-gio" data-price="33">Add to Cart</button>
                     </div>
                     <div class="grid-item" data-product="giorgio-armani-acqua-di-gio-profumo">
                         <img src="images/giorgio-armani-acqua-di-gio-profumo.jpg" alt="Acqua di Giò Profumo">
@@ -831,6 +846,14 @@
             <h3>Shopping Cart</h3>
             <div id="cart-items"></div>
             <p id="cart-subtotal"></p>
+            <form id="shipping-form">
+                <input type="text" id="shipping-name" placeholder="Full Name" required>
+                <input type="text" id="shipping-address" placeholder="Shipping Address" required>
+                <input type="text" id="shipping-city" placeholder="City" required>
+                <input type="text" id="shipping-state" placeholder="State/Province" required>
+                <input type="text" id="shipping-zip" placeholder="ZIP/Postal Code" required>
+                <input type="text" id="shipping-country" placeholder="Country" required>
+            </form>
             <button id="checkout-btn">Checkout</button>
         </div>
     </div>
@@ -1016,13 +1039,21 @@
             }
         };
 
-        // Cart functionality
+        // Cart and shipping functionality
         function loadCart() {
             return JSON.parse(localStorage.getItem('cart')) || [];
         }
 
         function saveCart(cart) {
             localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function loadShipping() {
+            return JSON.parse(localStorage.getItem('shipping')) || {};
+        }
+
+        function saveShipping(shipping) {
+            localStorage.setItem('shipping', JSON.stringify(shipping));
         }
 
         function updateCartUI() {
@@ -1086,6 +1117,7 @@
             const detailButtons = document.querySelectorAll('.details-btn');
             const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
             const checkoutButton = document.getElementById('checkout-btn');
+            const shippingForm = document.getElementById('shipping-form');
 
             // Details pop-up
             detailButtons.forEach(button => {
@@ -1168,11 +1200,30 @@
                 }
             });
 
-            // Checkout with Stripe
+            // Shipping form submission
+            shippingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const shipping = {
+                    name: document.getElementById('shipping-name').value,
+                    address: document.getElementById('shipping-address').value,
+                    city: document.getElementById('shipping-city').value,
+                    state: document.getElementById('shipping-state').value,
+                    zip: document.getElementById('shipping-zip').value,
+                    country: document.getElementById('shipping-country').value
+                };
+                saveShipping(shipping);
+            });
+
+            // Checkout with Stripe and Dropified
             checkoutButton.addEventListener('click', () => {
                 const cart = loadCart();
+                const shipping = loadShipping();
                 if (cart.length === 0) {
                     alert('Your cart is empty!');
+                    return;
+                }
+                if (!shipping.name || !shipping.address) {
+                    alert('Please fill out all shipping details.');
                     return;
                 }
 
@@ -1187,31 +1238,61 @@
                     quantity: item.quantity
                 }));
 
-                fetch('https://api.stripe.com/v1/checkout/sessions', {
+                // Send order to Dropified
+                fetch('/netlify/functions/dropified', {
                     method: 'POST',
                     headers: {
-                        'Authorization': 'Bearer sk_test_YOUR_STRIPE_SECRET_KEY', // Replace with your Stripe secret key
-                        'Content-Type': 'application/x-www-form-urlencoded'
+                        'Content-Type': 'application/json'
                     },
-                    body: new URLSearchParams({
-                        'payment_method_types[]': 'card',
-                        'mode': 'payment',
-                        'success_url': window.location.origin + '/success.html',
-                        'cancel_url': window.location.origin + '/cancel.html',
-                        ...items.reduce((acc, item, index) => ({
-                            ...acc,
-                            [`line_items[${index}][price_data][currency]`]: item.price_data.currency,
-                            [`line_items[${index}][price_data][product_data][name]`]: item.price_data.product_data.name,
-                            [`line_items[${index}][price_data][unit_amount]`]: item.price_data.unit_amount,
-                            [`line_items[${index}][quantity]`]: item.quantity
-                        }), {})
-                    }).toString()
+                    body: JSON.stringify({
+                        orders: cart.map(item => ({
+                            product_id: item.id,
+                            quantity: item.quantity,
+                            title: item.title,
+                            price: item.price
+                        })),
+                        shipping: shipping
+                    })
                 })
                 .then(response => response.json())
-                .then(session => {
-                    stripe.redirectToCheckout({ sessionId: session.id });
+                .then(data => {
+                    if (!data.success) {
+                        console.error('Dropified error:', data.error);
+                        alert('Failed to send order to supplier. Please try again or contact support.');
+                        return;
+                    }
+
+                    // Proceed to Stripe Checkout
+                    fetch('https://api.stripe.com/v1/checkout/sessions', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer sk_test_YOUR_STRIPE_SECRET_KEY', // Replace with your Stripe secret key
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: new URLSearchParams({
+                            'payment_method_types[]': 'card',
+                            'mode': 'payment',
+                            'success_url': window.location.origin + '/success.html',
+                            'cancel_url': window.location.origin + '/cancel.html',
+                            ...items.reduce((acc, item, index) => ({
+                                ...acc,
+                                [`line_items[${index}][price_data][currency]`]: item.price_data.currency,
+                                [`line_items[${index}][price_data][product_data][name]`]: item.price_data.product_data.name,
+                                [`line_items[${index}][price_data][unit_amount]`]: item.price_data.unit_amount,
+                                [`line_items[${index}][quantity]`]: item.quantity
+                            }), {})
+                        }).toString()
+                    })
+                    .then(response => response.json())
+                    .then(session => {
+                        stripe.redirectToCheckout({ sessionId: session.id });
+                    })
+                    .catch(error => console.error('Checkout error:', error));
                 })
-                .catch(error => console.error('Checkout error:', error));
+                .catch(error => {
+                    console.error('Dropified integration error:', error);
+                    alert('Failed to connect to supplier system. Please try again or contact support.');
+                });
             });
 
             // Initial cart load
