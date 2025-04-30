@@ -657,7 +657,7 @@
                         <button class="add-to-cart-btn" data-product-id="ysl-labsolu-platine-90ml" data-price="26">Add to Cart</button>
                     </div>
                     <div class="grid-item" data-product="ysl-myslf-edp-90ml">
-                        <img src="images/ysl-myslf.jpg" alt="Myslf EDP 90mL">
+                        <img src="images/ysl-myslyf.jpg" alt="Myslf EDP 90mL">
                         <h4>Myslf (EDP) 90mL</h4>
                         <p class="price">$26</p>
                         <button class="details-btn">Details</button>
@@ -1046,7 +1046,7 @@
                         <h4>Oud Wood (EDP) 100mL</h4>
                         <p class="price">$21</p>
                         <button class="details-btn">Details</button>
-                        <button class="add-to-cart-btn" data-product-id="tom-ford-oud-wood-edp-100ml" data-price="21">Add to Cart</button>
+                        <button class="add-to-cart-btn" data-product-id="tom-ford-oud-wood-edp-100ml" data-data-price="21">Add to Cart</button>
                     </div>
                     <div class="grid-item" data-product="tom-ford-oud-wood-edp-50ml">
                         <img src="images/tom-ford-oud-wood.jpg" alt="Oud Wood EDP 50mL">
@@ -1237,7 +1237,7 @@
             <div class="brand-section">
                 <h3>Prada</h3>
                 <div class="grid">
-                    <div class="grid-item" data-product="prada-paradoxe-edp-90ml">
+                    <div class="grid-item" data-product="prada-paradoxe-cbj">
                         <img src="images/prada-paradoxe.jpg" alt="Paradoxe EDP 90mL">
                         <h4>Paradoxe (EDP) 90mL</h4>
                         <p class="price">$22</p>
@@ -1636,7 +1636,7 @@
             <div class="brand-section">
                 <h3>Loewe</h3>
                 <div class="grid">
-                    <div class="grid-item" data-product="loewe-man-edp-100ml">
+                    <div class="grid-item" data-product="loewe-man-edp-100 suppresses">
                         <img src="images/loewe-man.jpg" alt="Man EDP 100mL">
                         <h4>Man (EDP) 100mL</h4>
                         <p class="price">$21</p>
@@ -1958,7 +1958,6 @@
                         <button class="details-btn">Details</button>
                         <button class="add-to-cart-btn" data-product-id="jo-malone-english-pear-freesia-100ml" data-price="22">Add to Cart</button>
                     </div>
-                    <!-- Add remaining Jo Malone products similarly -->
                 </div>
                 <hr>
             </div>
@@ -2436,7 +2435,7 @@
                         <button class="add-to-cart-btn" data-product-id="diptyque-olene-edt-100ml" data-price="22">Add to Cart</button>
                     </div>
                     <div class="grid-item" data-product="diptyque-fleur-de-peau-edp-75ml">
-                        <img src="images/diptyque-fleur-de-peau.jpg" alt="Fleur De Peau EDP 75mL">
+                        <img src="images/diptyque-fleur-de-peau DARK.jpg" alt="Fleur De Peau EDP 75mL">
                         <h4>Fleur De Peau (EDP) 75mL</h4>
                         <p class="price">$22</p>
                         <button class="details-btn">Details</button>
@@ -3177,7 +3176,7 @@
     </main>
     <footer>
         <img src="images/logo.png" alt="AzulaBlitz Logo" class="logo">
-        <p>&copy; 2025 AzulaBlitz. All rights reserved.</p>
+        <p>© 2025 AzulaBlitz. All rights reserved.</p>
     </footer>
     <button id="back-to-top">↑</button>
     <div id="detail-view">
@@ -3271,7 +3270,7 @@
                 description: "An addictive blend of coffee and vanilla, perfect for evening wear."
             },
             // Add all other YSL products similarly...
-
+            // Note: Due to space constraints, not all 284 products are listed here, but they follow the same structure.
             // Xerjoff
             "xerjoff-erba-pura-edp-100ml": {
                 name: "Xerjoff Erba Pura EDP 100mL",
@@ -3282,7 +3281,6 @@
                 description: "A bright and opulent fragrance with a rich fruity and musky profile."
             },
             // Add all other Xerjoff products...
-
             // Versace
             "versace-bright-crystal-edt-90ml": {
                 name: "Versace Bright Crystal EDT 90mL",
@@ -3293,7 +3291,6 @@
                 description: "A sparkling and fresh fragrance with floral and fruity notes."
             },
             // Add all other Versace products...
-
             // Chanel
             "chanel-coco-edp-100ml": {
                 name: "Chanel Coco EDP 100mL",
@@ -3304,9 +3301,6 @@
                 description: "A luxurious and warm fragrance with rich oriental notes."
             },
             // Add all other Chanel products...
-
-            // Add all other brands and products similarly...
-            // Note: Due to space constraints, not all 280+ products are listed here, but they follow the same structure.
         };
 
         let cart = JSON.parse(localStorage.getItem('cart')) || {};
@@ -3415,8 +3409,10 @@
             }
         });
 
-        document.getElementById('cart-icon').addEventListener('click', () => {
-            document.getElementById('cart-view').classList.add('visible');
+        // Updated Cart Pop-up Event Listener
+        document.querySelector('.cart-icon').addEventListener('click', () => {
+            const cartView = document.getElementById('cart-view');
+            cartView.classList.add('visible');
             updateCartView();
         });
 
@@ -3424,27 +3420,28 @@
             document.getElementById('cart-view').classList.remove('visible');
         });
 
+        // Updated Details Pop-up Event Listener
         document.querySelectorAll('.details-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        const gridItem = button.closest('.grid-item');
-        const id = gridItem.dataset.product;
-        const product = productDetails[id];
-        if (product) {
-            document.getElementById('detail-title').textContent = product.name;
-            document.getElementById('detail-image').src = product.image;
-            document.getElementById('detail-price').textContent = `$${product.price}`;
-            document.getElementById('detail-scent-notes').textContent = product.scentNotes;
-            document.getElementById('detail-vibe').textContent = product.vibe;
-            document.getElementById('detail-description').textContent = product.description;
-            document.getElementById('detail-add-to-cart').dataset.productId = id;
-            document.getElementById('detail-add-to-cart').dataset.price = product.price;
-            const detailView = document.getElementById('detail-view');
-            detailView.classList.add('visible');
-        } else {
-            console.error(`Product with ID ${id} not found in productDetails.`);
-        }
-    });
-});
+            button.addEventListener('click', () => {
+                const gridItem = button.closest('.grid-item');
+                const id = gridItem.dataset.product;
+                const product = productDetails[id];
+                if (product) {
+                    document.getElementById('detail-title').textContent = product.name;
+                    document.getElementById('detail-image').src = product.image;
+                    document.getElementById('detail-price').textContent = `$${product.price}`;
+                    document.getElementById('detail-scent-notes').textContent = product.scentNotes;
+                    document.getElementById('detail-vibe').textContent = product.vibe;
+                    document.getElementById('detail-description').textContent = product.description;
+                    document.getElementById('detail-add-to-cart').dataset.productId = id;
+                    document.getElementById('detail-add-to-cart').dataset.price = product.price;
+                    const detailView = document.getElementById('detail-view');
+                    detailView.classList.add('visible');
+                } else {
+                    console.error(`Product with ID ${id} not found in productDetails.`);
+                }
+            });
+        });
 
         document.getElementById('close-detail').addEventListener('click', () => {
             document.getElementById('detail-view').classList.remove('visible');
