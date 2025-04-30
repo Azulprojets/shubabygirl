@@ -3425,20 +3425,26 @@
         });
 
         document.querySelectorAll('.details-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const id = button.parentElement.dataset.product;
-                const product = productDetails[id];
-                document.getElementById('detail-title').textContent = product.name;
-                document.getElementById('detail-image').src = product.image;
-                document.getElementById('detail-price').textContent = `$${product.price}`;
-                document.getElementById('detail-scent-notes').textContent = product.scentNotes;
-                document.getElementById('detail-vibe').textContent = product.vibe;
-                document.getElementById('detail-description').textContent = product.description;
-                document.getElementById('detail-add-to-cart').dataset.productId = id;
-                document.getElementById('detail-add-to-cart').dataset.price = product.price;
-                document.getElementById('detail-view').classList.add('visible');
-            });
-        });
+    button.addEventListener('click', () => {
+        const gridItem = button.closest('.grid-item');
+        const id = gridItem.dataset.product;
+        const product = productDetails[id];
+        if (product) {
+            document.getElementById('detail-title').textContent = product.name;
+            document.getElementById('detail-image').src = product.image;
+            document.getElementById('detail-price').textContent = `$${product.price}`;
+            document.getElementById('detail-scent-notes').textContent = product.scentNotes;
+            document.getElementById('detail-vibe').textContent = product.vibe;
+            document.getElementById('detail-description').textContent = product.description;
+            document.getElementById('detail-add-to-cart').dataset.productId = id;
+            document.getElementById('detail-add-to-cart').dataset.price = product.price;
+            const detailView = document.getElementById('detail-view');
+            detailView.classList.add('visible');
+        } else {
+            console.error(`Product with ID ${id} not found in productDetails.`);
+        }
+    });
+});
 
         document.getElementById('close-detail').addEventListener('click', () => {
             document.getElementById('detail-view').classList.remove('visible');
